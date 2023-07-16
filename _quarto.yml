@@ -9,14 +9,14 @@ project:
 website:
   title: ""
   site-url: http://localhost:4200/
-  favicon: "logo.png"
+  #favicon: "logo.png"
   google-analytics: "G-5ZQX02R26E"
   open-graph: true
   navbar:
     # background:  #"transparent"
     pinned: false
     search: true
-    logo: logo.png
+    #logo: logo.png
     left:
       - text: "{{< fa house >}} Home"
         file: index.qmd  
