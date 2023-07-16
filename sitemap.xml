@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
+  <url>
+    <loc>http://localhost:4200/about.html</loc>
+    <lastmod>2023-07-16T16:53:08.076Z</lastmod>
+  </url>
+  <url>
+    <loc>http://localhost:4200/Autosar/index.html</loc>
+    <lastmod>2023-07-16T16:53:06.952Z</lastmod>
+  </url>
+  <url>
+    <loc>http://localhost:4200/Notes/index.html</loc>
+    <lastmod>2023-07-16T16:53:06.020Z</lastmod>
+  </url>
+  <url>
+    <loc>http://localhost:4200/C_Plus_Plus/index.html</loc>
+    <lastmod>2023-07-16T16:53:05.016Z</lastmod>
+  </url>
+  <url>
+    <loc>http://localhost:4200/index.html</loc>
+    <lastmod>2023-07-16T16:53:04.056Z</lastmod>
+  </url>
+  <url>
+    <loc>http://localhost:4200/C_Plus_Plus/2022-11-22-Basic of template.html</loc>
+    <lastmod>2023-07-16T16:53:05.480Z</lastmod>
+  </url>
+  <url>
+    <loc>http://localhost:4200/Notes/2022-11-22-Notes.html</loc>
+    <lastmod>2023-07-16T16:53:06.436Z</lastmod>
+  </url>
+  <url>
+    <loc>http://localhost:4200/Autosar/2022-11-22-Autosar.html</loc>
+    <lastmod>2023-07-16T16:53:07.436Z</lastmod>
+  </url>
+</urlset>
