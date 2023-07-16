@@ -1,0 +1,9 @@
+---
+title: "Auto Glimpses"
+# comments: false
+page-layout: article
+title-block-banner: true
+---
+
+Home page
+Author: Yasmi

@@ -1,0 +1,16 @@
+---
+title: "About me "
+comments: false
+about:
+  template: marquee
+  links:
+    - icon: linkedin
+      text: LinkedIn
+      href: https://www.linkedin.com/
+    - icon: github
+      text: Github
+      href: https://github.com/Yasmic/AutoGlimpses
+sidebar: false
+---
+
+This is about me

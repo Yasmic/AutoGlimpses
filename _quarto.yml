@@ -1,0 +1,80 @@
+project:
+  type: website
+  output-dir: _site
+  resources: 
+    - "*.pdf"
+  preview:
+    port: 4200
+    browser: false
+website:
+  title: ""
+  site-url: http://localhost:4200/
+  favicon: "logo.png"
+  google-analytics: "G-5ZQX02R26E"
+  open-graph: true
+  navbar:
+    # background:  #"transparent"
+    pinned: false
+    search: true
+    logo: logo.png
+    left:
+      - text: "{{< fa house >}} Home"
+        file: index.qmd  
+      - text: "{{< fa book-open-reader >}} Autosar"
+        file: Autosar/index.qmd
+      - text: "{{< fa user-ninja >}} C Plus Plus"
+        file: C_Plus_Plus/index.qmd    
+      - text: "{{< fa file-powerpoint >}} Notes"
+        file: Notes/index.qmd           
+      - href: about.qmd
+        text: "{{< fa address-card >}} About"                         
+    right:             
+      - icon: github
+        href: https://github.com/Yasmic/AutoGlimpses
+      - icon: linkedin
+        href: https://www.linkedin.com/
+  sidebar:  
+    - id: C_Plus_Plus
+      collapse-level: 1
+      contents:
+        - auto: "C_Plus_Plus/"
+      background: "#CBE4FA"  # corr "#CBE4FA" 
+    - id: Autosar
+      collapse-level: 1
+      contents:
+        - auto: "Autosar/"  
+      # background: transparent
+    - id: Notes
+      collapse-level: 1
+      contents:
+        - auto: "Notes/"    
+      # background: transparent                      
+       
+  page-navigation: true
+  page-footer: 
+    left: "Copyright 2022, Yasmi" 
+    right: 
+      - icon: github
+        href: https://github.com/Yasmic/AutoGlimpses
+      - icon: linkedin
+        href: https://www.linkedin.com/
+    background: light
+  comments:
+    giscus:
+      repo: Yasmic/AutoGlimpses
+      category: Announcements
+format:
+  html: 
+    theme: cerulean
+    # theme: 
+    #   light: minty
+    #   dark: slate    
+    css: styles.css
+    html-math-method: katex
+    highlight-style: tango
+    fig-align: center
+    fig-responsive: true
+    
+
+
+
