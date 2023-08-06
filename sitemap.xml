@@ -1,35 +1,39 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   <url>
-    <loc>http://localhost:4200/about.html</loc>
-    <lastmod>2023-07-16T17:01:20.532Z</lastmod>
-  </url>
-  <url>
-    <loc>http://localhost:4200/Autosar/index.html</loc>
-    <lastmod>2023-07-16T17:01:19.160Z</lastmod>
-  </url>
-  <url>
-    <loc>http://localhost:4200/Notes/index.html</loc>
-    <lastmod>2023-07-16T17:01:17.648Z</lastmod>
-  </url>
-  <url>
-    <loc>http://localhost:4200/C_Plus_Plus/index.html</loc>
-    <lastmod>2023-07-16T17:01:16.080Z</lastmod>
-  </url>
-  <url>
-    <loc>http://localhost:4200/index.html</loc>
-    <lastmod>2023-07-16T17:01:14.936Z</lastmod>
+    <loc>http://localhost:4200/C_Plus_Plus/basics_of_cpp.html</loc>
+    <lastmod>2023-08-06T14:59:43.594Z</lastmod>
   </url>
   <url>
     <loc>http://localhost:4200/C_Plus_Plus/2022-11-22-Basic of template.html</loc>
-    <lastmod>2023-07-16T17:01:16.824Z</lastmod>
+    <lastmod>2023-08-06T14:59:41.754Z</lastmod>
   </url>
   <url>
-    <loc>http://localhost:4200/Notes/2022-11-22-Notes.html</loc>
-    <lastmod>2023-07-16T17:01:18.372Z</lastmod>
+    <loc>http://localhost:4200/Notes/index.html</loc>
+    <lastmod>2023-08-06T14:59:39.866Z</lastmod>
   </url>
   <url>
     <loc>http://localhost:4200/Autosar/2022-11-22-Autosar.html</loc>
-    <lastmod>2023-07-16T17:01:19.892Z</lastmod>
+    <lastmod>2023-08-06T14:59:37.602Z</lastmod>
+  </url>
+  <url>
+    <loc>http://localhost:4200/index.html</loc>
+    <lastmod>2023-08-06T14:59:35.314Z</lastmod>
+  </url>
+  <url>
+    <loc>http://localhost:4200/Autosar/index.html</loc>
+    <lastmod>2023-08-06T14:59:36.822Z</lastmod>
+  </url>
+  <url>
+    <loc>http://localhost:4200/about.html</loc>
+    <lastmod>2023-08-06T14:59:38.434Z</lastmod>
+  </url>
+  <url>
+    <loc>http://localhost:4200/Notes/2022-11-22-Notes.html</loc>
+    <lastmod>2023-08-06T14:59:40.926Z</lastmod>
+  </url>
+  <url>
+    <loc>http://localhost:4200/C_Plus_Plus/index.html</loc>
+    <lastmod>2023-08-06T14:59:42.626Z</lastmod>
   </url>
 </urlset>
