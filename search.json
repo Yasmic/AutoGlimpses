@@ -21,11 +21,18 @@
     "text": "2 Lambda function\nFormat :\n[] () mutable throw() -&gt; int \n{\n    //lambda body\n} \n[] Lambda introducer also called capture clause  () Lambda declarator also called parameter list  mutable also known as mutable specification  exception specification return type lambda body\nCapture clause \n[] -lambda does not access enclosing scope [=] -captures everything by value  [&]-capture everything by reference [x,&y]-capture x by value and y by reference [&,z]-capture everything by reference,but z by value \nLambda function example \n int x=9;\n  auto add_one = [x] (const int value) \n    {\n        x=2;//Error \n\n         //x is captured by copy so the x value cannot be modified inside the lambda function \n        //in order to change/update the value of x add \"mutable keyword after parameter list \"\n        //or capture the x value by reference in the capture clause\n        return value + 1+x;\n    };\n  \n  //Method 1\n    auto add_one = [x] (const int value) mutable\n    {\n        x=2;\n        return value + 1+x;\n    };\n    cout&lt;&lt;(add_one(2))&lt;&lt;endl; //12\n\n     //Method 2\n    auto add_one = [&x] (const int value) \n    {\n        x=2;\n        return value + 1+x;\n    };\n    cout&lt;&lt;(add_one(2))&lt;&lt;endl;//12"
   },
   {
-    "objectID": "Notes/index.html",
-    "href": "Notes/index.html",
-    "title": "Notes",
+    "objectID": "about.html",
+    "href": "about.html",
+    "title": "About me",
     "section": "",
-    "text": "Order By\n       Default\n         \n          Title\n        \n         \n          Date - Oldest\n        \n         \n          Date - Newest\n        \n         \n          Author\n        \n     \n  \n    \n      \n      \n    \n\n\n\n\n  \n\n\n\n\nNotes\n\n\n\n\n\n\n\nNotes\n\n\n\n\nNotes\n\n\n\n\n\n\nAug 26, 2022\n\n\nYasmi\n\n\n\n\n\n\nNo matching items"
+    "text": "This is about me"
+  },
+  {
+    "objectID": "Autosar/index.html",
+    "href": "Autosar/index.html",
+    "title": "Autosar",
+    "section": "",
+    "text": "Order By\n       Default\n         \n          Title\n        \n         \n          Date - Oldest\n        \n         \n          Date - Newest\n        \n         \n          Author\n        \n     \n  \n    \n      \n      \n    \n\n\n\n\n  \n\n\n\n\nDiagnostic communication manager\n\n\n\n\n\n\n\nBSW\n\n\n\n\nDCM\n\n\n\n\n\n\nAug 26, 2022\n\n\nYasmi\n\n\n\n\n\n\nNo matching items"
   },
   {
     "objectID": "index.html",
@@ -35,24 +42,17 @@
     "text": "Home page Author: Yasmi"
   },
   {
-    "objectID": "Autosar/index.html",
-    "href": "Autosar/index.html",
-    "title": "Autosar",
+    "objectID": "Notes/index.html",
+    "href": "Notes/index.html",
+    "title": "Notes",
     "section": "",
-    "text": "Order By\n       Default\n         \n          Title\n        \n         \n          Date - Oldest\n        \n         \n          Date - Newest\n        \n         \n          Author\n        \n     \n  \n    \n      \n      \n    \n\n\n\n\n  \n\n\n\n\nBasic Software\n\n\n\n\n\n\n\nBSW\n\n\n\n\nBasic Software\n\n\n\n\n\n\nAug 26, 2022\n\n\nYasmi\n\n\n\n\n\n\nNo matching items"
-  },
-  {
-    "objectID": "about.html",
-    "href": "about.html",
-    "title": "About me",
-    "section": "",
-    "text": "This is about me"
+    "text": "Order By\n       Default\n         \n          Title\n        \n         \n          Date - Oldest\n        \n         \n          Date - Newest\n        \n         \n          Author\n        \n     \n  \n    \n      \n      \n    \n\n\n\n\n  \n\n\n\n\nNotes\n\n\n\n\n\n\n\nNotes\n\n\n\n\nNotes\n\n\n\n\n\n\nAug 26, 2022\n\n\nYasmi\n\n\n\n\n\n\nNo matching items"
   },
   {
     "objectID": "C_Plus_Plus/index.html",
     "href": "C_Plus_Plus/index.html",
     "title": "C Plus Plus",
     "section": "",
-    "text": "Order By\n       Default\n         \n          Title\n        \n         \n          Date - Oldest\n        \n         \n          Date - Newest\n        \n         \n          Author\n        \n     \n  \n    \n      \n      \n    \n\n\n\n\n  \n\n\n\n\nBasics of c++\n\n\n\n\n\n\n\nBasics of c++\n\n\n\n\nBasics of c++\n\n\n\n\n\n\nAug 6, 2023\n\n\nYas Mi\n\n\n\n\n\n\n  \n\n\n\n\nBasic of template\n\n\n\n\n\n\n\nBasic of template\n\n\n\n\nBasic of template\n\n\n\n\n\n\nAug 26, 2022\n\n\nYasmi\n\n\n\n\n\n\nNo matching items"
+    "text": "Order By\n       Default\n         \n          Title\n        \n         \n          Date - Oldest\n        \n         \n          Date - Newest\n        \n         \n          Author\n        \n     \n  \n    \n      \n      \n    \n\n\n\n\n  \n\n\n\n\nBasics of c++\n\n\n\n\n\n\n\nBasics of c++\n\n\n\n\nBasics of c++\n\n\n\n\n\n\nAug 6, 2023\n\n\nYas Mi\n\n\n\n\n\n\nNo matching items"
   }
 ]

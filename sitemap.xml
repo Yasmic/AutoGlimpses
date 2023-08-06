@@ -2,38 +2,34 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   <url>
     <loc>http://localhost:4200/C_Plus_Plus/basics_of_cpp.html</loc>
-    <lastmod>2023-08-06T15:04:16.831Z</lastmod>
-  </url>
-  <url>
-    <loc>http://localhost:4200/C_Plus_Plus/2022-11-22-Basic of template.html</loc>
-    <lastmod>2023-08-06T15:04:15.027Z</lastmod>
-  </url>
-  <url>
-    <loc>http://localhost:4200/Notes/index.html</loc>
-    <lastmod>2023-08-06T15:04:13.419Z</lastmod>
-  </url>
-  <url>
-    <loc>http://localhost:4200/Autosar/2022-11-22-Autosar.html</loc>
-    <lastmod>2023-08-06T15:04:11.279Z</lastmod>
-  </url>
-  <url>
-    <loc>http://localhost:4200/index.html</loc>
-    <lastmod>2023-08-06T15:04:08.955Z</lastmod>
-  </url>
-  <url>
-    <loc>http://localhost:4200/Autosar/index.html</loc>
-    <lastmod>2023-08-06T15:04:10.403Z</lastmod>
-  </url>
-  <url>
-    <loc>http://localhost:4200/about.html</loc>
-    <lastmod>2023-08-06T15:04:12.115Z</lastmod>
+    <lastmod>2023-08-06T15:09:48.836Z</lastmod>
   </url>
   <url>
     <loc>http://localhost:4200/Notes/2022-11-22-Notes.html</loc>
-    <lastmod>2023-08-06T15:04:14.263Z</lastmod>
+    <lastmod>2023-08-06T15:09:47.180Z</lastmod>
+  </url>
+  <url>
+    <loc>http://localhost:4200/about.html</loc>
+    <lastmod>2023-08-06T15:09:45.400Z</lastmod>
+  </url>
+  <url>
+    <loc>http://localhost:4200/Autosar/index.html</loc>
+    <lastmod>2023-08-06T15:09:44.012Z</lastmod>
+  </url>
+  <url>
+    <loc>http://localhost:4200/index.html</loc>
+    <lastmod>2023-08-06T15:09:42.887Z</lastmod>
+  </url>
+  <url>
+    <loc>http://localhost:4200/Autosar/2022-11-22-Autosar.html</loc>
+    <lastmod>2023-08-06T15:09:44.760Z</lastmod>
+  </url>
+  <url>
+    <loc>http://localhost:4200/Notes/index.html</loc>
+    <lastmod>2023-08-06T15:09:46.508Z</lastmod>
   </url>
   <url>
     <loc>http://localhost:4200/C_Plus_Plus/index.html</loc>
-    <lastmod>2023-08-06T15:04:15.959Z</lastmod>
+    <lastmod>2023-08-06T15:09:48.000Z</lastmod>
   </url>
 </urlset>
