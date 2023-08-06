@@ -30,9 +30,9 @@ website:
         text: "{{< fa address-card >}} About"                         
     right:             
       - icon: github
-        href: https://github.com/Yasmic/AutoGlimpses
+        href: https://github.com/Yasmic/
       - icon: linkedin
-        href: https://www.linkedin.com/
+        href: https://www.linkedin.com/in/yasmic/
   sidebar:  
     - id: C_Plus_Plus
       collapse-level: 1
