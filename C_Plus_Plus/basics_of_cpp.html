@@ -262,6 +262,11 @@ gtag('config', 'G-5ZQX02R26E', { 'anonymize_ip': true});
   <li><a href="#thread-synchronisation-example-using-condition_variable" id="toc-thread-synchronisation-example-using-condition_variable" class="nav-link" data-scroll-target="#thread-synchronisation-example-using-condition_variable"><span class="header-section-number">3.9.1</span> Thread Synchronisation example using <code>condition_variable</code></a></li>
   </ul></li>
   <li><a href="#dead-lock" id="toc-dead-lock" class="nav-link" data-scroll-target="#dead-lock"><span class="header-section-number">3.10</span> Dead Lock</a></li>
+  <li><a href="#threadprocess-synchronisation" id="toc-threadprocess-synchronisation" class="nav-link" data-scroll-target="#threadprocess-synchronisation"><span class="header-section-number">3.11</span> Thread/Process synchronisation</a>
+  <ul>
+  <li><a href="#stdlockm1m2m3.mn" id="toc-stdlockm1m2m3.mn" class="nav-link" data-scroll-target="#stdlockm1m2m3.mn"><span class="header-section-number">3.11.1</span> std::lock(m1,m2,m3….mn)</a></li>
+  </ul></li>
+  <li><a href="#promise-and-future" id="toc-promise-and-future" class="nav-link" data-scroll-target="#promise-and-future"><span class="header-section-number">3.12</span> Promise and Future</a></li>
   </ul></li>
   </ul>
 </nav>
@@ -390,7 +395,7 @@ gtag('config', 'G-5ZQX02R26E', { 'anonymize_ip': true});
 <section id="thread" class="level3" data-number="3.1">
 <h3 data-number="3.1" class="anchored" data-anchor-id="thread"><span class="header-section-number">3.1</span> Thread</h3>
 <p>Thread is useful for parallelism</p>
-<p>Thread coulf be created by below methods</p>
+<p>Thread shall be created by below methods</p>
 <ol type="1">
 <li>Function pointer</li>
 <li>Lambda function</li>
@@ -760,7 +765,10 @@ gtag('config', 'G-5ZQX02R26E', { 'anonymize_ip': true});
 <h3 data-number="3.8" class="anchored" data-anchor-id="unique-lock"><span class="header-section-number">3.8</span> Unique Lock</h3>
 <p><code>unique_lock&lt;mutex&gt;lock(m)</code>where m is mutex it works just like the lock_guard</p>
 <ul>
-<li><p>Locking strategies defer_lock -It does not lock the mutex ,locking should be done at later point<br> try_to_lock it aquires the mutex but without blocking <br> adopt_lock it assumes the calling thread aquired the mutex<br></p></li>
+<li><p>Locking strategies <br></p></li>
+<li><p>defer_lock -It does not lock the mutex ,locking should be done at later point<br></p></li>
+<li><p>try_to_lock it aquires the mutex but without blocking <br></p></li>
+<li><p>adopt_lock it assumes the calling thread aquired the mutex<br></p></li>
 <li><p>it allows</p></li>
 </ul>
 <p>time based locking such as <br> try_lock_for, try_lock_until</p>
@@ -969,6 +977,169 @@ gtag('config', 'G-5ZQX02R26E', { 'anonymize_ip': true});
 <li>This situation is nothing but deadlock</li>
 </ul>
 <p>To avoid this we shouldnt change the order of mutex locking (m1 and m2 in both the function)</p>
+</section>
+<section id="threadprocess-synchronisation" class="level3" data-number="3.11">
+<h3 data-number="3.11" class="anchored" data-anchor-id="threadprocess-synchronisation"><span class="header-section-number">3.11</span> Thread/Process synchronisation</h3>
+<p>Critical section is one or collection of program statement which should be executed by only one thread or process at a time. Thread/process synchronize to access critical section if the data is common between the threads it is critical section , and if the data is used only for reading then its not considered as critical section but if there is a write operation between threads to update the same data then it becomes critical section</p>
+<ul>
+<li>Below is the example of race condition we donno exactly the value of <code>counter</code> ,it will be impossible to get <code>8</code> it might be <code>3</code> or <code>5</code></li>
+</ul>
+<div class="sourceCode" id="cb21"><pre class="sourceCode numberSource cpp number-lines code-with-copy"><code class="sourceCode cpp"><span id="cb21-1"><a href="#cb21-1"></a></span>
+<span id="cb21-2"><a href="#cb21-2"></a><span class="pp">#include</span><span class="im">&lt;thread&gt;</span></span>
+<span id="cb21-3"><a href="#cb21-3"></a><span class="pp">#include</span><span class="im">&lt;iostream&gt;</span></span>
+<span id="cb21-4"><a href="#cb21-4"></a><span class="kw">using</span> <span class="kw">namespace</span> std<span class="op">;</span></span>
+<span id="cb21-5"><a href="#cb21-5"></a></span>
+<span id="cb21-6"><a href="#cb21-6"></a><span class="dt">int</span> counter<span class="op">=</span><span class="dv">0</span><span class="op">;</span></span>
+<span id="cb21-7"><a href="#cb21-7"></a><span class="dt">void</span> function_one<span class="op">(</span><span class="dt">int</span> x<span class="op">)</span></span>
+<span id="cb21-8"><a href="#cb21-8"></a><span class="op">{</span></span>
+<span id="cb21-9"><a href="#cb21-9"></a> counter<span class="op">+=</span>x<span class="op">;</span></span>
+<span id="cb21-10"><a href="#cb21-10"></a><span class="op">}</span></span>
+<span id="cb21-11"><a href="#cb21-11"></a></span>
+<span id="cb21-12"><a href="#cb21-12"></a><span class="dt">int</span> main<span class="op">()</span></span>
+<span id="cb21-13"><a href="#cb21-13"></a><span class="op">{</span></span>
+<span id="cb21-14"><a href="#cb21-14"></a></span>
+<span id="cb21-15"><a href="#cb21-15"></a>    thread th3<span class="op">(</span>function_one<span class="op">,</span><span class="dv">3</span><span class="op">);</span></span>
+<span id="cb21-16"><a href="#cb21-16"></a>    thread th4<span class="op">(</span>function_one<span class="op">,</span><span class="dv">5</span><span class="op">);</span></span>
+<span id="cb21-17"><a href="#cb21-17"></a>    th3<span class="op">.</span>join<span class="op">();</span></span>
+<span id="cb21-18"><a href="#cb21-18"></a>    th4<span class="op">.</span>join<span class="op">();</span></span>
+<span id="cb21-19"><a href="#cb21-19"></a>    cout<span class="op">&lt;&lt;</span>counter<span class="op">&lt;&lt;</span>endl<span class="op">;</span></span>
+<span id="cb21-20"><a href="#cb21-20"></a>    <span class="cf">return</span> <span class="dv">0</span><span class="op">;</span></span>
+<span id="cb21-21"><a href="#cb21-21"></a><span class="op">}</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<ul>
+<li>How to avoid this : using mutex</li>
+</ul>
+<div class="sourceCode" id="cb22"><pre class="sourceCode numberSource cpp number-lines code-with-copy"><code class="sourceCode cpp"><span id="cb22-1"><a href="#cb22-1"></a>mutex m1<span class="op">;</span></span>
+<span id="cb22-2"><a href="#cb22-2"></a></span>
+<span id="cb22-3"><a href="#cb22-3"></a><span class="dt">int</span> counter<span class="op">=</span><span class="dv">0</span><span class="op">;</span></span>
+<span id="cb22-4"><a href="#cb22-4"></a><span class="dt">void</span> function_one<span class="op">(</span><span class="dt">int</span> x<span class="op">)</span></span>
+<span id="cb22-5"><a href="#cb22-5"></a><span class="op">{</span></span>
+<span id="cb22-6"><a href="#cb22-6"></a>    m1<span class="op">.</span>lock<span class="op">();</span></span>
+<span id="cb22-7"><a href="#cb22-7"></a>    counter<span class="op">+=</span>x<span class="op">;</span></span>
+<span id="cb22-8"><a href="#cb22-8"></a>    m1<span class="op">.</span>unlock<span class="op">();</span></span>
+<span id="cb22-9"><a href="#cb22-9"></a><span class="op">}</span></span>
+<span id="cb22-10"><a href="#cb22-10"></a></span>
+<span id="cb22-11"><a href="#cb22-11"></a></span>
+<span id="cb22-12"><a href="#cb22-12"></a></span>
+<span id="cb22-13"><a href="#cb22-13"></a><span class="dt">int</span> main<span class="op">()</span></span>
+<span id="cb22-14"><a href="#cb22-14"></a><span class="op">{</span></span>
+<span id="cb22-15"><a href="#cb22-15"></a></span>
+<span id="cb22-16"><a href="#cb22-16"></a>    thread th3<span class="op">(</span>function_one<span class="op">,</span><span class="dv">3</span><span class="op">);</span></span>
+<span id="cb22-17"><a href="#cb22-17"></a>    thread th4<span class="op">(</span>function_one<span class="op">,</span><span class="dv">5</span><span class="op">);</span></span>
+<span id="cb22-18"><a href="#cb22-18"></a>    th3<span class="op">.</span>join<span class="op">();</span></span>
+<span id="cb22-19"><a href="#cb22-19"></a>    th4<span class="op">.</span>join<span class="op">();</span></span>
+<span id="cb22-20"><a href="#cb22-20"></a>    cout<span class="op">&lt;&lt;</span>counter<span class="op">&lt;&lt;</span>endl<span class="op">;</span></span>
+<span id="cb22-21"><a href="#cb22-21"></a>    <span class="cf">return</span> <span class="dv">0</span><span class="op">;</span></span>
+<span id="cb22-22"><a href="#cb22-22"></a><span class="op">}</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>Here lets say both the thread reached to lock at the same time , and one of them gets the access randomly to lock and access critical section lets say th1 got access then other thread is waiting and after writing counter it will release using unlock now the th2 can access by locking and continue to write .But here one thread is writing critical section at one time , only one thread at a time can execute if one of the thread dont unlock the other thread keeps waiting and goes to deadlock condition this is the reason the thread synchronisation is very important</p>
+<ul>
+<li>But how do we ensure thread synchronisation without deadlock?</li>
+</ul>
+<section id="stdlockm1m2m3.mn" class="level4" data-number="3.11.1">
+<h4 data-number="3.11.1" class="anchored" data-anchor-id="stdlockm1m2m3.mn"><span class="header-section-number">3.11.1</span> std::lock(m1,m2,m3….mn)</h4>
+<ul>
+<li>It allows to lock multiple mutex same time</li>
+<li>It will not let to happen deadlock</li>
+<li>It can use lock(), try_lock() or unlock()</li>
+<li>if one of them is not locked it will unlock all and tries another time by re arranging the sequence order of mutex locking . previously ,3 couldnt lock internally from next time when it tries it will try to lock first m3 then tries remaining and every time it ensures no deadlock scenario occurs.</li>
+</ul>
+<p><code>Deadlock example</code><br></p>
+<div class="sourceCode" id="cb23"><pre class="sourceCode numberSource cpp number-lines code-with-copy"><code class="sourceCode cpp"><span id="cb23-1"><a href="#cb23-1"></a><span class="pp">#include</span><span class="im">&lt;thread&gt;</span></span>
+<span id="cb23-2"><a href="#cb23-2"></a><span class="pp">#include</span><span class="im">&lt;mutex&gt;</span></span>
+<span id="cb23-3"><a href="#cb23-3"></a><span class="pp">#include</span><span class="im">&lt;iostream&gt;</span></span>
+<span id="cb23-4"><a href="#cb23-4"></a><span class="pp">#include</span><span class="im">&lt;chrono&gt;</span></span>
+<span id="cb23-5"><a href="#cb23-5"></a><span class="pp">#include</span><span class="im">&lt;condition_variable&gt;</span></span>
+<span id="cb23-6"><a href="#cb23-6"></a><span class="kw">using</span> <span class="kw">namespace</span> std<span class="op">;</span></span>
+<span id="cb23-7"><a href="#cb23-7"></a></span>
+<span id="cb23-8"><a href="#cb23-8"></a>mutex m1<span class="op">;</span></span>
+<span id="cb23-9"><a href="#cb23-9"></a>mutex m2<span class="op">;</span></span>
+<span id="cb23-10"><a href="#cb23-10"></a></span>
+<span id="cb23-11"><a href="#cb23-11"></a><span class="dt">int</span> counter<span class="op">=</span><span class="dv">0</span><span class="op">;</span></span>
+<span id="cb23-12"><a href="#cb23-12"></a><span class="dt">void</span> function_one<span class="op">(</span><span class="dt">int</span> x<span class="op">)</span></span>
+<span id="cb23-13"><a href="#cb23-13"></a><span class="op">{</span></span>
+<span id="cb23-14"><a href="#cb23-14"></a>    m2<span class="op">.</span>lock<span class="op">();</span></span>
+<span id="cb23-15"><a href="#cb23-15"></a>    this_thread<span class="op">::</span>sleep_for<span class="op">(</span>chrono<span class="op">::</span>seconds<span class="op">(</span><span class="dv">3</span><span class="op">));</span></span>
+<span id="cb23-16"><a href="#cb23-16"></a>    m1<span class="op">.</span>lock<span class="op">();</span></span>
+<span id="cb23-17"><a href="#cb23-17"></a>    counter<span class="op">+=</span>x<span class="op">;</span></span>
+<span id="cb23-18"><a href="#cb23-18"></a>    m2<span class="op">.</span>unlock<span class="op">();</span></span>
+<span id="cb23-19"><a href="#cb23-19"></a>    m1<span class="op">.</span>unlock<span class="op">();</span></span>
+<span id="cb23-20"><a href="#cb23-20"></a><span class="op">}</span></span>
+<span id="cb23-21"><a href="#cb23-21"></a></span>
+<span id="cb23-22"><a href="#cb23-22"></a><span class="dt">void</span> function_two<span class="op">(</span><span class="dt">int</span> x<span class="op">)</span></span>
+<span id="cb23-23"><a href="#cb23-23"></a><span class="op">{</span></span>
+<span id="cb23-24"><a href="#cb23-24"></a>    m1<span class="op">.</span>lock<span class="op">();</span></span>
+<span id="cb23-25"><a href="#cb23-25"></a>    this_thread<span class="op">::</span>sleep_for<span class="op">(</span>chrono<span class="op">::</span>seconds<span class="op">(</span><span class="dv">3</span><span class="op">));</span></span>
+<span id="cb23-26"><a href="#cb23-26"></a>    m2<span class="op">.</span>lock<span class="op">();</span></span>
+<span id="cb23-27"><a href="#cb23-27"></a>    counter<span class="op">+=</span>x<span class="op">;</span></span>
+<span id="cb23-28"><a href="#cb23-28"></a>    m1<span class="op">.</span>unlock<span class="op">();</span></span>
+<span id="cb23-29"><a href="#cb23-29"></a>    m2<span class="op">.</span>unlock<span class="op">();</span></span>
+<span id="cb23-30"><a href="#cb23-30"></a><span class="op">}</span></span>
+<span id="cb23-31"><a href="#cb23-31"></a></span>
+<span id="cb23-32"><a href="#cb23-32"></a><span class="dt">int</span> main<span class="op">()</span></span>
+<span id="cb23-33"><a href="#cb23-33"></a><span class="op">{</span></span>
+<span id="cb23-34"><a href="#cb23-34"></a></span>
+<span id="cb23-35"><a href="#cb23-35"></a>    thread th3<span class="op">(</span>function_one<span class="op">,</span><span class="dv">3</span><span class="op">);</span></span>
+<span id="cb23-36"><a href="#cb23-36"></a>    thread th4<span class="op">(</span>function_two<span class="op">,</span><span class="dv">5</span><span class="op">);</span></span>
+<span id="cb23-37"><a href="#cb23-37"></a>    th3<span class="op">.</span>join<span class="op">();</span></span>
+<span id="cb23-38"><a href="#cb23-38"></a>    th4<span class="op">.</span>join<span class="op">();</span></span>
+<span id="cb23-39"><a href="#cb23-39"></a>    cout<span class="op">&lt;&lt;</span>counter<span class="op">&lt;&lt;</span>endl<span class="op">;</span></span>
+<span id="cb23-40"><a href="#cb23-40"></a>    <span class="cf">return</span> <span class="dv">0</span><span class="op">;</span></span>
+<span id="cb23-41"><a href="#cb23-41"></a><span class="op">}</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<ul>
+<li>How to avoid them</li>
+</ul>
+<div class="sourceCode" id="cb24"><pre class="sourceCode numberSource cpp number-lines code-with-copy"><code class="sourceCode cpp"><span id="cb24-1"><a href="#cb24-1"></a><span class="pp">#include</span><span class="im">&lt;thread&gt;</span></span>
+<span id="cb24-2"><a href="#cb24-2"></a><span class="pp">#include</span><span class="im">&lt;mutex&gt;</span></span>
+<span id="cb24-3"><a href="#cb24-3"></a><span class="pp">#include</span><span class="im">&lt;iostream&gt;</span></span>
+<span id="cb24-4"><a href="#cb24-4"></a><span class="pp">#include</span><span class="im">&lt;chrono&gt;</span></span>
+<span id="cb24-5"><a href="#cb24-5"></a><span class="pp">#include</span><span class="im">&lt;condition_variable&gt;</span></span>
+<span id="cb24-6"><a href="#cb24-6"></a><span class="kw">using</span> <span class="kw">namespace</span> std<span class="op">;</span></span>
+<span id="cb24-7"><a href="#cb24-7"></a></span>
+<span id="cb24-8"><a href="#cb24-8"></a>mutex m1<span class="op">;</span></span>
+<span id="cb24-9"><a href="#cb24-9"></a>mutex m2<span class="op">;</span></span>
+<span id="cb24-10"><a href="#cb24-10"></a></span>
+<span id="cb24-11"><a href="#cb24-11"></a><span class="dt">int</span> counter<span class="op">=</span><span class="dv">0</span><span class="op">;</span></span>
+<span id="cb24-12"><a href="#cb24-12"></a><span class="dt">void</span> function_one<span class="op">(</span><span class="dt">int</span> x<span class="op">)</span></span>
+<span id="cb24-13"><a href="#cb24-13"></a><span class="op">{</span></span>
+<span id="cb24-14"><a href="#cb24-14"></a>    lock<span class="op">(</span>m1<span class="op">,</span>m2<span class="op">);</span></span>
+<span id="cb24-15"><a href="#cb24-15"></a>    this_thread<span class="op">::</span>sleep_for<span class="op">(</span>chrono<span class="op">::</span>seconds<span class="op">(</span><span class="dv">3</span><span class="op">));</span></span>
+<span id="cb24-16"><a href="#cb24-16"></a>    counter<span class="op">+=</span>x<span class="op">;</span></span>
+<span id="cb24-17"><a href="#cb24-17"></a>    m1<span class="op">.</span>unlock<span class="op">();</span></span>
+<span id="cb24-18"><a href="#cb24-18"></a>    m2<span class="op">.</span>unlock<span class="op">();</span></span>
+<span id="cb24-19"><a href="#cb24-19"></a></span>
+<span id="cb24-20"><a href="#cb24-20"></a><span class="op">}</span></span>
+<span id="cb24-21"><a href="#cb24-21"></a></span>
+<span id="cb24-22"><a href="#cb24-22"></a><span class="dt">void</span> function_two<span class="op">(</span><span class="dt">int</span> x<span class="op">)</span></span>
+<span id="cb24-23"><a href="#cb24-23"></a><span class="op">{</span></span>
+<span id="cb24-24"><a href="#cb24-24"></a>   lock<span class="op">(</span>m2<span class="op">,</span>m1<span class="op">);</span></span>
+<span id="cb24-25"><a href="#cb24-25"></a>    this_thread<span class="op">::</span>sleep_for<span class="op">(</span>chrono<span class="op">::</span>seconds<span class="op">(</span><span class="dv">3</span><span class="op">));</span></span>
+<span id="cb24-26"><a href="#cb24-26"></a>    counter<span class="op">+=</span>x<span class="op">;</span></span>
+<span id="cb24-27"><a href="#cb24-27"></a>    m2<span class="op">.</span>unlock<span class="op">();</span></span>
+<span id="cb24-28"><a href="#cb24-28"></a>    m1<span class="op">.</span>unlock<span class="op">();</span></span>
+<span id="cb24-29"><a href="#cb24-29"></a><span class="op">}</span></span>
+<span id="cb24-30"><a href="#cb24-30"></a></span>
+<span id="cb24-31"><a href="#cb24-31"></a><span class="dt">int</span> main<span class="op">()</span></span>
+<span id="cb24-32"><a href="#cb24-32"></a><span class="op">{</span></span>
+<span id="cb24-33"><a href="#cb24-33"></a></span>
+<span id="cb24-34"><a href="#cb24-34"></a>    thread th3<span class="op">(</span>function_one<span class="op">,</span><span class="dv">3</span><span class="op">);</span></span>
+<span id="cb24-35"><a href="#cb24-35"></a>    thread th4<span class="op">(</span>function_two<span class="op">,</span><span class="dv">5</span><span class="op">);</span></span>
+<span id="cb24-36"><a href="#cb24-36"></a>    th3<span class="op">.</span>join<span class="op">();</span></span>
+<span id="cb24-37"><a href="#cb24-37"></a>    th4<span class="op">.</span>join<span class="op">();</span></span>
+<span id="cb24-38"><a href="#cb24-38"></a>    cout<span class="op">&lt;&lt;</span>counter<span class="op">&lt;&lt;</span>endl<span class="op">;</span></span>
+<span id="cb24-39"><a href="#cb24-39"></a>    <span class="cf">return</span> <span class="dv">0</span><span class="op">;</span></span>
+<span id="cb24-40"><a href="#cb24-40"></a><span class="op">}</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>Example</p>
+<p>No deadlock <br> ex:1<br> - <code>lock(m1,m2)</code> - for thread 1 - <code>lock(m1,m2)</code>- for thread 2</p>
+<p>ex:2<br> Thread1<br> - <code>lock(m1,m2)</code>-Th1 is locked m1</p>
+<p>Thread 2<br> - <code>lock(m2,m1)</code>- Th2 is locked m2 it releases lock and tries after some time by the time thread 1 is released so the Th2 would be able to finish even it changes the order of locking and then release for Th1 vice versa</p>
+<p>Deadlock <br></p>
+</section>
+</section>
+<section id="promise-and-future" class="level3" data-number="3.12">
+<h3 data-number="3.12" class="anchored" data-anchor-id="promise-and-future"><span class="header-section-number">3.12</span> Promise and Future</h3>
+<ul>
+<li><p>std::promise Used to set values or exceptions</p></li>
+<li><p>std::future It Wait for the promise It enquire promise if the values are available It gets the values from the promise</p></li>
+</ul>
 
 
 </section>
