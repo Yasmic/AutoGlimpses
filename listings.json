@@ -6,15 +6,17 @@
     ]
   },
   {
-    "listing": "/C_Plus_Plus/index.html",
-    "items": [
-      "/C_Plus_Plus/basics_of_cpp.html"
-    ]
-  },
-  {
     "listing": "/Notes/index.html",
     "items": [
       "/Notes/2022-11-22-Notes.html"
+    ]
+  },
+  {
+    "listing": "/C_Plus_Plus/index.html",
+    "items": [
+      "/C_Plus_Plus/multi_threading.html",
+      "/C_Plus_Plus/basics_cpp.html",
+      "/C_Plus_Plus/advanced_cpp.html"
     ]
   }
 ]
