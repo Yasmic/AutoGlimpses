@@ -277,6 +277,7 @@ gtag('config', 'G-5ZQX02R26E', { 'anonymize_ip': true});
   <li><a href="#stdlockm1m2m3.mn" id="toc-stdlockm1m2m3.mn" class="nav-link" data-scroll-target="#stdlockm1m2m3.mn"><span class="header-section-number">1.11.1</span> std::lock(m1,m2,m3….mn)</a></li>
   </ul></li>
   <li><a href="#promise-and-future" id="toc-promise-and-future" class="nav-link" data-scroll-target="#promise-and-future"><span class="header-section-number">1.12</span> Promise and Future</a></li>
+  <li><a href="#producer-consumer-problem" id="toc-producer-consumer-problem" class="nav-link" data-scroll-target="#producer-consumer-problem"><span class="header-section-number">1.13</span> Producer Consumer problem</a></li>
   </ul></li>
   </ul>
 </nav>
@@ -291,7 +292,7 @@ gtag('config', 'G-5ZQX02R26E', { 'anonymize_ip': true});
 <h2 data-number="1" class="anchored" data-anchor-id="multi-threading"><span class="header-section-number">1</span> MULTI THREADING</h2>
 <ul>
 <li><p>Purpose of Mutex : A mutex is used to coordinate mutually exclusive access to resources by multiple threads of execution. The <code>mutex</code> class is used to protect shared data from corruption due to simultaneous access by multiple threads.</p></li>
-<li><p>Purpose of producer consumer idiom : o facilitate threads that produce data and threads that consume data using a single common and coordinated container In the producer-consumer idiom one thread produces data and another consumes data, using one container to hold the data.</p></li>
+<li><p>Purpose of producer consumer idiom : To facilitate threads that produce data and threads that consume data using a single common and coordinated container In the producer-consumer idiom one thread produces data and another consumes data, using one container to hold the data.</p></li>
 <li><p>What is the difference between sleep_for and sleep_until? sleep_for will sleep for a specified interval; sleep_until will sleep until a specified point in time. Both functions are in the <code>this_thread</code> namespace and both use objects from the <code>chrono</code> library for their arguments.</p></li>
 <li><p>How does async return values from a thread? async returns values in a future object <code>async</code> uses the <code>promise</code> and <code>future</code> paradigm to return values to the caller.</p></li>
 <li><p>thread::join() method use case? The join() method blocks execution of the caller until the thread completes.</p></li>
@@ -1045,6 +1046,44 @@ gtag('config', 'G-5ZQX02R26E', { 'anonymize_ip': true});
 <li><p>std::promise Used to set values or exceptions</p></li>
 <li><p>std::future It Wait for the promise It enquire promise if the values are available It gets the values from the promise</p></li>
 </ul>
+<p>Here is the simple program for promise and future to understand how the data is shared between two threads , the thread <code>function_future</code> which is calling <code>get</code>method internall waits until the data is available from the thread <code>function_promise</code></p>
+<div class="sourceCode" id="cb21"><pre class="sourceCode numberSource cpp number-lines code-with-copy"><code class="sourceCode cpp"><span id="cb21-1"><a href="#cb21-1"></a><span class="pp">#include</span><span class="im">&lt;thread&gt;</span></span>
+<span id="cb21-2"><a href="#cb21-2"></a><span class="pp">#include</span><span class="im">&lt;iostream&gt;</span></span>
+<span id="cb21-3"><a href="#cb21-3"></a><span class="pp">#include </span><span class="im">&lt;future&gt;</span></span>
+<span id="cb21-4"><a href="#cb21-4"></a><span class="pp">#include</span><span class="im">&lt;utility&gt;</span></span>
+<span id="cb21-5"><a href="#cb21-5"></a></span>
+<span id="cb21-6"><a href="#cb21-6"></a><span class="kw">using</span> <span class="kw">namespace</span> std<span class="op">;</span></span>
+<span id="cb21-7"><a href="#cb21-7"></a><span class="dt">void</span> function_promise<span class="op">(</span>promise<span class="op">&lt;</span><span class="dt">int</span><span class="op">&gt;&amp;&amp;</span>pObj<span class="op">)</span></span>
+<span id="cb21-8"><a href="#cb21-8"></a><span class="op">{</span></span>
+<span id="cb21-9"><a href="#cb21-9"></a>  </span>
+<span id="cb21-10"><a href="#cb21-10"></a>pObj<span class="op">.</span>set_value<span class="op">(</span><span class="dv">10</span><span class="op">);</span></span>
+<span id="cb21-11"><a href="#cb21-11"></a></span>
+<span id="cb21-12"><a href="#cb21-12"></a><span class="op">}</span></span>
+<span id="cb21-13"><a href="#cb21-13"></a></span>
+<span id="cb21-14"><a href="#cb21-14"></a><span class="dt">void</span> function_future<span class="op">(</span>future<span class="op">&lt;</span><span class="dt">int</span><span class="op">&gt;&amp;&amp;</span> obj<span class="op">)</span></span>
+<span id="cb21-15"><a href="#cb21-15"></a><span class="op">{</span></span>
+<span id="cb21-16"><a href="#cb21-16"></a>   cout<span class="op">&lt;&lt;</span><span class="st">"the value is="</span><span class="op">&lt;&lt;</span>obj<span class="op">.</span>get<span class="op">()&lt;&lt;</span>endl<span class="op">;</span></span>
+<span id="cb21-17"><a href="#cb21-17"></a></span>
+<span id="cb21-18"><a href="#cb21-18"></a><span class="op">}</span></span>
+<span id="cb21-19"><a href="#cb21-19"></a></span>
+<span id="cb21-20"><a href="#cb21-20"></a><span class="dt">int</span> main<span class="op">()</span></span>
+<span id="cb21-21"><a href="#cb21-21"></a><span class="op">{</span></span>
+<span id="cb21-22"><a href="#cb21-22"></a>    promise<span class="op">&lt;</span><span class="dt">int</span><span class="op">&gt;</span>pObj<span class="op">;</span></span>
+<span id="cb21-23"><a href="#cb21-23"></a>    future<span class="op">&lt;</span><span class="dt">int</span><span class="op">&gt;</span>fObj<span class="op">=</span>pObj<span class="op">.</span>get_future<span class="op">();</span></span>
+<span id="cb21-24"><a href="#cb21-24"></a>    thread t1<span class="op">(</span>function_promise<span class="op">,</span>move<span class="op">(</span>pObj<span class="op">));</span></span>
+<span id="cb21-25"><a href="#cb21-25"></a>    thread t2<span class="op">(</span>function_future<span class="op">,</span>move<span class="op">(</span>fObj<span class="op">));</span></span>
+<span id="cb21-26"><a href="#cb21-26"></a>    t1<span class="op">.</span>join<span class="op">();</span></span>
+<span id="cb21-27"><a href="#cb21-27"></a>    t2<span class="op">.</span>join<span class="op">();</span></span>
+<span id="cb21-28"><a href="#cb21-28"></a>    <span class="cf">return</span> <span class="dv">0</span><span class="op">;</span></span>
+<span id="cb21-29"><a href="#cb21-29"></a><span class="op">}</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</section>
+<section id="producer-consumer-problem" class="level3" data-number="1.13">
+<h3 data-number="1.13" class="anchored" data-anchor-id="producer-consumer-problem"><span class="header-section-number">1.13</span> Producer Consumer problem</h3>
+<ul>
+<li>Producer is the thread which gives the data Producer provides the data in the buffer</li>
+<li>Consumer is the thread which takes the data from the buffer in order to avoid the race condition here we use mutex Producer takes the lock and update the data and release mutex lock and notify to consumer .</li>
+</ul>
+<p>After the notification consumer goes and takes the data and consumer notify to producer back . - it goes until the producer wants to produce the data</p>
 
 
 </section>
