@@ -7,7 +7,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 <meta name="author" content="Yasmi">
-<meta name="dcterms.date" content="2022-08-26">
+<meta name="dcterms.date" content="2023-09-16">
 <meta name="description" content="DCM">
 
 <title>Diagnostic communication manager</title>
@@ -33,6 +33,7 @@ ul.task-list li input[type="checkbox"] {
 <script src="../site_libs/quarto-search/fuse.min.js"></script>
 <script src="../site_libs/quarto-search/quarto-search.js"></script>
 <meta name="quarto:offset" content="../">
+<link href="../Autosar/DEM.html" rel="next">
 <link href="../Autosar/index.html" rel="prev">
 <script src="../site_libs/quarto-html/quarto.js"></script>
 <script src="../site_libs/quarto-html/popper.min.js"></script>
@@ -79,6 +80,9 @@ gtag('config', 'G-5ZQX02R26E', { 'anonymize_ip': true});
 <link rel="stylesheet" href="../styles.css">
 <meta property="og:title" content="Diagnostic communication manager">
 <meta property="og:description" content="DCM">
+<meta property="og:image" content="http://localhost:4200/Autosar/Images/DCM.png">
+<meta property="og:image:height" content="946">
+<meta property="og:image:width" content="1218">
 </head>
 
 <body class="nav-sidebar floating nav-fixed">
@@ -136,7 +140,7 @@ gtag('config', 'G-5ZQX02R26E', { 'anonymize_ip': true});
       <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar,#quarto-sidebar-glass" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
         <i class="bi bi-layout-text-sidebar-reverse"></i>
       </button>
-      <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../Autosar/index.html">Autosar</a></li><li class="breadcrumb-item"><a href="../Autosar/2022-11-22-Autosar.html">Diagnostic communication manager</a></li></ol></nav>
+      <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../Autosar/index.html">Autosar</a></li><li class="breadcrumb-item"><a href="../Autosar/DCM.html">Diagnostic communication manager</a></li></ol></nav>
       <a class="flex-grow-1" role="button" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar,#quarto-sidebar-glass" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
       </a>
     </div>
@@ -153,7 +157,7 @@ gtag('config', 'G-5ZQX02R26E', { 'anonymize_ip': true});
         </div>
       </div>
                           <div class="quarto-categories">
-                <div class="quarto-category">BSW</div>
+                <div class="quarto-category">Diagnostics</div>
               </div>
                   </div>
   </div>
@@ -171,7 +175,7 @@ gtag('config', 'G-5ZQX02R26E', { 'anonymize_ip': true});
       <div>
       <div class="quarto-title-meta-heading">Published</div>
       <div class="quarto-title-meta-contents">
-        <p class="date">August 26, 2022</p>
+        <p class="date">September 16, 2023</p>
       </div>
     </div>
     
@@ -195,8 +199,14 @@ gtag('config', 'G-5ZQX02R26E', { 'anonymize_ip': true});
       <ul id="quarto-sidebar-section-1" class="collapse list-unstyled sidebar-section depth1 show">  
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../Autosar/2022-11-22-Autosar.html" class="sidebar-item-text sidebar-link active">
+  <a href="../Autosar/DCM.html" class="sidebar-item-text sidebar-link active">
  <span class="menu-text">Diagnostic communication manager</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../Autosar/DEM.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Diagnostic event manager</span></a>
   </div>
 </li>
       </ul>
@@ -211,7 +221,28 @@ gtag('config', 'G-5ZQX02R26E', { 'anonymize_ip': true});
     <h2 id="toc-title">On this page</h2>
    
   <ul>
-  <li><a href="#description" id="toc-description" class="nav-link active" data-scroll-target="#description"><span class="header-section-number">1</span> Description:</a></li>
+  <li><a href="#description" id="toc-description" class="nav-link active" data-scroll-target="#description"><span class="header-section-number">1</span> Description:</a>
+  <ul>
+  <li><a href="#nrcnegative-response-code" id="toc-nrcnegative-response-code" class="nav-link" data-scroll-target="#nrcnegative-response-code"><span class="header-section-number">1.1</span> NRC(Negative response code)</a></li>
+  <li><a href="#dcm-submodules" id="toc-dcm-submodules" class="nav-link" data-scroll-target="#dcm-submodules"><span class="header-section-number">1.2</span> DCM Submodules</a>
+  <ul>
+  <li><a href="#dsl" id="toc-dsl" class="nav-link" data-scroll-target="#dsl"><span class="header-section-number">1.2.1</span> DSL</a></li>
+  <li><a href="#use-cases" id="toc-use-cases" class="nav-link" data-scroll-target="#use-cases"><span class="header-section-number">1.2.2</span> Use cases</a></li>
+  <li><a href="#interactions-with-other-modules" id="toc-interactions-with-other-modules" class="nav-link" data-scroll-target="#interactions-with-other-modules"><span class="header-section-number">1.2.3</span> Interactions with other modules</a></li>
+  <li><a href="#dsl-important-functionalities" id="toc-dsl-important-functionalities" class="nav-link" data-scroll-target="#dsl-important-functionalities"><span class="header-section-number">1.2.4</span> DSL important Functionalities</a>
+  <ul>
+  <li><a href="#request-handling" id="toc-request-handling" class="nav-link" data-scroll-target="#request-handling"><span class="header-section-number">1.2.4.1</span> Request handling</a></li>
+  <li><a href="#response-handling" id="toc-response-handling" class="nav-link" data-scroll-target="#response-handling"><span class="header-section-number">1.2.4.2</span> Response Handling :</a></li>
+  <li><a href="#security-level-handling" id="toc-security-level-handling" class="nav-link" data-scroll-target="#security-level-handling"><span class="header-section-number">1.2.4.3</span> Security level handling</a></li>
+  <li><a href="#session-state-handling" id="toc-session-state-handling" class="nav-link" data-scroll-target="#session-state-handling"><span class="header-section-number">1.2.4.4</span> Session state handling</a></li>
+  <li><a href="#communication-mode-handling" id="toc-communication-mode-handling" class="nav-link" data-scroll-target="#communication-mode-handling"><span class="header-section-number">1.2.4.5</span> Communication mode handling</a></li>
+  </ul></li>
+  </ul></li>
+  <li><a href="#dsd-diagnostic-service-dispatcher" id="toc-dsd-diagnostic-service-dispatcher" class="nav-link" data-scroll-target="#dsd-diagnostic-service-dispatcher"><span class="header-section-number">1.3</span> DSD-Diagnostic Service dispatcher</a>
+  <ul>
+  <li><a href="#use-cases-1" id="toc-use-cases-1" class="nav-link" data-scroll-target="#use-cases-1"><span class="header-section-number">1.3.1</span> Use cases</a></li>
+  </ul></li>
+  </ul></li>
   </ul>
 </nav>
     </div>
@@ -223,8 +254,170 @@ gtag('config', 'G-5ZQX02R26E', { 'anonymize_ip': true});
 
 <section id="description" class="level2" data-number="1">
 <h2 data-number="1" class="anchored" data-anchor-id="description"><span class="header-section-number">1</span> Description:</h2>
+<ul>
+<li><p>Diagnostic session control module ensures diagnostic data flow and manages the diagnostic states, especially diagnostic sessions and security states .</p></li>
+<li><p>The DCM module provides the OSI-layers 5 to 7</p></li>
+<li><p>OSI Layers and Diagnostic Protocols linking</p>
+<ul>
+<li>7- <code>UDS 14229</code></li>
+<li>6-</li>
+<li>5- <code>ISO 15765-3</code> - UDS on CAN</li>
+<li>4- <code>ISO 15765-2</code></li>
+<li>3- <code>ISO 15765-2</code></li>
+<li>2- <code>CAN procotol</code>, <code>LIN Protocol</code>, <code>Flexray</code>, <code>MOST</code></li>
+<li>1- <code>CAN procotol</code>, <code>LIN Protocol</code>, <code>Flexray</code>, <code>MOST</code> <img src="../Autosar/Images/DCM.png" class="img-fluid" alt="DCM module position in Autosar architecture"></li>
+</ul></li>
+<li><p>The <code>dcm</code> module receives diagnostic messages from the <code>pdur</code> module . once the dcm gets all the data it sends a message back throught he <code>PduR</code> module</p></li>
+<li><p>Pdur (protocol data unit router) : The PduR module provides functions to trasmit and receive diagnositc data</p></li>
+<li><p>Communication Manager(ComM): The ComM module provides functions such that the dcm can indicate the states “active” and “inactive” for diagnostic communication</p></li>
+<li><p>DCM handles the communication requirements such as Full/Silent/No-Communication. dcm module provides the functionality to enable and disable diagnositc communication if requested by the ComM module.</p></li>
+<li><p>DCM indicates to the BswM a communication mode change and notifies if the dcm is initailised due to jump from bootloader to application</p></li>
+</ul>
+<section id="nrcnegative-response-code" class="level3" data-number="1.1">
+<h3 data-number="1.1" class="anchored" data-anchor-id="nrcnegative-response-code"><span class="header-section-number">1.1</span> NRC(Negative response code)</h3>
+<p>If the diagnostic service is not sucesful due to any reason the corresponding NRC will be set and sent along with response to the diagnostic request</p>
+</section>
+<section id="dcm-submodules" class="level3" data-number="1.2">
+<h3 data-number="1.2" class="anchored" data-anchor-id="dcm-submodules"><span class="header-section-number">1.2</span> DCM Submodules</h3>
+<ul>
+<li>DCM is devided in to 3 parts</li>
+</ul>
+<ol type="1">
+<li>DSL-Diagnostic Session Layer</li>
+</ol>
+<ul>
+<li>controls diagnostic protocol timing and manages the security and sessions</li>
+</ul>
+<ol start="2" type="1">
+<li>Diagnostic Service Dispatcher</li>
+</ol>
+<ul>
+<li>receives new diagnositc request over a network and forwards it to a data processor</li>
+<li>Transmits a diagnositc response over a netowork when triggered by the data processor(DSP)</li>
+</ul>
+<ol start="3" type="1">
+<li>Diagnostic Service Processing</li>
+</ol>
+<ul>
+<li>The DSP submodule handles the actual diagnostic service requests . <img src="../Autosar/Images/DCM_Submodules.png" class="img-fluid" alt="DCM submodule interactions"></li>
+</ul>
+<section id="dsl" class="level4" data-number="1.2.1">
+<h4 data-number="1.2.1" class="anchored" data-anchor-id="dsl"><span class="header-section-number">1.2.1</span> DSL</h4>
+</section>
+<section id="use-cases" class="level4" data-number="1.2.2">
+<h4 data-number="1.2.2" class="anchored" data-anchor-id="use-cases"><span class="header-section-number">1.2.2</span> Use cases</h4>
+<ul>
+<li>Sessions handling as required by ISO 14229 and ISO 15765-3</li>
+<li>Application layer timing handling as required by ISO 14229 and ISO 15765-3</li>
+<li>Specific response behabiors as required by iso 14229 and iso 15765-3</li>
+</ul>
+</section>
+<section id="interactions-with-other-modules" class="level4" data-number="1.2.3">
+<h4 data-number="1.2.3" class="anchored" data-anchor-id="interactions-with-other-modules"><span class="header-section-number">1.2.3</span> Interactions with other modules</h4>
+<p>The DSL has the following interaction wwith other modules : ##### PduR Module : - PduR module provides data of incoming diagnostic requests - The DSL submodule triggers output of diagnostic responses ##### DSD Submodule : - The DSL informs the dsd about incoming requests and provides the data - the DSD submodule triggers output of diagnostic responses ##### DSP submodule : - The DSL provides access to security and session state ##### ComM module : - The DSL guarantees the communication behavior required by the ComM module</p>
+</section>
+<section id="dsl-important-functionalities" class="level4" data-number="1.2.4">
+<h4 data-number="1.2.4" class="anchored" data-anchor-id="dsl-important-functionalities"><span class="header-section-number">1.2.4</span> DSL important Functionalities</h4>
+<section id="request-handling" class="level5" data-number="1.2.4.1">
+<h5 data-number="1.2.4.1" class="anchored" data-anchor-id="request-handling"><span class="header-section-number">1.2.4.1</span> Request handling</h5>
+<ul>
+<li>Forwards request from the PduR module to DSD</li>
+<li>Concurrent test present (Keep alive logic - 3E service from ISO 14229) - if the 3E service requested with suppressPosRspMsgIndication bit set to be true (subfunction 0x80) ,DSL reset S3 server timing. also it shall not forward this request to DSD fof further interpretation</li>
+</ul>
+</section>
+<section id="response-handling" class="level5" data-number="1.2.4.2">
+<h5 data-number="1.2.4.2" class="anchored" data-anchor-id="response-handling"><span class="header-section-number">1.2.4.2</span> Response Handling :</h5>
+<ul>
+<li><p>Forwards responses from the dsd to the PduR - via api PduR_DcmTransmit</p></li>
+<li><p>Guarantee response timing to tester if the service takes more time to respond then DSL shall send NRC 0x78 when reaching the response time P2 server max( <code>DcmDspSessionP2ServerMax</code>) from the next 0x78 waits for P2* server time<code>DcmDspSessionP2StarServerMax</code> . DSL sends the negative responses as required from a separate buffer. The Max number of response pending(0x78) is configurable using <code>DcmDslDiagRespMaxNumRespPend</code> in order to avoid the deadlocks in the application. Once it reaches the Resp pending counter it shall send NRC (0x10) indicating general reject.</p></li>
+</ul>
+</section>
+<section id="security-level-handling" class="level5" data-number="1.2.4.3">
+<h5 data-number="1.2.4.3" class="anchored" data-anchor-id="security-level-handling"><span class="header-section-number">1.2.4.3</span> Security level handling</h5>
+<ul>
+<li>Manage security level</li>
+</ul>
+</section>
+<section id="session-state-handling" class="level5" data-number="1.2.4.4">
+<h5 data-number="1.2.4.4" class="anchored" data-anchor-id="session-state-handling"><span class="header-section-number">1.2.4.4</span> Session state handling</h5>
+<ul>
+<li><p>Manage session state :DSL get the current active session via <code>Dcm_GetSesCtrlType()</code> and set a new session through <code>DslInternal_SetSesCtrlType()</code> During dcm initialisation the default state is et which is <code>Default session</code>(0x01) when ever a non deault session is active and when the session timeout <code>(S3 server)</code>timing reaches without receiving any diag request , the DSL shall reset to the deault session by calling mode switch api of mode switch interface</p></li>
+<li><p>Keep track of active nond efault sessions</p></li>
+<li><p>Allow modifying timings DCM mdoule handle the following protocol timing parameter <code>P2ServerMin</code>,<code>P2ServerMax</code>,<code>P2*ServerMin</code>,<code>P2*ServerMax</code>,<code>S3Server</code> Generally these parameter set as</p></li>
+</ul>
+</section>
+<section id="communication-mode-handling" class="level5" data-number="1.2.4.5">
+<h5 data-number="1.2.4.5" class="anchored" data-anchor-id="communication-mode-handling"><span class="header-section-number">1.2.4.5</span> Communication mode handling</h5>
+<ul>
+<li>Handling of Full/Silent/No Communication</li>
+<li>Indicating of active/inactive diagnostic</li>
+<li>Enabling/Disabling all kinds of diagnostic transmissions</li>
+</ul>
+</section>
+</section>
+</section>
+<section id="dsd-diagnostic-service-dispatcher" class="level3" data-number="1.3">
+<h3 data-number="1.3" class="anchored" data-anchor-id="dsd-diagnostic-service-dispatcher"><span class="header-section-number">1.3</span> DSD-Diagnostic Service dispatcher</h3>
+<p>It checks the validity of an incoming diagnostic request such as - Verification of diagnostic session - Security access levels - Application permission And keeps track of the progress of a service request execution</p>
+<p>The DSD shall process only valid requests and shall reject invalid ones</p>
+<section id="use-cases-1" class="level4" data-number="1.3.1">
+<h4 data-number="1.3.1" class="anchored" data-anchor-id="use-cases-1"><span class="header-section-number">1.3.1</span> Use cases</h4>
+<ul>
+<li><p>Receive a request message and transmit positive response message</p>
+<ul>
+<li>The <code>DSD</code> ensures the validity of the request message.In this case if the request is valid the response will be positive .The request will be forwarded to the data process in the <code>DSP</code>. after <code>DSP</code> completes it triggers the transmission of response message by the <code>DSD</code>. If the response processing takes more time by the <code>DSP</code> may be waiting for read/write operation to eeprom then the response pending is covered by the <code>DSL</code> . When the request diag received the corresponding <code>DcmPduId</code> is blocked by the DSL .During the processing of this request , no other request of the same protocol type can be received, until the corresponding response message is sent and the <code>DcmPduId</code> if released again</li>
+</ul></li>
+<li><p>Receive a request message and supress the positive response</p>
+<ul>
+<li>If the suppress positive response bit is set in the diag request in msb bit of sub function parameter .this kind of message completely handled by the DSD</li>
+</ul></li>
+<li><p>Receieve a request message and suppress the negative response</p>
+<ul>
+<li>In case of <code>functional addressing</code> the DSD shall suppress the negative response for NRC 0x11 , 0x12 and 0x31</li>
+</ul></li>
+<li><p>Receive a request messahe and trasmit the negative response message</p>
+<ul>
+<li>Diag request is not valid or any condition not met to send the positive response the negative responses will be sent . In this case the DSP trigger a negative response with nrc indicating why the request was rejected . In case of 0x22 service if more than one did read operation is requested and if not all of the requested read did not failed only for the passed did the response will be sent .</li>
+</ul></li>
+<li><p>Send a positive response message without corresponding request</p>
+<ul>
+<li>There are two services in the UDS protocol where multiole responses are sent for only one request . One service is used to enable(and disable)an event or time triggered transmission of another service , which is sent byt he ECU without a corresponding request.<br> These services are <br>
+<ul>
+<li>Read Data by periodic identifier(0x2A)</li>
+<li>Reponse on Event(0x86) These service handling is controlled by the DSL.However,DSD also provides the possibility to generate a response without a corresponding request.</li>
+</ul></li>
+</ul></li>
+<li><p>Segemented responses(Paged buffer):</p>
+<ul>
+<li>Services such as 0x19 and 0x36 exchange huge amount of data. So in this case the ecu internal buffer must be large enough to keep the longest data message which is to be exchnaged and the complete buffer is filled before the transmission is started . In a more RAM memory saving approach the buffer is filled only partly , transmitted partly and then refilled partly and so on. This paging mechanism rewuires only a reduced amount of memory but demands a well defined reaction time for buffer refilling . The user can decide whether to use the linear buffer or paged bugger for diagnostic</li>
+</ul>
+<p>#### DSD interaction with other modules</p>
+<ul>
+<li>Delegates the processing of request to the DSP</li>
+<li>Keeps track of request processing</li>
+<li>Transmit the response of the application to the DSL</li>
+</ul>
+<p>#### Functional description</p>
+<ul>
+<li>The DSD shall be triggered by the DSL , if a new diagnostic message is recognised .</li>
+<li>The DSD will sart processing by analyzing the diagnostic service indentifier contained in the received diagnositc message</li>
+<li>if the newly received the diagnositc request sid is not supported then the DSD shall transmit the negative response with NRC 0x11 to the DSL.</li>
+<li><code>Verification Functionality</code> :The DSD accept service only if below 3 verifications are passed
+<ul>
+<li><p>Verification of the Diagnostic session: On receiving the uds request dsd gets the current diagnostic session using api <code>Dcm_GetSesCtrlType</code> and verify whether the requested service and sub function are allowed in the current diagnostic session or not . (Note :0x10 service handling not part of DSD) If the received diag service is not allowed in the current diag session the DSD transmit the negative response with NRC 0x7F (service not supported in the active session)to the DSL submodule. If the received diag service is allowed in the current diag session but the sub function is not allowed in the current diag session then the DSD transmit the negative response with NRC 0x7E (sub function not supported in the active session)to the DSL submodule.</p></li>
+<li><p>Verification of the service security access levels:</p>
+<ul>
+<li>The DSD checks the current security level with api <code>Dcm_GetSecurityLevel()</code> If the received diag service is not allowed in the current security level then the DSD shall transmit negative response with NRC 0x33 (Security access denied) to the DSL submodule</li>
+</ul>
+<p>If the received diag service is n allowed in the current security level but the requested sub function is not allowed then the DSD shall transmit negative response with NRC 0x33 (Security access denied) to the DSL submodule</p></li>
+<li><p>Verification of the application environment/Permission</p></li>
+</ul></li>
+</ul></li>
+</ul>
 
 
+</section>
+</section>
 </section>
 
 </main> <!-- /main -->
@@ -470,6 +663,9 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
       </a>          
   </div>
   <div class="nav-page nav-page-next">
+      <a href="../Autosar/DEM.html" class="pagination-link">
+        <span class="nav-page-text">Diagnostic event manager</span> <i class="bi bi-arrow-right-short"></i>
+      </a>
   </div>
 </nav>
 </div> <!-- /content -->
