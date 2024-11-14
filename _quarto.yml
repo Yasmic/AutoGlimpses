@@ -71,7 +71,7 @@ format:
     #   dark: slate    
     css: styles.css
     html-math-method: katex
-    highlight-style: tango
+    highlight-style: gruvbox
     fig-align: center
     fig-responsive: true
     

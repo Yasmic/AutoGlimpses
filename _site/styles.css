@@ -1,0 +1,39 @@
+/* css styles */
+/* https://github.com/KaTeX/KaTeX/issues/327#issuecomment-512113606 */
+.katex-display > .katex {
+    max-width: 100%;
+    overflow-x: auto;
+    overflow-y: hidden;
+  }
+  h1 {
+    color:#005180; /* 852ee8 b512e7 */
+  }
+  h2 {
+    color:#352EE8;
+  }
+  h3 {
+    color:#2E53E8;
+  }
+  h4 {
+    color:#2E78E8;
+  }
+  h5 {
+    color:#2E97E8;
+  }
+  h6 {
+    color:#2EB6E8;
+  }
+  h6 {
+    color:#2EB6E8;
+  }
+
+
+
+  body {
+    background-image: url("background_7.jpg");
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-position: center center;
+    background-attachment: fixed;
+
+  }
