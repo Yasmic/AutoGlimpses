@@ -2,7 +2,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
 
 <meta charset="utf-8">
-<meta name="generator" content="quarto-1.3.450">
+<meta name="generator" content="quarto-1.5.57">
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
@@ -52,7 +52,13 @@ ul.task-list li input[type="checkbox"] {
   "collapse-after": 3,
   "panel-placement": "end",
   "type": "overlay",
-  "limit": 20,
+  "limit": 50,
+  "keyboard-shortcut": [
+    "f",
+    "/",
+    "s"
+  ],
+  "show-item-context": false,
   "language": {
     "search-no-results-text": "No results",
     "search-matching-documents-text": "matching documents",
@@ -61,6 +67,7 @@ ul.task-list li input[type="checkbox"] {
     "search-more-match-text": "more match in this document",
     "search-more-matches-text": "more matches in this document",
     "search-clear-button-title": "Clear",
+    "search-text-placeholder": "",
     "search-detached-cancel-button-title": "Cancel",
     "search-submit-button-title": "Submit",
     "search-label": "Search"
@@ -80,76 +87,73 @@ gtag('config', 'G-5ZQX02R26E', { 'anonymize_ip': true});
 <link rel="stylesheet" href="../styles.css">
 <meta property="og:title" content="Diagnostic communication manager">
 <meta property="og:description" content="DCM">
-<meta property="og:image" content="http://localhost:4200/Autosar/Images/DCM.png">
-<meta property="og:image:height" content="946">
-<meta property="og:image:width" content="1218">
 </head>
 
 <body class="nav-sidebar floating nav-fixed">
 
 <div id="quarto-search-results"></div>
-  <header id="quarto-header" class="headroom fixed-top">
-    <nav class="navbar navbar-expand-lg navbar-dark ">
+  <header id="quarto-header" class="headroom fixed-top quarto-banner">
+    <nav class="navbar navbar-expand-lg " data-bs-theme="dark">
       <div class="navbar-container container-fluid">
             <div id="quarto-search" class="" title="Search"></div>
-          <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse" aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+          <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse" aria-controls="navbarCollapse" role="menu" aria-expanded="false" aria-label="Toggle navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
   <span class="navbar-toggler-icon"></span>
 </button>
           <div class="collapse navbar-collapse" id="navbarCollapse">
             <ul class="navbar-nav navbar-nav-scroll me-auto">
   <li class="nav-item">
-    <a class="nav-link" href="../index.html" rel="" target="">
- <span class="menu-text"><i class="fa-solid fa-house" aria-label="house"></i> Home</span></a>
+    <a class="nav-link" href="../index.html"> 
+<span class="menu-text"><i class="fa-solid fa-house" aria-label="house"></i> Home</span></a>
   </li>  
   <li class="nav-item">
-    <a class="nav-link active" href="../Autosar/index.html" rel="" target="" aria-current="page">
- <span class="menu-text"><i class="fa-solid fa-book-open-reader" aria-label="book-open-reader"></i> Autosar</span></a>
+    <a class="nav-link active" href="../Autosar/index.html" aria-current="page"> 
+<span class="menu-text"><i class="fa-solid fa-book-open-reader" aria-label="book-open-reader"></i> Autosar</span></a>
   </li>  
   <li class="nav-item">
-    <a class="nav-link" href="../C_Plus_Plus/index.html" rel="" target="">
- <span class="menu-text"><i class="fa-solid fa-user-ninja" aria-label="user-ninja"></i> C Plus Plus</span></a>
+    <a class="nav-link" href="../C_Plus_Plus/index.html"> 
+<span class="menu-text"><i class="fa-solid fa-user-ninja" aria-label="user-ninja"></i> C Plus Plus</span></a>
   </li>  
   <li class="nav-item">
-    <a class="nav-link" href="../Notes/index.html" rel="" target="">
- <span class="menu-text"><i class="fa-solid fa-file-powerpoint" aria-label="file-powerpoint"></i> Notes</span></a>
+    <a class="nav-link" href="../Notes/index.html"> 
+<span class="menu-text"><i class="fa-solid fa-file-powerpoint" aria-label="file-powerpoint"></i> Notes</span></a>
   </li>  
   <li class="nav-item">
-    <a class="nav-link" href="../about.html" rel="" target="">
- <span class="menu-text"><i class="fa-solid fa-address-card" aria-label="address-card"></i> About</span></a>
+    <a class="nav-link" href="../about.html"> 
+<span class="menu-text"><i class="fa-solid fa-address-card" aria-label="address-card"></i> About</span></a>
   </li>  
 </ul>
             <ul class="navbar-nav navbar-nav-scroll ms-auto">
   <li class="nav-item compact">
-    <a class="nav-link" href="https://github.com/Yasmic/" rel="" target=""><i class="bi bi-github" role="img">
+    <a class="nav-link" href="https://github.com/Yasmic/"> <i class="bi bi-github" role="img">
 </i> 
- <span class="menu-text"></span></a>
+<span class="menu-text"></span></a>
   </li>  
   <li class="nav-item compact">
-    <a class="nav-link" href="https://www.linkedin.com/in/yasmic/" rel="" target=""><i class="bi bi-linkedin" role="img">
+    <a class="nav-link" href="https://www.linkedin.com/in/yasmic/"> <i class="bi bi-linkedin" role="img">
 </i> 
- <span class="menu-text"></span></a>
+<span class="menu-text"></span></a>
   </li>  
 </ul>
+          </div> <!-- /navcollapse -->
             <div class="quarto-navbar-tools">
 </div>
-          </div> <!-- /navcollapse -->
       </div> <!-- /container-fluid -->
     </nav>
   <nav class="quarto-secondary-nav">
     <div class="container-fluid d-flex">
-      <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar,#quarto-sidebar-glass" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+      <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" role="button" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
         <i class="bi bi-layout-text-sidebar-reverse"></i>
       </button>
-      <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../Autosar/index.html">Autosar</a></li><li class="breadcrumb-item"><a href="../Autosar/DCM.html">Diagnostic communication manager</a></li></ol></nav>
-      <a class="flex-grow-1" role="button" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar,#quarto-sidebar-glass" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
-      </a>
+        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../Autosar/index.html">Autosar</a></li><li class="breadcrumb-item"><a href="../Autosar/DCM.html">Diagnostic communication manager</a></li></ol></nav>
+        <a class="flex-grow-1" role="navigation" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
+        </a>
     </div>
   </nav>
 </header>
 <!-- content -->
 <header id="title-block-header" class="quarto-title-block default page-columns page-full">
   <div class="quarto-title-banner page-columns page-full">
-    <div class="quarto-title column-body">
+    <div class="quarto-title column-body"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../Autosar/index.html">Autosar</a></li><li class="breadcrumb-item"><a href="../Autosar/DCM.html">Diagnostic communication manager</a></li></ol></nav>
       <h1 class="title">Diagnostic communication manager</h1>
                   <div>
         <div class="description">
@@ -185,14 +189,14 @@ gtag('config', 'G-5ZQX02R26E', { 'anonymize_ip': true});
   
   </header><div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article page-navbar">
 <!-- sidebar -->
-  <nav id="quarto-sidebar" class="sidebar collapse collapse-horizontal sidebar-navigation floating overflow-auto">
+  <nav id="quarto-sidebar" class="sidebar collapse collapse-horizontal quarto-sidebar-collapse-item sidebar-navigation floating overflow-auto">
     <div class="sidebar-menu-container"> 
     <ul class="list-unstyled mt-1">
         <li class="sidebar-item sidebar-item-section">
       <div class="sidebar-item-container"> 
             <a href="../Autosar/index.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">Autosar</span></a>
-          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" aria-expanded="true" aria-label="Toggle section">
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" role="navigation" aria-expanded="true" aria-label="Toggle section">
             <i class="bi bi-chevron-right ms-2"></i>
           </a> 
       </div>
@@ -214,7 +218,7 @@ gtag('config', 'G-5ZQX02R26E', { 'anonymize_ip': true});
     </ul>
     </div>
 </nav>
-<div id="quarto-sidebar-glass" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar,#quarto-sidebar-glass"></div>
+<div id="quarto-sidebar-glass" class="quarto-sidebar-collapse-item" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item"></div>
 <!-- margin-sidebar -->
     <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
         <nav id="TOC" role="doc-toc" class="toc-active">
@@ -242,12 +246,14 @@ gtag('config', 'G-5ZQX02R26E', { 'anonymize_ip': true});
   <ul>
   <li><a href="#use-cases-1" id="toc-use-cases-1" class="nav-link" data-scroll-target="#use-cases-1"><span class="header-section-number">1.3.1</span> Use cases</a></li>
   </ul></li>
+  <li><a href="#diagnostic-service-processing-dsp" id="toc-diagnostic-service-processing-dsp" class="nav-link" data-scroll-target="#diagnostic-service-processing-dsp"><span class="header-section-number">1.4</span> Diagnostic Service Processing-DSP</a></li>
   </ul></li>
   </ul>
 </nav>
     </div>
 <!-- main -->
 <main class="content quarto-banner-title-block" id="quarto-document-content">
+
 
 
 
@@ -409,14 +415,53 @@ gtag('config', 'G-5ZQX02R26E', { 'anonymize_ip': true});
 <ul>
 <li>The DSD checks the current security level with api <code>Dcm_GetSecurityLevel()</code> If the received diag service is not allowed in the current security level then the DSD shall transmit negative response with NRC 0x33 (Security access denied) to the DSL submodule</li>
 </ul>
-<p>If the received diag service is n allowed in the current security level but the requested sub function is not allowed then the DSD shall transmit negative response with NRC 0x33 (Security access denied) to the DSL submodule</p></li>
-<li><p>Verification of the application environment/Permission</p></li>
+<p>If the received diag service is n allowed in the current security level but the requested sub function is not allowed then the DSD shall transmit negative response with NRC 0x33 (Security access denied) to the DSL submodule DSD checks whether subfunction supported , if not supported NRC 0x12 will be sent .<br> DSD checks minimum message length<br></p></li>
+<li><p>Verification of the application environment/Permission Before processing the diag request the application requested to check permission /environment eg: if ecu is in run state the diag service execution not allowed , vehicle speed is higher then the service is not allowed to execute(eg : service 11)</p></li>
+</ul></li>
+</ul></li>
+<li><p>The DSD pass the diag request to DSP service interpretor</p></li>
+<li><p>The execution of the DSP service interpreter can have the results</p>
+<ul>
+<li>Positive result or</li>
+<li>Negative result</li>
+</ul></li>
+<li><p>Following possible responses can be assembled</p>
+<ul>
+<li><p>Positive response : <code>DSP</code> indicate calling <code>Dcm_ExternalProcessingDone</code>().The parameter <code>Dcm_MsgContextType</code> contains the diagnostic (response)messgae . Then the <code>DSD</code> adds the <code>response SID</code>and then response data stream (returned by the application)in the parameter <code>Dcm_MsgContextType</code><br></p></li>
+<li><p>Negative response : The DSP triggers specific NRC to the DSD . The DSD handle all the supported NRC from the application and defined in the <code>Dcm_NegativeResponseCodeType</code>.</p></li>
+<li><p>Suppression of response in case of a negative result of the execution and active functional addressing the dsd submodule shall activate the suppression of the following negative responses:</p></li>
+</ul>
+<ol type="1">
+<li>NRC 0x011 - service not supported</li>
+<li>NRC 0x12 - subfunction not supported</li>
+<li>NRC 0x31 - request out of range</li>
+</ol>
+<ul>
+<li>no Response :</li>
+<li>Initiate transmission
+<ul>
+<li>the DSD shall forward the diagnostic(response)message (positive or negative response) to the DSL.</li>
+<li>the DSL shall forward the diagnostic(response)message (positive or negative response)further to the PduR module by executing a DSL transmit functionality.</li>
+<li>The <code>DSL</code> will receive the confirmation by the <code>PduR</code> upon forwarding the dada
+<ol type="1">
+<li>the <code>DSL</code> shall forward the received confirmation from the <code>PduR</code> to the <code>dsd</code> submodule.</li>
+<li>the <code>dsd</code> shall forward the confirmation via the internal function <code>DspInternal_DcmConfirmation()</code> to the <code>DSP</code> submodule.</li>
+<li>In case no diagnostic(response)message shall be sent(suppression of responses)the DSL submodule shall not transmit any response.</li>
+</ol></li>
 </ul></li>
 </ul></li>
 </ul>
-
-
 </section>
+</section>
+<section id="diagnostic-service-processing-dsp" class="level3" data-number="1.4">
+<h3 data-number="1.4" class="anchored" data-anchor-id="diagnostic-service-processing-dsp"><span class="header-section-number">1.4</span> Diagnostic Service Processing-DSP</h3>
+<p>When dsd request the dsp to process the diag request .it executed following basic process 1. analyze the received request message 2. check format and whether the addressed subfunction is supported 3. aquire data or execute the required function call on the DEM, SW-Cs or other BSW modules 4. assemble the response</p>
+<ul>
+<li><p>The DSP submodule will check for appropriate message length and structure before executing the requested command . the DSP triggers a negative response with NRC 0x13 when the analysis of the request message results in formatting or length failure.</p></li>
+<li><p>if the paged-buffer mechanism is used the DSP submodule shall determine the overall response length before any data is passed to the DSD submodule respectively. The DSP submodule shall confirm the completion of the request processing with the function call Dcm_ExternalProcessingDone()</p></li>
+</ul>
+
+
 </section>
 </section>
 
@@ -456,18 +501,7 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
     }
     return false;
   }
-  const clipboard = new window.ClipboardJS('.code-copy-button', {
-    text: function(trigger) {
-      const codeEl = trigger.previousElementSibling.cloneNode(true);
-      for (const childEl of codeEl.children) {
-        if (isCodeAnnotation(childEl)) {
-          childEl.remove();
-        }
-      }
-      return codeEl.innerText;
-    }
-  });
-  clipboard.on('success', function(e) {
+  const onCopySuccess = function(e) {
     // button target
     const button = e.trigger;
     // don't keep focus
@@ -499,11 +533,50 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
     }, 1000);
     // clear code selection
     e.clearSelection();
+  }
+  const getTextToCopy = function(trigger) {
+      const codeEl = trigger.previousElementSibling.cloneNode(true);
+      for (const childEl of codeEl.children) {
+        if (isCodeAnnotation(childEl)) {
+          childEl.remove();
+        }
+      }
+      return codeEl.innerText;
+  }
+  const clipboard = new window.ClipboardJS('.code-copy-button:not([data-in-quarto-modal])', {
+    text: getTextToCopy
   });
-  function tippyHover(el, contentFn) {
+  clipboard.on('success', onCopySuccess);
+  if (window.document.getElementById('quarto-embedded-source-code-modal')) {
+    // For code content inside modals, clipBoardJS needs to be initialized with a container option
+    // TODO: Check when it could be a function (https://github.com/zenorocha/clipboard.js/issues/860)
+    const clipboardModal = new window.ClipboardJS('.code-copy-button[data-in-quarto-modal]', {
+      text: getTextToCopy,
+      container: window.document.getElementById('quarto-embedded-source-code-modal')
+    });
+    clipboardModal.on('success', onCopySuccess);
+  }
+    var localhostRegex = new RegExp(/^(?:http|https):\/\/localhost\:?[0-9]*\//);
+    var mailtoRegex = new RegExp(/^mailto:/);
+      var filterRegex = new RegExp("http:\/\/localhost:4200\/");
+    var isInternal = (href) => {
+        return filterRegex.test(href) || localhostRegex.test(href) || mailtoRegex.test(href);
+    }
+    // Inspect non-navigation links and adorn them if external
+ 	var links = window.document.querySelectorAll('a[href]:not(.nav-link):not(.navbar-brand):not(.toc-action):not(.sidebar-link):not(.sidebar-item-toggle):not(.pagination-link):not(.no-external):not([aria-hidden]):not(.dropdown-item):not(.quarto-navigation-tool):not(.about-link)');
+    for (var i=0; i<links.length; i++) {
+      const link = links[i];
+      if (!isInternal(link.href)) {
+        // undo the damage that might have been done by quarto-nav.js in the case of
+        // links that we want to consider external
+        if (link.dataset.originalHref !== undefined) {
+          link.href = link.dataset.originalHref;
+        }
+      }
+    }
+  function tippyHover(el, contentFn, onTriggerFn, onUntriggerFn) {
     const config = {
       allowHTML: true,
-      content: contentFn,
       maxWidth: 500,
       delay: 100,
       arrow: false,
@@ -513,8 +586,17 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
       interactive: true,
       interactiveBorder: 10,
       theme: 'quarto',
-      placement: 'bottom-start'
+      placement: 'bottom-start',
     };
+    if (contentFn) {
+      config.content = contentFn;
+    }
+    if (onTriggerFn) {
+      config.onTrigger = onTriggerFn;
+    }
+    if (onUntriggerFn) {
+      config.onUntrigger = onUntriggerFn;
+    }
     window.tippy(el, config); 
   }
   const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
@@ -526,7 +608,130 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
       try { href = new URL(href).hash; } catch {}
       const id = href.replace(/^#\/?/, "");
       const note = window.document.getElementById(id);
-      return note.innerHTML;
+      if (note) {
+        return note.innerHTML;
+      } else {
+        return "";
+      }
+    });
+  }
+  const xrefs = window.document.querySelectorAll('a.quarto-xref');
+  const processXRef = (id, note) => {
+    // Strip column container classes
+    const stripColumnClz = (el) => {
+      el.classList.remove("page-full", "page-columns");
+      if (el.children) {
+        for (const child of el.children) {
+          stripColumnClz(child);
+        }
+      }
+    }
+    stripColumnClz(note)
+    if (id === null || id.startsWith('sec-')) {
+      // Special case sections, only their first couple elements
+      const container = document.createElement("div");
+      if (note.children && note.children.length > 2) {
+        container.appendChild(note.children[0].cloneNode(true));
+        for (let i = 1; i < note.children.length; i++) {
+          const child = note.children[i];
+          if (child.tagName === "P" && child.innerText === "") {
+            continue;
+          } else {
+            container.appendChild(child.cloneNode(true));
+            break;
+          }
+        }
+        if (window.Quarto?.typesetMath) {
+          window.Quarto.typesetMath(container);
+        }
+        return container.innerHTML
+      } else {
+        if (window.Quarto?.typesetMath) {
+          window.Quarto.typesetMath(note);
+        }
+        return note.innerHTML;
+      }
+    } else {
+      // Remove any anchor links if they are present
+      const anchorLink = note.querySelector('a.anchorjs-link');
+      if (anchorLink) {
+        anchorLink.remove();
+      }
+      if (window.Quarto?.typesetMath) {
+        window.Quarto.typesetMath(note);
+      }
+      // TODO in 1.5, we should make sure this works without a callout special case
+      if (note.classList.contains("callout")) {
+        return note.outerHTML;
+      } else {
+        return note.innerHTML;
+      }
+    }
+  }
+  for (var i=0; i<xrefs.length; i++) {
+    const xref = xrefs[i];
+    tippyHover(xref, undefined, function(instance) {
+      instance.disable();
+      let url = xref.getAttribute('href');
+      let hash = undefined; 
+      if (url.startsWith('#')) {
+        hash = url;
+      } else {
+        try { hash = new URL(url).hash; } catch {}
+      }
+      if (hash) {
+        const id = hash.replace(/^#\/?/, "");
+        const note = window.document.getElementById(id);
+        if (note !== null) {
+          try {
+            const html = processXRef(id, note.cloneNode(true));
+            instance.setContent(html);
+          } finally {
+            instance.enable();
+            instance.show();
+          }
+        } else {
+          // See if we can fetch this
+          fetch(url.split('#')[0])
+          .then(res => res.text())
+          .then(html => {
+            const parser = new DOMParser();
+            const htmlDoc = parser.parseFromString(html, "text/html");
+            const note = htmlDoc.getElementById(id);
+            if (note !== null) {
+              const html = processXRef(id, note);
+              instance.setContent(html);
+            } 
+          }).finally(() => {
+            instance.enable();
+            instance.show();
+          });
+        }
+      } else {
+        // See if we can fetch a full url (with no hash to target)
+        // This is a special case and we should probably do some content thinning / targeting
+        fetch(url)
+        .then(res => res.text())
+        .then(html => {
+          const parser = new DOMParser();
+          const htmlDoc = parser.parseFromString(html, "text/html");
+          const note = htmlDoc.querySelector('main.content');
+          if (note !== null) {
+            // This should only happen for chapter cross references
+            // (since there is no id in the URL)
+            // remove the first header
+            if (note.children.length > 0 && note.children[0].tagName === "HEADER") {
+              note.children[0].remove();
+            }
+            const html = processXRef(null, note);
+            instance.setContent(html);
+          } 
+        }).finally(() => {
+          instance.enable();
+          instance.show();
+        });
+      }
+    }, function(instance) {
     });
   }
       let selectedAnnoteEl;
@@ -570,6 +775,7 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
             }
             div.style.top = top - 2 + "px";
             div.style.height = height + 4 + "px";
+            div.style.left = 0;
             let gutterDiv = window.document.getElementById("code-annotation-line-highlight-gutter");
             if (gutterDiv === null) {
               gutterDiv = window.document.createElement("div");
@@ -595,6 +801,32 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
         });
         selectedAnnoteEl = undefined;
       };
+        // Handle positioning of the toggle
+    window.addEventListener(
+      "resize",
+      throttle(() => {
+        elRect = undefined;
+        if (selectedAnnoteEl) {
+          selectCodeLines(selectedAnnoteEl);
+        }
+      }, 10)
+    );
+    function throttle(fn, ms) {
+    let throttle = false;
+    let timer;
+      return (...args) => {
+        if(!throttle) { // first call gets through
+            fn.apply(this, args);
+            throttle = true;
+        } else { // all the others get throttled
+            if(timer) clearTimeout(timer); // cancel #2
+            timer = setTimeout(() => {
+              fn.apply(this, args);
+              timer = throttle = false;
+            }, ms);
+        }
+      };
+    }
       // Attach click handler to the DT
       const annoteDls = window.document.querySelectorAll('dt[data-target-cell]');
       for (const annoteDlNode of annoteDls) {
@@ -656,14 +888,16 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
 </script>
 <script src="https://giscus.app/client.js" data-repo="Yasmic/AutoGlimpses" data-repo-id="R_kgDOJ8MoGA" data-category="Announcements" data-category-id="" data-mapping="title" data-reactions-enabled="1" data-emit-metadata="0" data-input-position="top" data-theme="light" data-lang="en" crossorigin="anonymous" async="">
 </script>
+<input type="hidden" id="giscus-base-theme" value="light">
+<input type="hidden" id="giscus-alt-theme" value="dark">
 <nav class="page-navigation">
   <div class="nav-page nav-page-previous">
-      <a href="../Autosar/index.html" class="pagination-link">
+      <a href="../Autosar/index.html" class="pagination-link" aria-label="Autosar">
         <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text">Autosar</span>
       </a>          
   </div>
   <div class="nav-page nav-page-next">
-      <a href="../Autosar/DEM.html" class="pagination-link">
+      <a href="../Autosar/DEM.html" class="pagination-link" aria-label="Diagnostic event manager">
         <span class="nav-page-text">Diagnostic event manager</span> <i class="bi bi-arrow-right-short"></i>
       </a>
   </div>
@@ -671,7 +905,9 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
 </div> <!-- /content -->
 <footer class="footer">
   <div class="nav-footer">
-    <div class="nav-footer-left">Copyright 2022, Yasmi</div>   
+    <div class="nav-footer-left">
+<p>Copyright 2022, Yasmi</p>
+</div>   
     <div class="nav-footer-center">
       &nbsp;
     </div>
@@ -693,6 +929,7 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
     </div>
   </div>
 </footer>
+
 
 
 

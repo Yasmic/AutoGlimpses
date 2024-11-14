@@ -6,8 +6,11 @@
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
+<meta name="author" content="Yas Mi">
+<meta name="dcterms.date" content="2023-08-06">
+<meta name="description" content="Basics of c++">
 
-<title>C Plus Plus</title>
+<title>Glimpse of C++</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -20,30 +23,63 @@ ul.task-list li input[type="checkbox"] {
   margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
   vertical-align: middle;
 }
+/* CSS for syntax highlighting */
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { display: inline-block; text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+  }
+pre.numberSource { margin-left: 3em;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
 </style>
 
 
-<script src="../site_libs/quarto-nav/quarto-nav.js"></script>
-<script src="../site_libs/quarto-nav/headroom.min.js"></script>
-<script src="../site_libs/clipboard/clipboard.min.js"></script>
-<script src="../site_libs/quarto-search/autocomplete.umd.js"></script>
-<script src="../site_libs/quarto-search/fuse.min.js"></script>
-<script src="../site_libs/quarto-search/quarto-search.js"></script>
-<meta name="quarto:offset" content="../">
-<link href="../C_Plus_Plus/Advanced/advanced_cpp.html" rel="next">
-<script src="../site_libs/quarto-listing/list.min.js"></script>
-<script src="../site_libs/quarto-listing/quarto-listing.js"></script>
-<script src="../site_libs/quarto-html/quarto.js"></script>
-<script src="../site_libs/quarto-html/popper.min.js"></script>
-<script src="../site_libs/quarto-html/tippy.umd.min.js"></script>
-<script src="../site_libs/quarto-html/anchor.min.js"></script>
-<link href="../site_libs/quarto-html/tippy.css" rel="stylesheet">
-<link href="../site_libs/quarto-html/quarto-syntax-highlighting.css" rel="stylesheet" id="quarto-text-highlighting-styles">
-<script src="../site_libs/bootstrap/bootstrap.min.js"></script>
-<link href="../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
-<link href="../site_libs/bootstrap/bootstrap.min.css" rel="stylesheet" id="quarto-bootstrap" data-mode="light">
-<link href="../site_libs/quarto-contrib/fontawesome6-0.1.0/all.css" rel="stylesheet">
-<link href="../site_libs/quarto-contrib/fontawesome6-0.1.0/latex-fontsize.css" rel="stylesheet">
+<script src="../../site_libs/quarto-nav/quarto-nav.js"></script>
+<script src="../../site_libs/quarto-nav/headroom.min.js"></script>
+<script src="../../site_libs/clipboard/clipboard.min.js"></script>
+<script src="../../site_libs/quarto-search/autocomplete.umd.js"></script>
+<script src="../../site_libs/quarto-search/fuse.min.js"></script>
+<script src="../../site_libs/quarto-search/quarto-search.js"></script>
+<meta name="quarto:offset" content="../../">
+<link href="../../C_Plus_Plus/Linked-list/linkedlist_basics.html" rel="next">
+<link href="../../C_Plus_Plus/Advanced/multi_threading.html" rel="prev">
+<script src="../../site_libs/quarto-html/quarto.js"></script>
+<script src="../../site_libs/quarto-html/popper.min.js"></script>
+<script src="../../site_libs/quarto-html/tippy.umd.min.js"></script>
+<script src="../../site_libs/quarto-html/anchor.min.js"></script>
+<link href="../../site_libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="../../site_libs/quarto-html/quarto-syntax-highlighting.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<script src="../../site_libs/bootstrap/bootstrap.min.js"></script>
+<link href="../../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="../../site_libs/bootstrap/bootstrap.min.css" rel="stylesheet" id="quarto-bootstrap" data-mode="light">
+<link href="../../site_libs/quarto-contrib/fontawesome6-0.1.0/all.css" rel="stylesheet">
+<link href="../../site_libs/quarto-contrib/fontawesome6-0.1.0/latex-fontsize.css" rel="stylesheet">
 <script id="quarto-search-options" type="application/json">{
   "location": "navbar",
   "copy-button": false,
@@ -71,35 +107,6 @@ ul.task-list li input[type="checkbox"] {
     "search-label": "Search"
   }
 }</script>
-<script>
-
-  window.document.addEventListener("DOMContentLoaded", function (_event) {
-    const listingTargetEl = window.document.querySelector('#listing-listing .list');
-    if (!listingTargetEl) {
-      // No listing discovered, do not attach.
-      return; 
-    }
-
-    const options = {
-      valueNames: ['listing-date','listing-title','listing-author','listing-image','listing-description','listing-categories',{ data: ['index'] },{ data: ['categories'] },{ data: ['listing-date-sort'] },{ data: ['listing-file-modified-sort'] }],
-      
-      searchColumns: ["listing-date","listing-title","listing-author","listing-image","listing-description","listing-categories"],
-    };
-
-    window['quarto-listings'] = window['quarto-listings'] || {};
-    window['quarto-listings']['listing-listing'] = new List('listing-listing', options);
-
-    if (window['quarto-listing-loaded']) {
-      window['quarto-listing-loaded']();
-    }
-  });
-
-  window.addEventListener('hashchange',() => {
-    if (window['quarto-listing-loaded']) {
-      window['quarto-listing-loaded']();
-    }
-  })
-  </script>
 <script async="" src="https://www.googletagmanager.com/gtag/js?id=G-5ZQX02R26E"></script>
 
 <script type="text/javascript">
@@ -110,52 +117,10 @@ gtag('js', new Date());
 gtag('config', 'G-5ZQX02R26E', { 'anonymize_ip': true});
 </script>
 
-  <script>window.backupDefine = window.define; window.define = undefined;</script><script src="https://cdn.jsdelivr.net/npm/katex@latest/dist/katex.min.js"></script>
-  <script>document.addEventListener("DOMContentLoaded", function () {
- var mathElements = document.getElementsByClassName("math");
- var macros = [];
- for (var i = 0; i < mathElements.length; i++) {
-  var texText = mathElements[i].firstChild;
-  if (mathElements[i].tagName == "SPAN") {
-   katex.render(texText.data, mathElements[i], {
-    displayMode: mathElements[i].classList.contains('display'),
-    throwOnError: false,
-    macros: macros,
-    fleqn: false
-   });
-}}});
-  </script>
-  <script>window.define = window.backupDefine; window.backupDefine = undefined;</script><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@latest/dist/katex.min.css">
 
-<script type="text/javascript">
-const typesetMath = (el) => {
-  if (window.MathJax) {
-    // MathJax Typeset
-    window.MathJax.typeset([el]);
-  } else if (window.katex) {
-    // KaTeX Render
-    var mathElements = el.getElementsByClassName("math");
-    var macros = [];
-    for (var i = 0; i < mathElements.length; i++) {
-      var texText = mathElements[i].firstChild;
-      if (mathElements[i].tagName == "SPAN") {
-        window.katex.render(texText.data, mathElements[i], {
-          displayMode: mathElements[i].classList.contains('display'),
-          throwOnError: false,
-          macros: macros,
-          fleqn: false
-        });
-      }
-    }
-  }
-}
-window.Quarto = {
-  typesetMath
-};
-</script>
-
-<link rel="stylesheet" href="../styles.css">
-<meta property="og:title" content="C Plus Plus">
+<link rel="stylesheet" href="../../styles.css">
+<meta property="og:title" content="Glimpse of C++">
+<meta property="og:description" content="Basics of c++">
 </head>
 
 <body class="nav-sidebar floating nav-fixed">
@@ -171,23 +136,23 @@ window.Quarto = {
           <div class="collapse navbar-collapse" id="navbarCollapse">
             <ul class="navbar-nav navbar-nav-scroll me-auto">
   <li class="nav-item">
-    <a class="nav-link" href="../index.html"> 
+    <a class="nav-link" href="../../index.html"> 
 <span class="menu-text"><i class="fa-solid fa-house" aria-label="house"></i> Home</span></a>
   </li>  
   <li class="nav-item">
-    <a class="nav-link" href="../Autosar/index.html"> 
+    <a class="nav-link" href="../../Autosar/index.html"> 
 <span class="menu-text"><i class="fa-solid fa-book-open-reader" aria-label="book-open-reader"></i> Autosar</span></a>
   </li>  
   <li class="nav-item">
-    <a class="nav-link active" href="../C_Plus_Plus/index.html" aria-current="page"> 
+    <a class="nav-link active" href="../../C_Plus_Plus/index.html" aria-current="page"> 
 <span class="menu-text"><i class="fa-solid fa-user-ninja" aria-label="user-ninja"></i> C Plus Plus</span></a>
   </li>  
   <li class="nav-item">
-    <a class="nav-link" href="../Notes/index.html"> 
+    <a class="nav-link" href="../../Notes/index.html"> 
 <span class="menu-text"><i class="fa-solid fa-file-powerpoint" aria-label="file-powerpoint"></i> Notes</span></a>
   </li>  
   <li class="nav-item">
-    <a class="nav-link" href="../about.html"> 
+    <a class="nav-link" href="../../about.html"> 
 <span class="menu-text"><i class="fa-solid fa-address-card" aria-label="address-card"></i> About</span></a>
   </li>  
 </ul>
@@ -213,7 +178,7 @@ window.Quarto = {
       <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" role="button" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
         <i class="bi bi-layout-text-sidebar-reverse"></i>
       </button>
-        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../C_Plus_Plus/index.html">C Plus Plus</a></li></ol></nav>
+        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../../C_Plus_Plus/index.html">C Plus Plus</a></li><li class="breadcrumb-item"><a href="../../C_Plus_Plus/Basics/basics_cpp.html">Basics</a></li><li class="breadcrumb-item"><a href="../../C_Plus_Plus/Basics/basics_cpp.html">Glimpse of C++</a></li></ol></nav>
         <a class="flex-grow-1" role="navigation" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
         </a>
     </div>
@@ -222,28 +187,48 @@ window.Quarto = {
 <!-- content -->
 <header id="title-block-header" class="quarto-title-block default page-columns page-full">
   <div class="quarto-title-banner page-columns page-full">
-    <div class="quarto-title column-body">
-      <h1 class="title">C Plus Plus</h1>
-                      </div>
+    <div class="quarto-title column-body"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../../C_Plus_Plus/index.html">C Plus Plus</a></li><li class="breadcrumb-item"><a href="../../C_Plus_Plus/Basics/basics_cpp.html">Basics</a></li><li class="breadcrumb-item"><a href="../../C_Plus_Plus/Basics/basics_cpp.html">Glimpse of C++</a></li></ol></nav>
+      <h1 class="title">Glimpse of C++</h1>
+                  <div>
+        <div class="description">
+          Basics of c++
+        </div>
+      </div>
+                          <div class="quarto-categories">
+                <div class="quarto-category">Basics of c++</div>
+              </div>
+                  </div>
   </div>
     
   
-  <div class="quarto-title-meta column-body">
+  <div class="quarto-title-meta">
 
+      <div>
+      <div class="quarto-title-meta-heading">Author</div>
+      <div class="quarto-title-meta-contents">
+               <p>Yas Mi </p>
+            </div>
+    </div>
       
+      <div>
+      <div class="quarto-title-meta-heading">Published</div>
+      <div class="quarto-title-meta-contents">
+        <p class="date">August 6, 2023</p>
+      </div>
+    </div>
     
       
     </div>
     
   
-  </header><div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-full page-navbar">
+  </header><div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article page-navbar">
 <!-- sidebar -->
   <nav id="quarto-sidebar" class="sidebar collapse collapse-horizontal quarto-sidebar-collapse-item sidebar-navigation floating overflow-auto">
     <div class="sidebar-menu-container"> 
     <ul class="list-unstyled mt-1">
         <li class="sidebar-item sidebar-item-section">
       <div class="sidebar-item-container"> 
-            <a href="../C_Plus_Plus/index.html" class="sidebar-item-text sidebar-link active">
+            <a href="../../C_Plus_Plus/index.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">C Plus Plus</span></a>
           <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" role="navigation" aria-expanded="true" aria-label="Toggle section">
             <i class="bi bi-chevron-right ms-2"></i>
@@ -261,13 +246,13 @@ window.Quarto = {
       <ul id="quarto-sidebar-section-2" class="collapse list-unstyled sidebar-section depth2 ">  
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../C_Plus_Plus/Advanced/advanced_cpp.html" class="sidebar-item-text sidebar-link">
+  <a href="../../C_Plus_Plus/Advanced/advanced_cpp.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">Advanced C++ study</span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../C_Plus_Plus/Advanced/multi_threading.html" class="sidebar-item-text sidebar-link">
+  <a href="../../C_Plus_Plus/Advanced/multi_threading.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">Multi Threading</span></a>
   </div>
 </li>
@@ -275,16 +260,16 @@ window.Quarto = {
   </li>
           <li class="sidebar-item sidebar-item-section">
       <div class="sidebar-item-container"> 
-            <a class="sidebar-item-text sidebar-link text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-3" role="navigation" aria-expanded="false">
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-3" role="navigation" aria-expanded="true">
  <span class="menu-text">Basics</span></a>
-          <a class="sidebar-item-toggle text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-3" role="navigation" aria-expanded="false" aria-label="Toggle section">
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-3" role="navigation" aria-expanded="true" aria-label="Toggle section">
             <i class="bi bi-chevron-right ms-2"></i>
           </a> 
       </div>
-      <ul id="quarto-sidebar-section-3" class="collapse list-unstyled sidebar-section depth2 ">  
+      <ul id="quarto-sidebar-section-3" class="collapse list-unstyled sidebar-section depth2 show">  
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../C_Plus_Plus/Basics/basics_cpp.html" class="sidebar-item-text sidebar-link">
+  <a href="../../C_Plus_Plus/Basics/basics_cpp.html" class="sidebar-item-text sidebar-link active">
  <span class="menu-text">Glimpse of C++</span></a>
   </div>
 </li>
@@ -301,7 +286,7 @@ window.Quarto = {
       <ul id="quarto-sidebar-section-4" class="collapse list-unstyled sidebar-section depth2 ">  
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../C_Plus_Plus/Linked-list/linkedlist_basics.html" class="sidebar-item-text sidebar-link">
+  <a href="../../C_Plus_Plus/Linked-list/linkedlist_basics.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">Linkedlist Basics</span></a>
   </div>
 </li>
@@ -315,183 +300,166 @@ window.Quarto = {
 <div id="quarto-sidebar-glass" class="quarto-sidebar-collapse-item" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item"></div>
 <!-- margin-sidebar -->
     <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
-        
-    <h5 class="quarto-listing-category-title">Categories</h5><div class="quarto-listing-category category-default"><div class="category" data-category="">All <span class="quarto-category-count">(4)</span></div><div class="category" data-category="Advanced C++ study">Advanced C++ study <span class="quarto-category-count">(1)</span></div><div class="category" data-category="Basics of c++">Basics of c++ <span class="quarto-category-count">(2)</span></div><div class="category" data-category="Multi Threading">Multi Threading <span class="quarto-category-count">(1)</span></div></div></div>
-<!-- main -->
-<main class="content quarto-banner-title-block column-body" id="quarto-document-content">
-
-
-
-
-
-
-
-
-
-<div class="quarto-listing quarto-listing-container-default" id="listing-listing">
-<div class="listing-actions-group">
-   <div class="input-group input-group-sm quarto-listing-sort">
-     <span class="input-group-text"><i class="bi bi-sort-down"></i></span>
-     <select id="listing-listing-sort" class="form-select" aria-label="Order By" onchange="window['quarto-listings']['listing-listing'].sort(this.options[this.selectedIndex].value, { order: this.options[this.selectedIndex].getAttribute('data-direction')})">
-       <option value="" disabled="" selected="" hidden="">Order By</option>
-       <option value="index" data-direction="asc">Default</option>
-         <option value="listing-title" data-direction="asc">
-          Title
-        </option>
-         <option value="listing-date-sort" data-direction="asc">
-          Date - Oldest
-        </option>
-         <option value="listing-date-sort" data-direction="desc">
-          Date - Newest
-        </option>
-         <option value="listing-author" data-direction="asc">
-          Author
-        </option>
-     </select>
-  </div>
-    <div class="input-group input-group-sm quarto-listing-filter">
-      <span class="input-group-text"><i class="bi bi-search"></i></span>
-      <input type="text" class="search form-control" placeholder="Filter">
+        <nav id="TOC" role="doc-toc" class="toc-active">
+    <h2 id="toc-title">On this page</h2>
+   
+  <ul>
+  <li><a href="#friend-function" id="toc-friend-function" class="nav-link active" data-scroll-target="#friend-function"><span class="header-section-number">1</span> Friend function</a></li>
+  <li><a href="#casting-in-c" id="toc-casting-in-c" class="nav-link" data-scroll-target="#casting-in-c"><span class="header-section-number">2</span> Casting in C++</a>
+  <ul>
+  <li><a href="#const_casttypevariable" id="toc-const_casttypevariable" class="nav-link" data-scroll-target="#const_casttypevariable"><span class="header-section-number">2.1</span> <code>const_cast&lt;Type&gt;(variable)</code></a></li>
+  <li><a href="#static_casttypevariable" id="toc-static_casttypevariable" class="nav-link" data-scroll-target="#static_casttypevariable"><span class="header-section-number">2.2</span> <code>static_cast&lt;Type&gt;(variable)</code></a></li>
+  <li><a href="#reinterpret_casttypevariable" id="toc-reinterpret_casttypevariable" class="nav-link" data-scroll-target="#reinterpret_casttypevariable"><span class="header-section-number">2.3</span> <code>reinterpret_cast&lt;Type&gt;(variable)</code></a></li>
+  <li><a href="#dynamic_casttypevariable" id="toc-dynamic_casttypevariable" class="nav-link" data-scroll-target="#dynamic_casttypevariable"><span class="header-section-number">2.4</span> <code>dynamic_cast&lt;Type&gt;(variable)</code></a></li>
+  </ul></li>
+  </ul>
+</nav>
     </div>
-</div>
-<div class="list quarto-listing-default">
-<div class="quarto-post image-right" data-index="0" data-categories="Basics of c++" data-listing-date-sort="1731542400000" data-listing-file-modified-sort="1731625420097" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="11" data-listing-word-count-sort="2076">
-<div class="thumbnail">
-<p><a href="../C_Plus_Plus/Linked-list/linkedlist_basics.html" class="no-external"></a></p><a href="../C_Plus_Plus/Linked-list/linkedlist_basics.html" class="no-external">
-<div class="listing-item-img-placeholder card-img-top" >&nbsp;</div>
-</a><p><a href="../C_Plus_Plus/Linked-list/linkedlist_basics.html" class="no-external"></a></p>
-</div>
-<div class="body">
-<h3 class="no-anchor listing-title">
-<a href="../C_Plus_Plus/Linked-list/linkedlist_basics.html" class="no-external">Linkedlist Basics</a>
-</h3>
-<div class="listing-subtitle">
-<a href="../C_Plus_Plus/Linked-list/linkedlist_basics.html" class="no-external"></a>
-</div>
-<div class="listing-categories">
-<div class="listing-category" onclick="window.quartoListingCategory('Basics of c++'); return false;">
-Basics of c++
-</div>
-</div>
-<div class="listing-description">
-<a href="../C_Plus_Plus/Linked-list/linkedlist_basics.html" class="no-external">Basics of c++</a>
-</div>
-</div>
-<div class="metadata">
-<a href="../C_Plus_Plus/Linked-list/linkedlist_basics.html" class="no-external">
-<div class="listing-date">
-Nov 14, 2024
-</div>
-<div class="listing-author">
-Yas Mi
-</div>
-</a>
-</div>
-</div>
-<div class="quarto-post image-right" data-index="1" data-categories="Multi Threading" data-listing-date-sort="1694304000000" data-listing-file-modified-sort="1731625420097" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="19" data-listing-word-count-sort="3693">
-<div class="thumbnail">
-<p><a href="../C_Plus_Plus/Advanced/multi_threading.html" class="no-external"></a></p><a href="../C_Plus_Plus/Advanced/multi_threading.html" class="no-external">
-<div class="listing-item-img-placeholder card-img-top" >&nbsp;</div>
-</a><p><a href="../C_Plus_Plus/Advanced/multi_threading.html" class="no-external"></a></p>
-</div>
-<div class="body">
-<h3 class="no-anchor listing-title">
-<a href="../C_Plus_Plus/Advanced/multi_threading.html" class="no-external">Multi Threading</a>
-</h3>
-<div class="listing-subtitle">
-<a href="../C_Plus_Plus/Advanced/multi_threading.html" class="no-external"></a>
-</div>
-<div class="listing-categories">
-<div class="listing-category" onclick="window.quartoListingCategory('Multi Threading'); return false;">
-Multi Threading
-</div>
-</div>
-<div class="listing-description">
-<a href="../C_Plus_Plus/Advanced/multi_threading.html" class="no-external">Threading concepts</a>
-</div>
-</div>
-<div class="metadata">
-<a href="../C_Plus_Plus/Advanced/multi_threading.html" class="no-external">
-<div class="listing-date">
-Sep 10, 2023
-</div>
-<div class="listing-author">
-Yas Mi
-</div>
-</a>
-</div>
-</div>
-<div class="quarto-post image-right" data-index="2" data-categories="Advanced C++ study" data-listing-date-sort="1691280000000" data-listing-file-modified-sort="1731625420097" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="3" data-listing-word-count-sort="486">
-<div class="thumbnail">
-<p><a href="../C_Plus_Plus/Advanced/advanced_cpp.html" class="no-external"></a></p><a href="../C_Plus_Plus/Advanced/advanced_cpp.html" class="no-external">
-<div class="listing-item-img-placeholder card-img-top" >&nbsp;</div>
-</a><p><a href="../C_Plus_Plus/Advanced/advanced_cpp.html" class="no-external"></a></p>
-</div>
-<div class="body">
-<h3 class="no-anchor listing-title">
-<a href="../C_Plus_Plus/Advanced/advanced_cpp.html" class="no-external">Advanced C++ study</a>
-</h3>
-<div class="listing-subtitle">
-<a href="../C_Plus_Plus/Advanced/advanced_cpp.html" class="no-external"></a>
-</div>
-<div class="listing-categories">
-<div class="listing-category" onclick="window.quartoListingCategory('Advanced C++ study'); return false;">
-Advanced C++ study
-</div>
-</div>
-<div class="listing-description">
-<a href="../C_Plus_Plus/Advanced/advanced_cpp.html" class="no-external">Templates,Lambda Functions</a>
-</div>
-</div>
-<div class="metadata">
-<a href="../C_Plus_Plus/Advanced/advanced_cpp.html" class="no-external">
-<div class="listing-date">
-Aug 6, 2023
-</div>
-<div class="listing-author">
-Yas Mi
-</div>
-</a>
-</div>
-</div>
-<div class="quarto-post image-right" data-index="3" data-categories="Basics of c++" data-listing-date-sort="1691280000000" data-listing-file-modified-sort="1731625420097" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="3" data-listing-word-count-sort="419">
-<div class="thumbnail">
-<p><a href="../C_Plus_Plus/Basics/basics_cpp.html" class="no-external"></a></p><a href="../C_Plus_Plus/Basics/basics_cpp.html" class="no-external">
-<div class="listing-item-img-placeholder card-img-top" >&nbsp;</div>
-</a><p><a href="../C_Plus_Plus/Basics/basics_cpp.html" class="no-external"></a></p>
-</div>
-<div class="body">
-<h3 class="no-anchor listing-title">
-<a href="../C_Plus_Plus/Basics/basics_cpp.html" class="no-external">Glimpse of C++</a>
-</h3>
-<div class="listing-subtitle">
-<a href="../C_Plus_Plus/Basics/basics_cpp.html" class="no-external"></a>
-</div>
-<div class="listing-categories">
-<div class="listing-category" onclick="window.quartoListingCategory('Basics of c++'); return false;">
-Basics of c++
-</div>
-</div>
-<div class="listing-description">
-<a href="../C_Plus_Plus/Basics/basics_cpp.html" class="no-external">Basics of c++</a>
-</div>
-</div>
-<div class="metadata">
-<a href="../C_Plus_Plus/Basics/basics_cpp.html" class="no-external">
-<div class="listing-date">
-Aug 6, 2023
-</div>
-<div class="listing-author">
-Yas Mi
-</div>
-</a>
-</div>
-</div>
-</div>
-<div class="listing-no-matching d-none">
-No matching items
-</div>
-</div></main> <!-- /main -->
+<!-- main -->
+<main class="content quarto-banner-title-block" id="quarto-document-content">
+
+
+
+
+
+<section id="friend-function" class="level2" data-number="1">
+<h2 data-number="1" class="anchored" data-anchor-id="friend-function"><span class="header-section-number">1</span> Friend function</h2>
+<div class="sourceCode" id="cb1"><pre class="sourceCode numberSource cpp number-lines code-with-copy"><code class="sourceCode cpp"><span id="cb1-1"><a href="#cb1-1"></a><span class="pp">#include</span><span class="im">&lt;iostream&gt;</span></span>
+<span id="cb1-2"><a href="#cb1-2"></a><span class="kw">using</span> <span class="kw">namespace</span> std<span class="op">;</span></span>
+<span id="cb1-3"><a href="#cb1-3"></a></span>
+<span id="cb1-4"><a href="#cb1-4"></a><span class="kw">typedef</span> <span class="kw">struct</span> </span>
+<span id="cb1-5"><a href="#cb1-5"></a><span class="op">{</span></span>
+<span id="cb1-6"><a href="#cb1-6"></a>    <span class="at">const</span> <span class="dt">char</span> <span class="op">*</span> name<span class="op">;</span></span>
+<span id="cb1-7"><a href="#cb1-7"></a>    <span class="dt">int</span> ranking<span class="op">;</span></span>
+<span id="cb1-8"><a href="#cb1-8"></a>    <span class="dt">int</span> studentid<span class="op">;</span></span>
+<span id="cb1-9"><a href="#cb1-9"></a><span class="op">}</span>studentdataBase<span class="op">;</span></span>
+<span id="cb1-10"><a href="#cb1-10"></a></span>
+<span id="cb1-11"><a href="#cb1-11"></a><span class="kw">class</span> lecture<span class="op">;</span></span>
+<span id="cb1-12"><a href="#cb1-12"></a></span>
+<span id="cb1-13"><a href="#cb1-13"></a> <span class="kw">class</span> student</span>
+<span id="cb1-14"><a href="#cb1-14"></a><span class="op">{</span></span>
+<span id="cb1-15"><a href="#cb1-15"></a>    <span class="kw">public</span><span class="op">:</span></span>
+<span id="cb1-16"><a href="#cb1-16"></a>    <span class="at">static</span> <span class="at">const</span> studentdataBase studentdataBasec<span class="op">[</span><span class="dv">2</span><span class="op">];</span></span>
+<span id="cb1-17"><a href="#cb1-17"></a></span>
+<span id="cb1-18"><a href="#cb1-18"></a>    <span class="kw">friend</span> <span class="kw">class</span> lecture<span class="op">;</span></span>
+<span id="cb1-19"><a href="#cb1-19"></a><span class="op">};</span></span>
+<span id="cb1-20"><a href="#cb1-20"></a></span>
+<span id="cb1-21"><a href="#cb1-21"></a><span class="kw">class</span> lecture</span>
+<span id="cb1-22"><a href="#cb1-22"></a>    <span class="op">{</span></span>
+<span id="cb1-23"><a href="#cb1-23"></a>        <span class="kw">public</span><span class="op">:</span></span>
+<span id="cb1-24"><a href="#cb1-24"></a>        <span class="dt">void</span> printstudentData<span class="op">()</span></span>
+<span id="cb1-25"><a href="#cb1-25"></a>        <span class="op">{</span></span>
+<span id="cb1-26"><a href="#cb1-26"></a>        cout<span class="op">&lt;&lt;</span>student<span class="op">::</span>studentdataBasec<span class="op">[</span><span class="dv">1</span><span class="op">].</span>name<span class="op">&lt;&lt;</span>endl<span class="op">;</span></span>
+<span id="cb1-27"><a href="#cb1-27"></a>        <span class="op">}</span></span>
+<span id="cb1-28"><a href="#cb1-28"></a>     </span>
+<span id="cb1-29"><a href="#cb1-29"></a><span class="op">};</span></span>
+<span id="cb1-30"><a href="#cb1-30"></a></span>
+<span id="cb1-31"><a href="#cb1-31"></a></span>
+<span id="cb1-32"><a href="#cb1-32"></a> <span class="at">const</span> studentdataBase student<span class="op">::</span>studentdataBasec<span class="op">[</span><span class="dv">2</span><span class="op">]=</span></span>
+<span id="cb1-33"><a href="#cb1-33"></a><span class="op">{</span></span>
+<span id="cb1-34"><a href="#cb1-34"></a>    <span class="op">{</span></span>
+<span id="cb1-35"><a href="#cb1-35"></a>        <span class="st">"Disha"</span><span class="op">,</span></span>
+<span id="cb1-36"><a href="#cb1-36"></a>        <span class="dv">1</span><span class="op">,</span></span>
+<span id="cb1-37"><a href="#cb1-37"></a>        <span class="dv">1234</span></span>
+<span id="cb1-38"><a href="#cb1-38"></a>    <span class="op">},</span></span>
+<span id="cb1-39"><a href="#cb1-39"></a>    <span class="op">{</span></span>
+<span id="cb1-40"><a href="#cb1-40"></a>        <span class="st">"Isha"</span><span class="op">,</span></span>
+<span id="cb1-41"><a href="#cb1-41"></a>        <span class="dv">2</span><span class="op">,</span></span>
+<span id="cb1-42"><a href="#cb1-42"></a>        <span class="dv">4567</span></span>
+<span id="cb1-43"><a href="#cb1-43"></a>    <span class="op">}</span></span>
+<span id="cb1-44"><a href="#cb1-44"></a><span class="op">};</span></span>
+<span id="cb1-45"><a href="#cb1-45"></a></span>
+<span id="cb1-46"><a href="#cb1-46"></a><span class="dt">int</span> main<span class="op">()</span></span>
+<span id="cb1-47"><a href="#cb1-47"></a><span class="op">{</span></span>
+<span id="cb1-48"><a href="#cb1-48"></a>    lecture obj<span class="op">;</span></span>
+<span id="cb1-49"><a href="#cb1-49"></a>    obj<span class="op">.</span>printstudentData<span class="op">();</span></span>
+<span id="cb1-50"><a href="#cb1-50"></a></span>
+<span id="cb1-51"><a href="#cb1-51"></a>    <span class="cf">return</span> <span class="dv">0</span><span class="op">;</span></span>
+<span id="cb1-52"><a href="#cb1-52"></a><span class="op">}</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<ul>
+<li>In the above program <code>lecture</code> is the <code>friend</code> function of <code>student</code></li>
+<li><code>lecture</code> class gets to access the members of class <code>student</code></li>
+</ul>
+</section>
+<section id="casting-in-c" class="level2" data-number="2">
+<h2 data-number="2" class="anchored" data-anchor-id="casting-in-c"><span class="header-section-number">2</span> Casting in C++</h2>
+<section id="const_casttypevariable" class="level3" data-number="2.1">
+<h3 data-number="2.1" class="anchored" data-anchor-id="const_casttypevariable"><span class="header-section-number">2.1</span> <code>const_cast&lt;Type&gt;(variable)</code></h3>
+<p><code>const_cast</code> Its used to change the const or volatile qualifiers of pointers or referances . where type should be either pointer, reference or pointer to member type</p>
+<div class="sourceCode" id="cb2"><pre class="sourceCode numberSource cpp number-lines code-with-copy"><code class="sourceCode cpp"><span id="cb2-1"><a href="#cb2-1"></a><span class="dt">int</span> main<span class="op">()</span></span>
+<span id="cb2-2"><a href="#cb2-2"></a><span class="op">{</span></span>
+<span id="cb2-3"><a href="#cb2-3"></a>    <span class="dt">int</span> a<span class="op">=</span><span class="dv">5</span><span class="op">;</span></span>
+<span id="cb2-4"><a href="#cb2-4"></a>    <span class="at">const</span> <span class="dt">int</span> <span class="op">*</span>p<span class="op">=&amp;</span>a<span class="op">;</span></span>
+<span id="cb2-5"><a href="#cb2-5"></a>    <span class="dt">int</span> <span class="op">*</span>b<span class="op">=</span><span class="kw">const_cast</span><span class="op">&lt;</span><span class="dt">int</span><span class="op">*&gt;(</span>p<span class="op">)</span></span>
+<span id="cb2-6"><a href="#cb2-6"></a>    <span class="op">*</span>b<span class="op">=</span><span class="dv">10</span><span class="op">;</span></span>
+<span id="cb2-7"><a href="#cb2-7"></a>    cout<span class="op">&lt;&lt;*</span>b<span class="op">&lt;&lt;</span>endl<span class="op">;</span></span>
+<span id="cb2-8"><a href="#cb2-8"></a>    <span class="cf">return</span> <span class="dv">0</span><span class="op">;</span></span>
+<span id="cb2-9"><a href="#cb2-9"></a><span class="op">}</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<ul>
+<li>Result=10;</li>
+</ul>
+</section>
+<section id="static_casttypevariable" class="level3" data-number="2.2">
+<h3 data-number="2.2" class="anchored" data-anchor-id="static_casttypevariable"><span class="header-section-number">2.2</span> <code>static_cast&lt;Type&gt;(variable)</code></h3>
+<p>Its an implicity conversion in c++</p>
+<div class="sourceCode" id="cb3"><pre class="sourceCode numberSource cpp number-lines code-with-copy"><code class="sourceCode cpp"><span id="cb3-1"><a href="#cb3-1"></a><span class="dt">int</span> main<span class="op">()</span></span>
+<span id="cb3-2"><a href="#cb3-2"></a><span class="op">{</span></span>
+<span id="cb3-3"><a href="#cb3-3"></a>    <span class="dt">char</span> c<span class="op">=</span><span class="ch">'a'</span><span class="op">;</span></span>
+<span id="cb3-4"><a href="#cb3-4"></a>    <span class="dt">int</span> data<span class="op">=</span><span class="kw">static_cast</span><span class="op">&lt;</span><span class="dt">int</span><span class="op">&gt;(</span>a<span class="op">);</span></span>
+<span id="cb3-5"><a href="#cb3-5"></a>    cout<span class="op">&lt;&lt;</span>data<span class="op">&lt;&lt;</span>endl<span class="op">;</span></span>
+<span id="cb3-6"><a href="#cb3-6"></a>    <span class="cf">return</span> <span class="dv">0</span><span class="op">;</span></span>
+<span id="cb3-7"><a href="#cb3-7"></a><span class="op">}</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<ul>
+<li>Result=10;</li>
+</ul>
+</section>
+<section id="reinterpret_casttypevariable" class="level3" data-number="2.3">
+<h3 data-number="2.3" class="anchored" data-anchor-id="reinterpret_casttypevariable"><span class="header-section-number">2.3</span> <code>reinterpret_cast&lt;Type&gt;(variable)</code></h3>
+<p>It is used to cast any pointer type to any pointer type</p>
+<div class="sourceCode" id="cb4"><pre class="sourceCode numberSource cpp number-lines code-with-copy"><code class="sourceCode cpp"><span id="cb4-1"><a href="#cb4-1"></a><span class="dt">int</span> main<span class="op">()</span></span>
+<span id="cb4-2"><a href="#cb4-2"></a><span class="op">{</span></span>
+<span id="cb4-3"><a href="#cb4-3"></a>    <span class="dt">int</span> a<span class="op">=</span><span class="dv">5</span><span class="op">;</span></span>
+<span id="cb4-4"><a href="#cb4-4"></a>    <span class="dt">int</span> <span class="op">*</span>iptr<span class="op">=&amp;</span>a<span class="op">;</span></span>
+<span id="cb4-5"><a href="#cb4-5"></a>    <span class="dt">char</span> <span class="op">*</span>cptr<span class="op">=</span><span class="kw">reinterpret_cast</span><span class="op">&lt;</span><span class="dt">char</span><span class="op">*&gt;(&amp;</span>iptr<span class="op">);</span></span>
+<span id="cb4-6"><a href="#cb4-6"></a>    cout<span class="op">&lt;&lt;*</span>cptr<span class="op">&lt;&lt;</span>endl<span class="op">;</span></span>
+<span id="cb4-7"><a href="#cb4-7"></a>    <span class="cf">return</span> <span class="dv">0</span><span class="op">;</span></span>
+<span id="cb4-8"><a href="#cb4-8"></a><span class="op">}</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</section>
+<section id="dynamic_casttypevariable" class="level3" data-number="2.4">
+<h3 data-number="2.4" class="anchored" data-anchor-id="dynamic_casttypevariable"><span class="header-section-number">2.4</span> <code>dynamic_cast&lt;Type&gt;(variable)</code></h3>
+<p>Its used for safe downcasting at run time. The <code>dynamic_cast</code> to work atleast one virtual function is necessory in the base class</p>
+<div class="sourceCode" id="cb5"><pre class="sourceCode numberSource cpp number-lines code-with-copy"><code class="sourceCode cpp"><span id="cb5-1"><a href="#cb5-1"></a><span class="kw">class</span> base</span>
+<span id="cb5-2"><a href="#cb5-2"></a><span class="op">{</span></span>
+<span id="cb5-3"><a href="#cb5-3"></a>    <span class="kw">public</span> <span class="op">:</span></span>
+<span id="cb5-4"><a href="#cb5-4"></a>    <span class="kw">virtual</span> <span class="dt">void</span> print<span class="op">()</span></span>
+<span id="cb5-5"><a href="#cb5-5"></a>    <span class="op">{</span></span>
+<span id="cb5-6"><a href="#cb5-6"></a>        cout<span class="op">&lt;&lt;</span><span class="st">"hey"</span><span class="op">&lt;&lt;</span>endl<span class="op">;</span></span>
+<span id="cb5-7"><a href="#cb5-7"></a>    <span class="op">}</span></span>
+<span id="cb5-8"><a href="#cb5-8"></a><span class="op">};</span></span>
+<span id="cb5-9"><a href="#cb5-9"></a></span>
+<span id="cb5-10"><a href="#cb5-10"></a><span class="kw">class</span> derived <span class="op">:</span> <span class="kw">public</span> base</span>
+<span id="cb5-11"><a href="#cb5-11"></a><span class="op">{</span></span>
+<span id="cb5-12"><a href="#cb5-12"></a>    <span class="kw">public</span> <span class="op">:</span></span>
+<span id="cb5-13"><a href="#cb5-13"></a>    <span class="kw">virtual</span> <span class="dt">void</span> print<span class="op">()</span><span class="kw">override</span></span>
+<span id="cb5-14"><a href="#cb5-14"></a>    <span class="op">{</span></span>
+<span id="cb5-15"><a href="#cb5-15"></a>        cout<span class="op">&lt;&lt;</span><span class="st">"hey derived"</span><span class="op">&lt;&lt;</span>endl<span class="op">;</span></span>
+<span id="cb5-16"><a href="#cb5-16"></a>    <span class="op">}</span></span>
+<span id="cb5-17"><a href="#cb5-17"></a><span class="op">};</span></span>
+<span id="cb5-18"><a href="#cb5-18"></a><span class="dt">int</span> main<span class="op">()</span></span>
+<span id="cb5-19"><a href="#cb5-19"></a><span class="op">{</span></span>
+<span id="cb5-20"><a href="#cb5-20"></a>    derived d_obj<span class="op">;</span></span>
+<span id="cb5-21"><a href="#cb5-21"></a>    base <span class="op">*</span>b_obj<span class="op">=</span><span class="kw">dynamic_cast</span><span class="op">&lt;</span>derived<span class="op">*&gt;(&amp;</span>d_obj<span class="op">);</span></span>
+<span id="cb5-22"><a href="#cb5-22"></a>    b_obj<span class="op">-&gt;</span>print<span class="op">();</span></span>
+<span id="cb5-23"><a href="#cb5-23"></a><span class="op">}</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<ul>
+<li>Result=<code>hey derived</code></li>
+</ul>
+
+
+</section>
+</section>
+
+</main> <!-- /main -->
 <script id="quarto-html-after-body" type="application/javascript">
 window.document.addEventListener("DOMContentLoaded", function (event) {
   const toggleBodyColorMode = (bsSheetEl) => {
@@ -916,12 +884,15 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
 </script>
 <input type="hidden" id="giscus-base-theme" value="light">
 <input type="hidden" id="giscus-alt-theme" value="dark">
-<nav class="page-navigation column-body">
+<nav class="page-navigation">
   <div class="nav-page nav-page-previous">
+      <a href="../../C_Plus_Plus/Advanced/multi_threading.html" class="pagination-link" aria-label="Multi Threading">
+        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text">Multi Threading</span>
+      </a>          
   </div>
   <div class="nav-page nav-page-next">
-      <a href="../C_Plus_Plus/Advanced/advanced_cpp.html" class="pagination-link" aria-label="Advanced C++ study">
-        <span class="nav-page-text">Advanced C++ study</span> <i class="bi bi-arrow-right-short"></i>
+      <a href="../../C_Plus_Plus/Linked-list/linkedlist_basics.html" class="pagination-link" aria-label="Linkedlist Basics">
+        <span class="nav-page-text">Linkedlist Basics</span> <i class="bi bi-arrow-right-short"></i>
       </a>
   </div>
 </nav>
