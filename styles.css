@@ -5,8 +5,32 @@
     overflow-x: auto;
     overflow-y: hidden;
   }
+
+  /* h1 {
+    color:#6D1F00; 
+  }
+  h2 {
+    color:#C73500;
+  }
+  h3 {
+    color:#BD7000;
+  }
+  h4 {
+    color:#B09500;
+  }
+  h5 {
+    color:#647687;
+  }
+  h6 {
+    color:#D0CEE2;
+  }
+  p {
+    text-align:justify !important
+  } */
+
+
   h1 {
-    color:#005180; /* 852ee8 b512e7 */
+    color:#005180; 
   }
   h2 {
     color:#352EE8;

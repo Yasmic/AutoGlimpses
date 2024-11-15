@@ -2,6 +2,7 @@
   {
     "listing": "/C_Plus_Plus/index.html",
     "items": [
+      "/C_Plus_Plus/Linked-list/circular_linkedlist.html",
       "/C_Plus_Plus/Linked-list/linkedlist_basics.html",
       "/C_Plus_Plus/Advanced/multi_threading.html",
       "/C_Plus_Plus/Basics/basics_cpp.html",
