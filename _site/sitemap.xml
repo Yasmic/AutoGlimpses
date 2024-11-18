@@ -2,54 +2,70 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   <url>
     <loc>http://localhost:4200/Notes/2022-11-22-Notes.html</loc>
-    <lastmod>2024-11-15T04:36:31.200Z</lastmod>
+    <lastmod>2024-11-17T21:11:39.092Z</lastmod>
   </url>
   <url>
-    <loc>http://localhost:4200/C_Plus_Plus/index.html</loc>
-    <lastmod>2024-11-15T04:37:08.162Z</lastmod>
+    <loc>http://localhost:4200/C_Plus_Plus/Smart-Pointers/smartPointers_basics.html</loc>
+    <lastmod>2024-11-17T21:11:51.298Z</lastmod>
+  </url>
+  <url>
+    <loc>http://localhost:4200/C_Plus_Plus/Trees/binaryTree.html</loc>
+    <lastmod>2024-11-18T02:01:47.402Z</lastmod>
   </url>
   <url>
     <loc>http://localhost:4200/C_Plus_Plus/Linked-list/circular_linkedlist.html</loc>
-    <lastmod>2024-11-15T05:03:10.187Z</lastmod>
+    <lastmod>2024-11-17T21:11:34.263Z</lastmod>
+  </url>
+  <url>
+    <loc>http://localhost:4200/C_Plus_Plus/Linked-list/LRU_Cache.html</loc>
+    <lastmod>2024-11-17T21:11:32.506Z</lastmod>
   </url>
   <url>
     <loc>http://localhost:4200/C_Plus_Plus/Advanced/multi_threading.html</loc>
-    <lastmod>2024-11-15T04:36:26.513Z</lastmod>
+    <lastmod>2024-11-17T21:11:30.950Z</lastmod>
   </url>
   <url>
     <loc>http://localhost:4200/about.html</loc>
-    <lastmod>2024-11-15T04:36:24.095Z</lastmod>
+    <lastmod>2024-11-17T21:11:27.803Z</lastmod>
   </url>
   <url>
     <loc>http://localhost:4200/Autosar/index.html</loc>
-    <lastmod>2024-11-15T04:36:21.371Z</lastmod>
+    <lastmod>2024-11-17T21:11:25.040Z</lastmod>
   </url>
   <url>
     <loc>http://localhost:4200/Autosar/DCM.html</loc>
-    <lastmod>2024-11-15T04:36:19.718Z</lastmod>
+    <lastmod>2024-11-17T21:11:23.455Z</lastmod>
   </url>
   <url>
     <loc>http://localhost:4200/Autosar/DEM.html</loc>
-    <lastmod>2024-11-15T04:36:20.487Z</lastmod>
+    <lastmod>2024-11-17T21:11:24.244Z</lastmod>
   </url>
   <url>
     <loc>http://localhost:4200/index.html</loc>
-    <lastmod>2024-11-15T04:37:03.563Z</lastmod>
+    <lastmod>2024-11-17T21:11:27.588Z</lastmod>
   </url>
   <url>
     <loc>http://localhost:4200/C_Plus_Plus/Basics/basics_cpp.html</loc>
-    <lastmod>2024-11-15T04:36:25.316Z</lastmod>
+    <lastmod>2024-11-17T21:11:29.841Z</lastmod>
   </url>
   <url>
     <loc>http://localhost:4200/C_Plus_Plus/Advanced/advanced_cpp.html</loc>
-    <lastmod>2024-11-15T04:36:27.260Z</lastmod>
+    <lastmod>2024-11-17T21:11:31.700Z</lastmod>
+  </url>
+  <url>
+    <loc>http://localhost:4200/C_Plus_Plus/Linked-list/mergeLists.html</loc>
+    <lastmod>2024-11-17T21:11:33.331Z</lastmod>
   </url>
   <url>
     <loc>http://localhost:4200/C_Plus_Plus/Linked-list/linkedlist_basics.html</loc>
-    <lastmod>2024-11-15T04:36:50.636Z</lastmod>
+    <lastmod>2024-11-17T21:11:35.131Z</lastmod>
+  </url>
+  <url>
+    <loc>http://localhost:4200/C_Plus_Plus/index.html</loc>
+    <lastmod>2024-11-17T21:11:36.946Z</lastmod>
   </url>
   <url>
     <loc>http://localhost:4200/Notes/index.html</loc>
-    <lastmod>2024-11-15T04:36:30.575Z</lastmod>
+    <lastmod>2024-11-17T21:11:38.405Z</lastmod>
   </url>
 </urlset>
