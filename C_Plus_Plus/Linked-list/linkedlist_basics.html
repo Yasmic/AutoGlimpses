@@ -67,6 +67,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <script src="../../site_libs/quarto-search/fuse.min.js"></script>
 <script src="../../site_libs/quarto-search/quarto-search.js"></script>
 <meta name="quarto:offset" content="../../">
+<link href="../../C_Plus_Plus/Linked-list/LRU_Cache.html" rel="next">
 <link href="../../C_Plus_Plus/Linked-list/circular_linkedlist.html" rel="prev">
 <script src="../../site_libs/quarto-html/quarto.js"></script>
 <script src="../../site_libs/quarto-html/popper.min.js"></script>
@@ -295,6 +296,52 @@ gtag('config', 'G-5ZQX02R26E', { 'anonymize_ip': true});
  <span class="menu-text">Linkedlist Basics</span></a>
   </div>
 </li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../C_Plus_Plus/Linked-list/LRU_Cache.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">LRU cache</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../C_Plus_Plus/Linked-list/mergeLists.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">mergelists</span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+          <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-5" role="navigation" aria-expanded="false">
+ <span class="menu-text">Smart Pointers</span></a>
+          <a class="sidebar-item-toggle text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-5" role="navigation" aria-expanded="false" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-5" class="collapse list-unstyled sidebar-section depth2 ">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../C_Plus_Plus/Smart-Pointers/smartPointers_basics.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">smart pointers</span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+          <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-6" role="navigation" aria-expanded="false">
+ <span class="menu-text">Trees</span></a>
+          <a class="sidebar-item-toggle text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-6" role="navigation" aria-expanded="false" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-6" class="collapse list-unstyled sidebar-section depth2 ">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../C_Plus_Plus/Trees/binaryTree.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">binary Tree</span></a>
+  </div>
+</li>
       </ul>
   </li>
       </ul>
@@ -311,6 +358,8 @@ gtag('config', 'G-5ZQX02R26E', { 'anonymize_ip': true});
   <ul>
   <li><a href="#single-linkedlist" id="toc-single-linkedlist" class="nav-link active" data-scroll-target="#single-linkedlist"><span class="header-section-number">1</span> single linkedlist</a></li>
   <li><a href="#double-linkedlist" id="toc-double-linkedlist" class="nav-link" data-scroll-target="#double-linkedlist"><span class="header-section-number">2</span> double linkedlist</a></li>
+  <li><a href="#reverse-single-linked-list" id="toc-reverse-single-linked-list" class="nav-link" data-scroll-target="#reverse-single-linked-list"><span class="header-section-number">3</span> Reverse single linked list</a></li>
+  <li><a href="#double-linkedlist-reversal" id="toc-double-linkedlist-reversal" class="nav-link" data-scroll-target="#double-linkedlist-reversal"><span class="header-section-number">4</span> Double linkedlist reversal</a></li>
   </ul>
 </nav>
     </div>
@@ -658,6 +707,283 @@ gtag('config', 'G-5ZQX02R26E', { 'anonymize_ip': true});
 <span id="cb4-5"><a href="#cb4-5"></a><span class="ex">6</span> 12 24 36 48 72 94 </span>
 <span id="cb4-6"><a href="#cb4-6"></a><span class="ex">list</span> after deletion</span>
 <span id="cb4-7"><a href="#cb4-7"></a><span class="ex">6</span> 12 24 36 72 94 </span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</section>
+<section id="reverse-single-linked-list" class="level2" data-number="3">
+<h2 data-number="3" class="anchored" data-anchor-id="reverse-single-linked-list"><span class="header-section-number">3</span> Reverse single linked list</h2>
+<div class="sourceCode" id="cb5"><pre class="sourceCode numberSource cpp number-lines code-with-copy"><code class="sourceCode cpp"><span id="cb5-1"><a href="#cb5-1"></a><span class="pp">#include </span><span class="im">&lt;iostream&gt;</span></span>
+<span id="cb5-2"><a href="#cb5-2"></a><span class="pp">#include</span><span class="im">&lt;stack&gt;</span></span>
+<span id="cb5-3"><a href="#cb5-3"></a></span>
+<span id="cb5-4"><a href="#cb5-4"></a><span class="kw">class</span> Node</span>
+<span id="cb5-5"><a href="#cb5-5"></a><span class="op">{</span></span>
+<span id="cb5-6"><a href="#cb5-6"></a><span class="kw">public</span><span class="op">:</span></span>
+<span id="cb5-7"><a href="#cb5-7"></a>    <span class="dt">int</span> data<span class="op">;</span></span>
+<span id="cb5-8"><a href="#cb5-8"></a>    Node <span class="op">*</span>next<span class="op">;</span></span>
+<span id="cb5-9"><a href="#cb5-9"></a></span>
+<span id="cb5-10"><a href="#cb5-10"></a>    <span class="kw">explicit</span> Node<span class="op">(</span><span class="dt">int</span> data<span class="op">):</span> data<span class="op">(</span>data<span class="op">),</span> next<span class="op">(</span><span class="kw">nullptr</span><span class="op">)</span></span>
+<span id="cb5-11"><a href="#cb5-11"></a>    <span class="op">{</span></span>
+<span id="cb5-12"><a href="#cb5-12"></a>    <span class="op">}</span></span>
+<span id="cb5-13"><a href="#cb5-13"></a></span>
+<span id="cb5-14"><a href="#cb5-14"></a>    Node<span class="op">(</span><span class="dt">int</span> data<span class="op">,</span> Node <span class="op">*</span>next<span class="op">):</span> data<span class="op">(</span>data<span class="op">),</span> next<span class="op">(</span><span class="kw">nullptr</span><span class="op">)</span></span>
+<span id="cb5-15"><a href="#cb5-15"></a>    <span class="op">{</span></span>
+<span id="cb5-16"><a href="#cb5-16"></a>    <span class="op">}</span></span>
+<span id="cb5-17"><a href="#cb5-17"></a><span class="op">};</span></span>
+<span id="cb5-18"><a href="#cb5-18"></a></span>
+<span id="cb5-19"><a href="#cb5-19"></a><span class="kw">class</span> singleLinkedList</span>
+<span id="cb5-20"><a href="#cb5-20"></a><span class="op">{</span></span>
+<span id="cb5-21"><a href="#cb5-21"></a><span class="kw">public</span><span class="op">:</span></span>
+<span id="cb5-22"><a href="#cb5-22"></a>    Node <span class="op">*</span>head<span class="op">;</span></span>
+<span id="cb5-23"><a href="#cb5-23"></a></span>
+<span id="cb5-24"><a href="#cb5-24"></a>    singleLinkedList<span class="op">():</span> head<span class="op">(</span><span class="kw">nullptr</span><span class="op">)</span></span>
+<span id="cb5-25"><a href="#cb5-25"></a>    <span class="op">{</span></span>
+<span id="cb5-26"><a href="#cb5-26"></a>    <span class="op">}</span></span>
+<span id="cb5-27"><a href="#cb5-27"></a></span>
+<span id="cb5-28"><a href="#cb5-28"></a>    <span class="dt">void</span> insertAtTail<span class="op">(</span><span class="dt">int</span> data<span class="op">)</span></span>
+<span id="cb5-29"><a href="#cb5-29"></a>    <span class="op">{</span></span>
+<span id="cb5-30"><a href="#cb5-30"></a>        <span class="cf">if</span> <span class="op">(</span>head <span class="op">==</span> <span class="kw">nullptr</span><span class="op">)</span></span>
+<span id="cb5-31"><a href="#cb5-31"></a>        <span class="op">{</span></span>
+<span id="cb5-32"><a href="#cb5-32"></a>            head <span class="op">=</span> <span class="kw">new</span> Node<span class="op">(</span>data<span class="op">);</span></span>
+<span id="cb5-33"><a href="#cb5-33"></a>        <span class="op">}</span></span>
+<span id="cb5-34"><a href="#cb5-34"></a>        <span class="cf">else</span></span>
+<span id="cb5-35"><a href="#cb5-35"></a>        <span class="op">{</span></span>
+<span id="cb5-36"><a href="#cb5-36"></a>            Node <span class="op">*</span>temp <span class="op">=</span> head<span class="op">;</span></span>
+<span id="cb5-37"><a href="#cb5-37"></a>            <span class="cf">while</span> <span class="op">(</span>temp<span class="op">-&gt;</span>next <span class="op">!=</span> <span class="kw">nullptr</span><span class="op">)</span></span>
+<span id="cb5-38"><a href="#cb5-38"></a>            <span class="op">{</span></span>
+<span id="cb5-39"><a href="#cb5-39"></a>                temp <span class="op">=</span> temp<span class="op">-&gt;</span>next<span class="op">;</span></span>
+<span id="cb5-40"><a href="#cb5-40"></a>            <span class="op">}</span></span>
+<span id="cb5-41"><a href="#cb5-41"></a>            temp<span class="op">-&gt;</span>next <span class="op">=</span> <span class="kw">new</span> Node<span class="op">(</span>data<span class="op">);</span></span>
+<span id="cb5-42"><a href="#cb5-42"></a>        <span class="op">}</span></span>
+<span id="cb5-43"><a href="#cb5-43"></a>    <span class="op">}</span></span>
+<span id="cb5-44"><a href="#cb5-44"></a></span>
+<span id="cb5-45"><a href="#cb5-45"></a>    <span class="dt">void</span> reverseList<span class="op">()</span></span>
+<span id="cb5-46"><a href="#cb5-46"></a>    <span class="op">{</span></span>
+<span id="cb5-47"><a href="#cb5-47"></a>        Node <span class="op">*</span>prev <span class="op">=</span> <span class="kw">nullptr</span><span class="op">;</span></span>
+<span id="cb5-48"><a href="#cb5-48"></a>        Node <span class="op">*</span>curr <span class="op">=</span> head<span class="op">;</span></span>
+<span id="cb5-49"><a href="#cb5-49"></a>        Node <span class="op">*</span>next <span class="op">=</span> head<span class="op">-&gt;</span>next<span class="op">;</span></span>
+<span id="cb5-50"><a href="#cb5-50"></a>        <span class="cf">while</span> <span class="op">(</span>next <span class="op">!=</span> <span class="kw">nullptr</span><span class="op">)</span></span>
+<span id="cb5-51"><a href="#cb5-51"></a>        <span class="op">{</span></span>
+<span id="cb5-52"><a href="#cb5-52"></a>            curr<span class="op">-&gt;</span>next <span class="op">=</span> prev<span class="op">;</span></span>
+<span id="cb5-53"><a href="#cb5-53"></a>            prev <span class="op">=</span> curr<span class="op">;</span></span>
+<span id="cb5-54"><a href="#cb5-54"></a>            curr <span class="op">=</span> next<span class="op">;</span></span>
+<span id="cb5-55"><a href="#cb5-55"></a>            next <span class="op">=</span> next<span class="op">-&gt;</span>next<span class="op">;</span></span>
+<span id="cb5-56"><a href="#cb5-56"></a>        <span class="op">}</span></span>
+<span id="cb5-57"><a href="#cb5-57"></a>        curr<span class="op">-&gt;</span>next <span class="op">=</span> prev<span class="op">;</span></span>
+<span id="cb5-58"><a href="#cb5-58"></a>        head <span class="op">=</span> curr<span class="op">;</span></span>
+<span id="cb5-59"><a href="#cb5-59"></a>    <span class="op">}</span></span>
+<span id="cb5-60"><a href="#cb5-60"></a></span>
+<span id="cb5-61"><a href="#cb5-61"></a>    Node <span class="op">*</span> reverseLeftToRight<span class="op">(</span>Node <span class="op">*</span> <span class="op">&amp;</span>headNode<span class="op">,</span><span class="dt">int</span> left<span class="op">,</span><span class="dt">int</span> right<span class="op">)</span></span>
+<span id="cb5-62"><a href="#cb5-62"></a>    <span class="op">{</span></span>
+<span id="cb5-63"><a href="#cb5-63"></a>        <span class="cf">if</span> <span class="op">(</span>left <span class="op">==</span> right<span class="op">)</span> <span class="cf">return</span> headNode<span class="op">;</span> <span class="co">// No need to reverse if left == right</span></span>
+<span id="cb5-64"><a href="#cb5-64"></a></span>
+<span id="cb5-65"><a href="#cb5-65"></a>        Node<span class="op">*</span> dummy <span class="op">=</span> <span class="kw">new</span> Node<span class="op">(</span><span class="dv">0</span><span class="op">);</span>  <span class="co">// Dummy node to handle edge cases</span></span>
+<span id="cb5-66"><a href="#cb5-66"></a>        dummy<span class="op">-&gt;</span>next <span class="op">=</span> headNode<span class="op">;</span></span>
+<span id="cb5-67"><a href="#cb5-67"></a>        Node<span class="op">*</span> prev <span class="op">=</span> dummy<span class="op">;</span></span>
+<span id="cb5-68"><a href="#cb5-68"></a></span>
+<span id="cb5-69"><a href="#cb5-69"></a>        <span class="co">// Move `prev` to the node just before `left`</span></span>
+<span id="cb5-70"><a href="#cb5-70"></a>        <span class="cf">for</span> <span class="op">(</span><span class="dt">int</span> i <span class="op">=</span> <span class="dv">1</span><span class="op">;</span> i <span class="op">&lt;</span> left<span class="op">;</span> i<span class="op">++)</span> <span class="op">{</span></span>
+<span id="cb5-71"><a href="#cb5-71"></a>            prev <span class="op">=</span> prev<span class="op">-&gt;</span>next<span class="op">;</span></span>
+<span id="cb5-72"><a href="#cb5-72"></a>        <span class="op">}</span></span>
+<span id="cb5-73"><a href="#cb5-73"></a></span>
+<span id="cb5-74"><a href="#cb5-74"></a>        Node<span class="op">*</span> start <span class="op">=</span> prev<span class="op">-&gt;</span>next<span class="op">;</span>  <span class="co">// The first node in the section to be reversed</span></span>
+<span id="cb5-75"><a href="#cb5-75"></a>        Node<span class="op">*</span> temp <span class="op">=</span> start<span class="op">;</span></span>
+<span id="cb5-76"><a href="#cb5-76"></a>        <span class="bu">std::</span>stack<span class="op">&lt;</span>Node<span class="op">*&gt;</span> stk<span class="op">;</span></span>
+<span id="cb5-77"><a href="#cb5-77"></a></span>
+<span id="cb5-78"><a href="#cb5-78"></a>        <span class="co">// Push nodes to be reversed onto the stack</span></span>
+<span id="cb5-79"><a href="#cb5-79"></a>        <span class="cf">for</span> <span class="op">(</span><span class="dt">int</span> i <span class="op">=</span> left<span class="op">;</span> i <span class="op">&lt;=</span> right<span class="op">;</span> i<span class="op">++)</span> <span class="op">{</span></span>
+<span id="cb5-80"><a href="#cb5-80"></a>            stk<span class="op">.</span>push<span class="op">(</span>temp<span class="op">);</span></span>
+<span id="cb5-81"><a href="#cb5-81"></a>            temp <span class="op">=</span> temp<span class="op">-&gt;</span>next<span class="op">;</span></span>
+<span id="cb5-82"><a href="#cb5-82"></a>        <span class="op">}</span></span>
+<span id="cb5-83"><a href="#cb5-83"></a></span>
+<span id="cb5-84"><a href="#cb5-84"></a>        <span class="co">// Pop from the stack and reverse the pointers</span></span>
+<span id="cb5-85"><a href="#cb5-85"></a>        Node<span class="op">*</span> nextNode <span class="op">=</span> temp<span class="op">;</span> <span class="co">// The node right after the section to be reversed</span></span>
+<span id="cb5-86"><a href="#cb5-86"></a>        <span class="cf">while</span> <span class="op">(!</span>stk<span class="op">.</span>empty<span class="op">())</span> <span class="op">{</span></span>
+<span id="cb5-87"><a href="#cb5-87"></a>            prev<span class="op">-&gt;</span>next <span class="op">=</span> stk<span class="op">.</span>top<span class="op">();</span></span>
+<span id="cb5-88"><a href="#cb5-88"></a>            stk<span class="op">.</span>pop<span class="op">();</span></span>
+<span id="cb5-89"><a href="#cb5-89"></a>            prev <span class="op">=</span> prev<span class="op">-&gt;</span>next<span class="op">;</span></span>
+<span id="cb5-90"><a href="#cb5-90"></a>        <span class="op">}</span></span>
+<span id="cb5-91"><a href="#cb5-91"></a></span>
+<span id="cb5-92"><a href="#cb5-92"></a>        <span class="co">// Connect the reversed part to the rest of the list</span></span>
+<span id="cb5-93"><a href="#cb5-93"></a>        prev<span class="op">-&gt;</span>next <span class="op">=</span> nextNode<span class="op">;</span></span>
+<span id="cb5-94"><a href="#cb5-94"></a></span>
+<span id="cb5-95"><a href="#cb5-95"></a>        <span class="cf">return</span> dummy<span class="op">-&gt;</span>next<span class="op">;</span></span>
+<span id="cb5-96"><a href="#cb5-96"></a>    <span class="op">}</span></span>
+<span id="cb5-97"><a href="#cb5-97"></a>    <span class="dt">void</span> display<span class="op">(</span>Node<span class="op">*</span> head<span class="op">)</span> <span class="at">const</span></span>
+<span id="cb5-98"><a href="#cb5-98"></a>    <span class="op">{</span></span>
+<span id="cb5-99"><a href="#cb5-99"></a>        <span class="cf">if</span> <span class="op">(</span>head <span class="op">==</span> <span class="kw">nullptr</span><span class="op">)</span></span>
+<span id="cb5-100"><a href="#cb5-100"></a>        <span class="op">{</span></span>
+<span id="cb5-101"><a href="#cb5-101"></a>            <span class="bu">std::</span>cout <span class="op">&lt;&lt;</span> <span class="st">"List is empty"</span> <span class="op">&lt;&lt;</span> <span class="bu">std::</span>endl<span class="op">;</span></span>
+<span id="cb5-102"><a href="#cb5-102"></a>        <span class="op">}</span></span>
+<span id="cb5-103"><a href="#cb5-103"></a>        <span class="cf">else</span></span>
+<span id="cb5-104"><a href="#cb5-104"></a>        <span class="op">{</span></span>
+<span id="cb5-105"><a href="#cb5-105"></a>            <span class="at">const</span> Node <span class="op">*</span>temp <span class="op">=</span> head<span class="op">;</span></span>
+<span id="cb5-106"><a href="#cb5-106"></a>            <span class="cf">while</span> <span class="op">(</span>temp <span class="op">!=</span> <span class="kw">nullptr</span><span class="op">)</span></span>
+<span id="cb5-107"><a href="#cb5-107"></a>            <span class="op">{</span></span>
+<span id="cb5-108"><a href="#cb5-108"></a>                <span class="bu">std::</span>cout <span class="op">&lt;&lt;</span> temp<span class="op">-&gt;</span>data <span class="op">&lt;&lt;</span> <span class="st">" "</span><span class="op">;</span></span>
+<span id="cb5-109"><a href="#cb5-109"></a>                temp <span class="op">=</span> temp<span class="op">-&gt;</span>next<span class="op">;</span></span>
+<span id="cb5-110"><a href="#cb5-110"></a>            <span class="op">}</span></span>
+<span id="cb5-111"><a href="#cb5-111"></a>            <span class="bu">std::</span>cout <span class="op">&lt;&lt;</span> <span class="bu">std::</span>endl<span class="op">;</span></span>
+<span id="cb5-112"><a href="#cb5-112"></a>        <span class="op">}</span></span>
+<span id="cb5-113"><a href="#cb5-113"></a>    <span class="op">}</span></span>
+<span id="cb5-114"><a href="#cb5-114"></a></span>
+<span id="cb5-115"><a href="#cb5-115"></a>    <span class="op">~</span>singleLinkedList<span class="op">()</span></span>
+<span id="cb5-116"><a href="#cb5-116"></a>    <span class="op">{</span></span>
+<span id="cb5-117"><a href="#cb5-117"></a>        <span class="cf">if</span> <span class="op">(</span>head <span class="op">!=</span> <span class="kw">nullptr</span><span class="op">)</span></span>
+<span id="cb5-118"><a href="#cb5-118"></a>        <span class="op">{</span></span>
+<span id="cb5-119"><a href="#cb5-119"></a>            <span class="at">const</span> Node <span class="op">*</span>temp <span class="op">=</span> head<span class="op">;</span></span>
+<span id="cb5-120"><a href="#cb5-120"></a>            <span class="cf">while</span> <span class="op">(</span>temp <span class="op">!=</span> <span class="kw">nullptr</span><span class="op">)</span></span>
+<span id="cb5-121"><a href="#cb5-121"></a>            <span class="op">{</span></span>
+<span id="cb5-122"><a href="#cb5-122"></a>                <span class="at">const</span> Node <span class="op">*</span>nextNode <span class="op">=</span> temp<span class="op">-&gt;</span>next<span class="op">;</span></span>
+<span id="cb5-123"><a href="#cb5-123"></a>                <span class="kw">delete</span> temp<span class="op">;</span></span>
+<span id="cb5-124"><a href="#cb5-124"></a>                temp <span class="op">=</span> nextNode<span class="op">;</span></span>
+<span id="cb5-125"><a href="#cb5-125"></a>            <span class="op">}</span></span>
+<span id="cb5-126"><a href="#cb5-126"></a>        <span class="op">}</span></span>
+<span id="cb5-127"><a href="#cb5-127"></a>    <span class="op">}</span></span>
+<span id="cb5-128"><a href="#cb5-128"></a><span class="op">};</span></span>
+<span id="cb5-129"><a href="#cb5-129"></a></span>
+<span id="cb5-130"><a href="#cb5-130"></a><span class="dt">int</span> main<span class="op">()</span></span>
+<span id="cb5-131"><a href="#cb5-131"></a><span class="op">{</span></span>
+<span id="cb5-132"><a href="#cb5-132"></a>    singleLinkedList obj<span class="op">;</span></span>
+<span id="cb5-133"><a href="#cb5-133"></a>    obj<span class="op">.</span>insertAtTail<span class="op">(</span><span class="dv">24</span><span class="op">);</span></span>
+<span id="cb5-134"><a href="#cb5-134"></a>    obj<span class="op">.</span>insertAtTail<span class="op">(</span><span class="dv">36</span><span class="op">);</span></span>
+<span id="cb5-135"><a href="#cb5-135"></a>    obj<span class="op">.</span>insertAtTail<span class="op">(</span><span class="dv">48</span><span class="op">);</span></span>
+<span id="cb5-136"><a href="#cb5-136"></a>    obj<span class="op">.</span>insertAtTail<span class="op">(</span><span class="dv">72</span><span class="op">);</span></span>
+<span id="cb5-137"><a href="#cb5-137"></a>    <span class="bu">std::</span>cout <span class="op">&lt;&lt;</span> <span class="st">"list before reversal"</span> <span class="op">&lt;&lt;</span> <span class="bu">std::</span>endl<span class="op">;</span></span>
+<span id="cb5-138"><a href="#cb5-138"></a>    obj<span class="op">.</span>display<span class="op">(</span>obj<span class="op">.</span>head<span class="op">);</span></span>
+<span id="cb5-139"><a href="#cb5-139"></a>    obj<span class="op">.</span>reverseList<span class="op">();</span></span>
+<span id="cb5-140"><a href="#cb5-140"></a>    <span class="bu">std::</span>cout <span class="op">&lt;&lt;</span> <span class="st">"reversed list"</span> <span class="op">&lt;&lt;</span> <span class="bu">std::</span>endl<span class="op">;</span></span>
+<span id="cb5-141"><a href="#cb5-141"></a>    obj<span class="op">.</span>display<span class="op">(</span>obj<span class="op">.</span>head<span class="op">);</span></span>
+<span id="cb5-142"><a href="#cb5-142"></a>    <span class="bu">std::</span>cout <span class="op">&lt;&lt;</span><span class="st">"reversed left to right"</span><span class="op">&lt;&lt;</span> <span class="bu">std::</span>endl<span class="op">;</span></span>
+<span id="cb5-143"><a href="#cb5-143"></a>    Node<span class="op">*</span> node<span class="op">=</span>obj<span class="op">.</span>reverseLeftToRight<span class="op">(</span>obj<span class="op">.</span>head<span class="op">,</span><span class="dv">1</span><span class="op">,</span><span class="dv">2</span><span class="op">);</span></span>
+<span id="cb5-144"><a href="#cb5-144"></a>    obj<span class="op">.</span>display<span class="op">(</span>node<span class="op">);</span></span>
+<span id="cb5-145"><a href="#cb5-145"></a>    <span class="cf">return</span> <span class="dv">0</span><span class="op">;</span></span>
+<span id="cb5-146"><a href="#cb5-146"></a><span class="op">}</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb6"><pre class="sourceCode numberSource bash number-lines code-with-copy"><code class="sourceCode bash"><span id="cb6-1"><a href="#cb6-1"></a><span class="ex">Output:</span></span>
+<span id="cb6-2"><a href="#cb6-2"></a><span class="ex">list</span> before reversal</span>
+<span id="cb6-3"><a href="#cb6-3"></a><span class="ex">24</span> 36 48 72 </span>
+<span id="cb6-4"><a href="#cb6-4"></a><span class="ex">reversed</span> list</span>
+<span id="cb6-5"><a href="#cb6-5"></a><span class="ex">72</span> 48 36 24 </span>
+<span id="cb6-6"><a href="#cb6-6"></a><span class="ex">reversed</span> left to right</span>
+<span id="cb6-7"><a href="#cb6-7"></a><span class="ex">48</span> 72 36 24 </span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</section>
+<section id="double-linkedlist-reversal" class="level2" data-number="4">
+<h2 data-number="4" class="anchored" data-anchor-id="double-linkedlist-reversal"><span class="header-section-number">4</span> Double linkedlist reversal</h2>
+<div class="sourceCode" id="cb7"><pre class="sourceCode numberSource cpp number-lines code-with-copy"><code class="sourceCode cpp"><span id="cb7-1"><a href="#cb7-1"></a><span class="pp">#include </span><span class="im">&lt;iostream&gt;</span></span>
+<span id="cb7-2"><a href="#cb7-2"></a></span>
+<span id="cb7-3"><a href="#cb7-3"></a><span class="kw">class</span> Node</span>
+<span id="cb7-4"><a href="#cb7-4"></a><span class="op">{</span></span>
+<span id="cb7-5"><a href="#cb7-5"></a><span class="kw">public</span><span class="op">:</span></span>
+<span id="cb7-6"><a href="#cb7-6"></a>    <span class="dt">int</span> data<span class="op">;</span></span>
+<span id="cb7-7"><a href="#cb7-7"></a>    Node <span class="op">*</span>next<span class="op">;</span></span>
+<span id="cb7-8"><a href="#cb7-8"></a>    Node <span class="op">*</span>prev<span class="op">;</span></span>
+<span id="cb7-9"><a href="#cb7-9"></a></span>
+<span id="cb7-10"><a href="#cb7-10"></a>    <span class="kw">explicit</span> Node<span class="op">(</span><span class="dt">int</span> data<span class="op">):</span> data<span class="op">(</span>data<span class="op">),</span> next<span class="op">(</span><span class="kw">nullptr</span><span class="op">),</span> prev<span class="op">(</span><span class="kw">nullptr</span><span class="op">)</span></span>
+<span id="cb7-11"><a href="#cb7-11"></a>    <span class="op">{</span></span>
+<span id="cb7-12"><a href="#cb7-12"></a>    <span class="op">}</span></span>
+<span id="cb7-13"><a href="#cb7-13"></a></span>
+<span id="cb7-14"><a href="#cb7-14"></a>    Node<span class="op">(</span><span class="dt">int</span> data<span class="op">,</span> Node <span class="op">*</span>next<span class="op">,</span> Node <span class="op">*</span>prev<span class="op">):</span> data<span class="op">(</span>data<span class="op">),</span> next<span class="op">(</span><span class="kw">nullptr</span><span class="op">),</span> prev<span class="op">(</span>prev<span class="op">)</span></span>
+<span id="cb7-15"><a href="#cb7-15"></a>    <span class="op">{</span></span>
+<span id="cb7-16"><a href="#cb7-16"></a>    <span class="op">}</span></span>
+<span id="cb7-17"><a href="#cb7-17"></a><span class="op">};</span></span>
+<span id="cb7-18"><a href="#cb7-18"></a></span>
+<span id="cb7-19"><a href="#cb7-19"></a><span class="kw">class</span> doubleLinkedList</span>
+<span id="cb7-20"><a href="#cb7-20"></a><span class="op">{</span></span>
+<span id="cb7-21"><a href="#cb7-21"></a><span class="kw">public</span><span class="op">:</span></span>
+<span id="cb7-22"><a href="#cb7-22"></a>    Node <span class="op">*</span>head<span class="op">;</span></span>
+<span id="cb7-23"><a href="#cb7-23"></a></span>
+<span id="cb7-24"><a href="#cb7-24"></a>    doubleLinkedList<span class="op">():</span> head<span class="op">(</span><span class="kw">nullptr</span><span class="op">)</span></span>
+<span id="cb7-25"><a href="#cb7-25"></a>    <span class="op">{</span></span>
+<span id="cb7-26"><a href="#cb7-26"></a>    <span class="op">}</span></span>
+<span id="cb7-27"><a href="#cb7-27"></a></span>
+<span id="cb7-28"><a href="#cb7-28"></a>    <span class="dt">void</span> insertAtTail<span class="op">(</span><span class="dt">int</span> data<span class="op">)</span></span>
+<span id="cb7-29"><a href="#cb7-29"></a>    <span class="op">{</span></span>
+<span id="cb7-30"><a href="#cb7-30"></a>        <span class="cf">if</span> <span class="op">(</span>head <span class="op">==</span> <span class="kw">nullptr</span><span class="op">)</span></span>
+<span id="cb7-31"><a href="#cb7-31"></a>        <span class="op">{</span></span>
+<span id="cb7-32"><a href="#cb7-32"></a>            head <span class="op">=</span> <span class="kw">new</span> Node<span class="op">(</span>data<span class="op">);</span></span>
+<span id="cb7-33"><a href="#cb7-33"></a>        <span class="op">}</span></span>
+<span id="cb7-34"><a href="#cb7-34"></a>        <span class="cf">else</span></span>
+<span id="cb7-35"><a href="#cb7-35"></a>        <span class="op">{</span></span>
+<span id="cb7-36"><a href="#cb7-36"></a>            Node <span class="op">*</span>temp <span class="op">=</span> head<span class="op">;</span></span>
+<span id="cb7-37"><a href="#cb7-37"></a>            <span class="cf">while</span> <span class="op">(</span>temp<span class="op">-&gt;</span>next <span class="op">!=</span> <span class="kw">nullptr</span><span class="op">)</span></span>
+<span id="cb7-38"><a href="#cb7-38"></a>            <span class="op">{</span></span>
+<span id="cb7-39"><a href="#cb7-39"></a>                temp <span class="op">=</span> temp<span class="op">-&gt;</span>next<span class="op">;</span></span>
+<span id="cb7-40"><a href="#cb7-40"></a>            <span class="op">}</span></span>
+<span id="cb7-41"><a href="#cb7-41"></a>            Node <span class="op">*</span>newNode <span class="op">=</span> <span class="kw">new</span> Node<span class="op">(</span>data<span class="op">);</span></span>
+<span id="cb7-42"><a href="#cb7-42"></a>            newNode<span class="op">-&gt;</span>prev <span class="op">=</span> temp<span class="op">;</span></span>
+<span id="cb7-43"><a href="#cb7-43"></a>            temp<span class="op">-&gt;</span>next <span class="op">=</span> newNode<span class="op">;</span></span>
+<span id="cb7-44"><a href="#cb7-44"></a>        <span class="op">}</span></span>
+<span id="cb7-45"><a href="#cb7-45"></a>    <span class="op">}</span></span>
+<span id="cb7-46"><a href="#cb7-46"></a></span>
+<span id="cb7-47"><a href="#cb7-47"></a>    <span class="dt">void</span> reverseDoubleList<span class="op">()</span></span>
+<span id="cb7-48"><a href="#cb7-48"></a>    <span class="op">{</span></span>
+<span id="cb7-49"><a href="#cb7-49"></a>        <span class="cf">if</span> <span class="op">(</span>head <span class="op">==</span> <span class="kw">nullptr</span><span class="op">)</span></span>
+<span id="cb7-50"><a href="#cb7-50"></a>            <span class="cf">return</span><span class="op">;</span></span>
+<span id="cb7-51"><a href="#cb7-51"></a>        Node <span class="op">*</span>curr <span class="op">=</span> head<span class="op">;</span></span>
+<span id="cb7-52"><a href="#cb7-52"></a>        Node <span class="op">*</span>temp <span class="op">=</span> <span class="kw">nullptr</span><span class="op">;</span></span>
+<span id="cb7-53"><a href="#cb7-53"></a>        <span class="cf">while</span> <span class="op">(</span>curr <span class="op">!=</span> <span class="kw">nullptr</span><span class="op">)</span></span>
+<span id="cb7-54"><a href="#cb7-54"></a>        <span class="op">{</span></span>
+<span id="cb7-55"><a href="#cb7-55"></a>            temp <span class="op">=</span> curr<span class="op">-&gt;</span>prev<span class="op">;</span></span>
+<span id="cb7-56"><a href="#cb7-56"></a>            curr<span class="op">-&gt;</span>prev <span class="op">=</span> curr<span class="op">-&gt;</span>next<span class="op">;</span></span>
+<span id="cb7-57"><a href="#cb7-57"></a>            curr<span class="op">-&gt;</span>next <span class="op">=</span> temp<span class="op">;</span></span>
+<span id="cb7-58"><a href="#cb7-58"></a>            curr <span class="op">=</span> curr<span class="op">-&gt;</span>prev<span class="op">;</span></span>
+<span id="cb7-59"><a href="#cb7-59"></a>        <span class="op">}</span></span>
+<span id="cb7-60"><a href="#cb7-60"></a>        <span class="cf">if</span> <span class="op">(</span>temp <span class="op">!=</span> <span class="kw">nullptr</span><span class="op">)</span></span>
+<span id="cb7-61"><a href="#cb7-61"></a>        <span class="op">{</span></span>
+<span id="cb7-62"><a href="#cb7-62"></a>            head <span class="op">=</span> temp<span class="op">-&gt;</span>prev<span class="op">;</span></span>
+<span id="cb7-63"><a href="#cb7-63"></a>        <span class="op">}</span></span>
+<span id="cb7-64"><a href="#cb7-64"></a>    <span class="op">}</span></span>
+<span id="cb7-65"><a href="#cb7-65"></a></span>
+<span id="cb7-66"><a href="#cb7-66"></a>    <span class="dt">void</span> display<span class="op">()</span> <span class="at">const</span></span>
+<span id="cb7-67"><a href="#cb7-67"></a>    <span class="op">{</span></span>
+<span id="cb7-68"><a href="#cb7-68"></a>        <span class="cf">if</span> <span class="op">(</span>head <span class="op">==</span> <span class="kw">nullptr</span><span class="op">)</span></span>
+<span id="cb7-69"><a href="#cb7-69"></a>        <span class="op">{</span></span>
+<span id="cb7-70"><a href="#cb7-70"></a>            <span class="bu">std::</span>cout <span class="op">&lt;&lt;</span> <span class="st">"List is empty"</span> <span class="op">&lt;&lt;</span> <span class="bu">std::</span>endl<span class="op">;</span></span>
+<span id="cb7-71"><a href="#cb7-71"></a>        <span class="op">}</span></span>
+<span id="cb7-72"><a href="#cb7-72"></a>        <span class="cf">else</span></span>
+<span id="cb7-73"><a href="#cb7-73"></a>        <span class="op">{</span></span>
+<span id="cb7-74"><a href="#cb7-74"></a>            <span class="at">const</span> Node <span class="op">*</span>temp <span class="op">=</span> head<span class="op">;</span></span>
+<span id="cb7-75"><a href="#cb7-75"></a>            <span class="cf">while</span> <span class="op">(</span>temp <span class="op">!=</span> <span class="kw">nullptr</span><span class="op">)</span></span>
+<span id="cb7-76"><a href="#cb7-76"></a>            <span class="op">{</span></span>
+<span id="cb7-77"><a href="#cb7-77"></a>                <span class="bu">std::</span>cout <span class="op">&lt;&lt;</span> temp<span class="op">-&gt;</span>data <span class="op">&lt;&lt;</span> <span class="st">" "</span><span class="op">;</span></span>
+<span id="cb7-78"><a href="#cb7-78"></a>                temp <span class="op">=</span> temp<span class="op">-&gt;</span>next<span class="op">;</span></span>
+<span id="cb7-79"><a href="#cb7-79"></a>            <span class="op">}</span></span>
+<span id="cb7-80"><a href="#cb7-80"></a>            <span class="bu">std::</span>cout <span class="op">&lt;&lt;</span> <span class="bu">std::</span>endl<span class="op">;</span></span>
+<span id="cb7-81"><a href="#cb7-81"></a>        <span class="op">}</span></span>
+<span id="cb7-82"><a href="#cb7-82"></a></span>
+<span id="cb7-83"><a href="#cb7-83"></a>    <span class="op">}</span></span>
+<span id="cb7-84"><a href="#cb7-84"></a></span>
+<span id="cb7-85"><a href="#cb7-85"></a>    <span class="op">~</span>doubleLinkedList<span class="op">()</span></span>
+<span id="cb7-86"><a href="#cb7-86"></a>    <span class="op">{</span></span>
+<span id="cb7-87"><a href="#cb7-87"></a>        <span class="cf">if</span> <span class="op">(</span>head <span class="op">!=</span> <span class="kw">nullptr</span><span class="op">)</span></span>
+<span id="cb7-88"><a href="#cb7-88"></a>        <span class="op">{</span></span>
+<span id="cb7-89"><a href="#cb7-89"></a>            <span class="at">const</span> Node <span class="op">*</span>temp <span class="op">=</span> head<span class="op">;</span></span>
+<span id="cb7-90"><a href="#cb7-90"></a>            <span class="cf">while</span> <span class="op">(</span>temp <span class="op">!=</span> <span class="kw">nullptr</span><span class="op">)</span></span>
+<span id="cb7-91"><a href="#cb7-91"></a>            <span class="op">{</span></span>
+<span id="cb7-92"><a href="#cb7-92"></a>                <span class="at">const</span> Node <span class="op">*</span>nextNode <span class="op">=</span> temp<span class="op">-&gt;</span>next<span class="op">;</span></span>
+<span id="cb7-93"><a href="#cb7-93"></a>                <span class="kw">delete</span> temp<span class="op">;</span></span>
+<span id="cb7-94"><a href="#cb7-94"></a>                temp <span class="op">=</span> nextNode<span class="op">;</span></span>
+<span id="cb7-95"><a href="#cb7-95"></a>            <span class="op">}</span></span>
+<span id="cb7-96"><a href="#cb7-96"></a></span>
+<span id="cb7-97"><a href="#cb7-97"></a>        <span class="op">}</span></span>
+<span id="cb7-98"><a href="#cb7-98"></a>    <span class="op">}</span></span>
+<span id="cb7-99"><a href="#cb7-99"></a><span class="op">};</span></span>
+<span id="cb7-100"><a href="#cb7-100"></a></span>
+<span id="cb7-101"><a href="#cb7-101"></a><span class="dt">int</span> main<span class="op">()</span></span>
+<span id="cb7-102"><a href="#cb7-102"></a><span class="op">{</span></span>
+<span id="cb7-103"><a href="#cb7-103"></a>    doubleLinkedList obj<span class="op">;</span></span>
+<span id="cb7-104"><a href="#cb7-104"></a>    obj<span class="op">.</span>insertAtTail<span class="op">(</span><span class="dv">24</span><span class="op">);</span></span>
+<span id="cb7-105"><a href="#cb7-105"></a>    obj<span class="op">.</span>insertAtTail<span class="op">(</span><span class="dv">36</span><span class="op">);</span></span>
+<span id="cb7-106"><a href="#cb7-106"></a>    obj<span class="op">.</span>insertAtTail<span class="op">(</span><span class="dv">48</span><span class="op">);</span></span>
+<span id="cb7-107"><a href="#cb7-107"></a>    obj<span class="op">.</span>insertAtTail<span class="op">(</span><span class="dv">72</span><span class="op">);</span></span>
+<span id="cb7-108"><a href="#cb7-108"></a>    <span class="bu">std::</span>cout <span class="op">&lt;&lt;</span> <span class="st">"linkedlist data "</span> <span class="op">&lt;&lt;</span> <span class="bu">std::</span>endl<span class="op">;</span></span>
+<span id="cb7-109"><a href="#cb7-109"></a>    obj<span class="op">.</span>display<span class="op">();</span></span>
+<span id="cb7-110"><a href="#cb7-110"></a>    obj<span class="op">.</span>reverseDoubleList<span class="op">();</span></span>
+<span id="cb7-111"><a href="#cb7-111"></a>    <span class="bu">std::</span>cout <span class="op">&lt;&lt;</span> <span class="st">"reversed list "</span> <span class="op">&lt;&lt;</span> <span class="bu">std::</span>endl<span class="op">;</span></span>
+<span id="cb7-112"><a href="#cb7-112"></a>    obj<span class="op">.</span>display<span class="op">();</span></span>
+<span id="cb7-113"><a href="#cb7-113"></a>    <span class="cf">return</span> <span class="dv">0</span><span class="op">;</span></span>
+<span id="cb7-114"><a href="#cb7-114"></a><span class="op">}</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb8"><pre class="sourceCode numberSource bash number-lines code-with-copy"><code class="sourceCode bash"><span id="cb8-1"><a href="#cb8-1"></a><span class="ex">linkedlist</span> data </span>
+<span id="cb8-2"><a href="#cb8-2"></a><span class="ex">24</span> 36 48 72 </span>
+<span id="cb8-3"><a href="#cb8-3"></a><span class="ex">reversed</span> list </span>
+<span id="cb8-4"><a href="#cb8-4"></a><span class="ex">72</span> 48 36 24 </span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 
 
 </section>
@@ -1094,6 +1420,9 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
       </a>          
   </div>
   <div class="nav-page nav-page-next">
+      <a href="../../C_Plus_Plus/Linked-list/LRU_Cache.html" class="pagination-link" aria-label="LRU cache">
+        <span class="nav-page-text">LRU cache</span> <i class="bi bi-arrow-right-short"></i>
+      </a>
   </div>
 </nav>
 </div> <!-- /content -->
