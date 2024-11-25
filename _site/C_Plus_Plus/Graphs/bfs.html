@@ -1,0 +1,1055 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
+
+<meta charset="utf-8">
+<meta name="generator" content="quarto-1.3.433">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+
+<meta name="author" content="Yas Mi">
+<meta name="dcterms.date" content="2024-11-16">
+<meta name="description" content="Breadth First Search">
+
+<title>BFS</title>
+<style>
+code{white-space: pre-wrap;}
+span.smallcaps{font-variant: small-caps;}
+div.columns{display: flex; gap: min(4vw, 1.5em);}
+div.column{flex: auto; overflow-x: auto;}
+div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+ul.task-list{list-style: none;}
+ul.task-list li input[type="checkbox"] {
+  width: 0.8em;
+  margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
+  vertical-align: middle;
+}
+/* CSS for syntax highlighting */
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+  }
+pre.numberSource { margin-left: 3em;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+</style>
+
+
+<script src="../../site_libs/quarto-nav/quarto-nav.js"></script>
+<script src="../../site_libs/quarto-nav/headroom.min.js"></script>
+<script src="../../site_libs/clipboard/clipboard.min.js"></script>
+<script src="../../site_libs/quarto-search/autocomplete.umd.js"></script>
+<script src="../../site_libs/quarto-search/fuse.min.js"></script>
+<script src="../../site_libs/quarto-search/quarto-search.js"></script>
+<meta name="quarto:offset" content="../../">
+<link href="../../C_Plus_Plus/Linked-list/circular_linkedlist.html" rel="next">
+<link href="../../C_Plus_Plus/Basics/basics_cpp.html" rel="prev">
+<script src="../../site_libs/quarto-html/quarto.js"></script>
+<script src="../../site_libs/quarto-html/popper.min.js"></script>
+<script src="../../site_libs/quarto-html/tippy.umd.min.js"></script>
+<script src="../../site_libs/quarto-html/anchor.min.js"></script>
+<link href="../../site_libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="../../site_libs/quarto-html/quarto-syntax-highlighting.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<script src="../../site_libs/bootstrap/bootstrap.min.js"></script>
+<link href="../../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="../../site_libs/bootstrap/bootstrap.min.css" rel="stylesheet" id="quarto-bootstrap" data-mode="light">
+<link href="../../site_libs/quarto-contrib/fontawesome6-0.1.0/all.css" rel="stylesheet">
+<link href="../../site_libs/quarto-contrib/fontawesome6-0.1.0/latex-fontsize.css" rel="stylesheet">
+<script id="quarto-search-options" type="application/json">{
+  "location": "navbar",
+  "copy-button": false,
+  "collapse-after": 3,
+  "panel-placement": "end",
+  "type": "overlay",
+  "limit": 20,
+  "language": {
+    "search-no-results-text": "No results",
+    "search-matching-documents-text": "matching documents",
+    "search-copy-link-title": "Copy link to search",
+    "search-hide-matches-text": "Hide additional matches",
+    "search-more-match-text": "more match in this document",
+    "search-more-matches-text": "more matches in this document",
+    "search-clear-button-title": "Clear",
+    "search-detached-cancel-button-title": "Cancel",
+    "search-submit-button-title": "Submit",
+    "search-label": "Search"
+  }
+}</script>
+<script async="" src="https://www.googletagmanager.com/gtag/js?id=G-5ZQX02R26E"></script>
+
+<script type="text/javascript">
+
+window.dataLayer = window.dataLayer || [];
+function gtag(){dataLayer.push(arguments);}
+gtag('js', new Date());
+gtag('config', 'G-5ZQX02R26E', { 'anonymize_ip': true});
+</script>
+
+
+<link rel="stylesheet" href="../../styles.css">
+<meta property="og:title" content="BFS">
+<meta property="og:description" content="Breadth First Search">
+</head>
+
+<body class="nav-sidebar floating nav-fixed">
+
+<div id="quarto-search-results"></div>
+  <header id="quarto-header" class="headroom fixed-top">
+    <nav class="navbar navbar-expand-lg navbar-dark ">
+      <div class="navbar-container container-fluid">
+            <div id="quarto-search" class="" title="Search"></div>
+          <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse" aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+  <span class="navbar-toggler-icon"></span>
+</button>
+          <div class="collapse navbar-collapse" id="navbarCollapse">
+            <ul class="navbar-nav navbar-nav-scroll me-auto">
+  <li class="nav-item">
+    <a class="nav-link" href="../../index.html" rel="" target="">
+ <span class="menu-text"><i class="fa-solid fa-house" aria-label="house"></i> Home</span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="../../Autosar/index.html" rel="" target="">
+ <span class="menu-text"><i class="fa-solid fa-book-open-reader" aria-label="book-open-reader"></i> Autosar</span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link active" href="../../C_Plus_Plus/index.html" rel="" target="" aria-current="page">
+ <span class="menu-text"><i class="fa-solid fa-user-ninja" aria-label="user-ninja"></i> C Plus Plus</span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="../../Notes/index.html" rel="" target="">
+ <span class="menu-text"><i class="fa-solid fa-file-powerpoint" aria-label="file-powerpoint"></i> Notes</span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="../../about.html" rel="" target="">
+ <span class="menu-text"><i class="fa-solid fa-address-card" aria-label="address-card"></i> About</span></a>
+  </li>  
+</ul>
+            <ul class="navbar-nav navbar-nav-scroll ms-auto">
+  <li class="nav-item compact">
+    <a class="nav-link" href="https://github.com/Yasmic/" rel="" target=""><i class="bi bi-github" role="img">
+</i> 
+ <span class="menu-text"></span></a>
+  </li>  
+  <li class="nav-item compact">
+    <a class="nav-link" href="https://www.linkedin.com/in/yasmic/" rel="" target=""><i class="bi bi-linkedin" role="img">
+</i> 
+ <span class="menu-text"></span></a>
+  </li>  
+</ul>
+            <div class="quarto-navbar-tools">
+</div>
+          </div> <!-- /navcollapse -->
+      </div> <!-- /container-fluid -->
+    </nav>
+  <nav class="quarto-secondary-nav">
+    <div class="container-fluid d-flex">
+      <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar,#quarto-sidebar-glass" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+        <i class="bi bi-layout-text-sidebar-reverse"></i>
+      </button>
+      <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../../C_Plus_Plus/index.html">C Plus Plus</a></li><li class="breadcrumb-item"><a href="../../C_Plus_Plus/Graphs/bfs.html">Graphs</a></li><li class="breadcrumb-item"><a href="../../C_Plus_Plus/Graphs/bfs.html">BFS</a></li></ol></nav>
+      <a class="flex-grow-1" role="button" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar,#quarto-sidebar-glass" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
+      </a>
+    </div>
+  </nav>
+</header>
+<!-- content -->
+<header id="title-block-header" class="quarto-title-block default page-columns page-full">
+  <div class="quarto-title-banner page-columns page-full">
+    <div class="quarto-title column-body">
+      <h1 class="title">BFS</h1>
+                  <div>
+        <div class="description">
+          Breadth First Search
+        </div>
+      </div>
+                          <div class="quarto-categories">
+                <div class="quarto-category">Graphs</div>
+              </div>
+                  </div>
+  </div>
+    
+  
+  <div class="quarto-title-meta">
+
+      <div>
+      <div class="quarto-title-meta-heading">Author</div>
+      <div class="quarto-title-meta-contents">
+               <p>Yas Mi </p>
+            </div>
+    </div>
+      
+      <div>
+      <div class="quarto-title-meta-heading">Published</div>
+      <div class="quarto-title-meta-contents">
+        <p class="date">November 16, 2024</p>
+      </div>
+    </div>
+    
+      
+    </div>
+    
+  
+  </header><div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article page-navbar">
+<!-- sidebar -->
+  <nav id="quarto-sidebar" class="sidebar collapse collapse-horizontal sidebar-navigation floating overflow-auto">
+    <div class="sidebar-menu-container"> 
+    <ul class="list-unstyled mt-1">
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a href="../../C_Plus_Plus/index.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">C Plus Plus</span></a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" aria-expanded="true" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-1" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-2" aria-expanded="false">
+ <span class="menu-text">Advanced</span></a>
+          <a class="sidebar-item-toggle text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-2" aria-expanded="false" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-2" class="collapse list-unstyled sidebar-section depth2 ">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../C_Plus_Plus/Advanced/advanced_cpp.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Advanced C++ study</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../C_Plus_Plus/Advanced/multi_threading.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Multi Threading</span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+          <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-3" aria-expanded="false">
+ <span class="menu-text">Basics</span></a>
+          <a class="sidebar-item-toggle text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-3" aria-expanded="false" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-3" class="collapse list-unstyled sidebar-section depth2 ">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../C_Plus_Plus/Basics/basics_cpp.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Glimpse of C++</span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+          <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-4" aria-expanded="true">
+ <span class="menu-text">Graphs</span></a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-4" aria-expanded="true" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-4" class="collapse list-unstyled sidebar-section depth2 show">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../C_Plus_Plus/Graphs/bfs.html" class="sidebar-item-text sidebar-link active">
+ <span class="menu-text">BFS</span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+          <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-5" aria-expanded="false">
+ <span class="menu-text">Linked List</span></a>
+          <a class="sidebar-item-toggle text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-5" aria-expanded="false" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-5" class="collapse list-unstyled sidebar-section depth2 ">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../C_Plus_Plus/Linked-list/circular_linkedlist.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">circularLinkedList</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../C_Plus_Plus/Linked-list/linkedlist_basics.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Linkedlist Basics</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../C_Plus_Plus/Linked-list/LRU_Cache.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">LRU cache</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../C_Plus_Plus/Linked-list/mergeLists.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">mergelists</span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+          <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-6" aria-expanded="false">
+ <span class="menu-text">Smart Pointers</span></a>
+          <a class="sidebar-item-toggle text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-6" aria-expanded="false" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-6" class="collapse list-unstyled sidebar-section depth2 ">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../C_Plus_Plus/Smart-Pointers/smartPointers_basics.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">smart pointers</span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+          <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-7" aria-expanded="false">
+ <span class="menu-text">Sorting</span></a>
+          <a class="sidebar-item-toggle text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-7" aria-expanded="false" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-7" class="collapse list-unstyled sidebar-section depth2 ">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../C_Plus_Plus/Sorting/sorting.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Sorting Algorithms</span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+          <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-8" aria-expanded="false">
+ <span class="menu-text">Trees</span></a>
+          <a class="sidebar-item-toggle text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-8" aria-expanded="false" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-8" class="collapse list-unstyled sidebar-section depth2 ">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../C_Plus_Plus/Trees/binarySearchTree.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">binary search Tree</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../C_Plus_Plus/Trees/binaryTree.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">binary Tree</span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+      </ul>
+  </li>
+    </ul>
+    </div>
+</nav>
+<div id="quarto-sidebar-glass" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar,#quarto-sidebar-glass"></div>
+<!-- margin-sidebar -->
+    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
+        <nav id="TOC" role="doc-toc" class="toc-active">
+    <h2 id="toc-title">On this page</h2>
+   
+  <ul>
+  <li><a href="#bfs-concept" id="toc-bfs-concept" class="nav-link active" data-scroll-target="#bfs-concept"><span class="header-section-number">1</span> bfs concept</a></li>
+  <li><a href="#find-shortest-path-in-a-grid" id="toc-find-shortest-path-in-a-grid" class="nav-link" data-scroll-target="#find-shortest-path-in-a-grid"><span class="header-section-number">2</span> Find shortest path in a grid</a></li>
+  <li><a href="#bfs-adjucency" id="toc-bfs-adjucency" class="nav-link" data-scroll-target="#bfs-adjucency"><span class="header-section-number">3</span> BFS adjucency</a></li>
+  <li><a href="#find-number-of-islands" id="toc-find-number-of-islands" class="nav-link" data-scroll-target="#find-number-of-islands"><span class="header-section-number">4</span> Find number of Islands</a></li>
+  <li><a href="#shortest-path-words" id="toc-shortest-path-words" class="nav-link" data-scroll-target="#shortest-path-words"><span class="header-section-number">5</span> Shortest path words</a></li>
+  </ul>
+</nav>
+    </div>
+<!-- main -->
+<main class="content quarto-banner-title-block" id="quarto-document-content">
+
+
+
+
+<section id="bfs-concept" class="level2" data-number="1">
+<h2 data-number="1" class="anchored" data-anchor-id="bfs-concept"><span class="header-section-number">1</span> bfs concept</h2>
+<div class="sourceCode" id="cb1"><pre class="sourceCode numberSource cpp number-lines code-with-copy"><code class="sourceCode cpp"><span id="cb1-1"><a href="#cb1-1"></a></span>
+<span id="cb1-2"><a href="#cb1-2"></a><span class="pp">#include</span><span class="im">&lt;iostream&gt;</span></span>
+<span id="cb1-3"><a href="#cb1-3"></a><span class="pp">#include</span><span class="im">&lt;vector&gt;</span></span>
+<span id="cb1-4"><a href="#cb1-4"></a><span class="pp">#include</span><span class="im">&lt;queue&gt;</span></span>
+<span id="cb1-5"><a href="#cb1-5"></a></span>
+<span id="cb1-6"><a href="#cb1-6"></a><span class="dt">void</span> bfs<span class="op">(</span><span class="bu">std::</span>vector<span class="op">&lt;</span><span class="bu">std::</span>vector<span class="op">&lt;</span><span class="dt">int</span><span class="op">&gt;&gt;</span> <span class="op">&amp;</span>adj<span class="op">,</span> <span class="dt">int</span> start<span class="op">)</span></span>
+<span id="cb1-7"><a href="#cb1-7"></a><span class="op">{</span></span>
+<span id="cb1-8"><a href="#cb1-8"></a>    <span class="bu">std::</span>vector<span class="op">&lt;</span><span class="dt">bool</span><span class="op">&gt;</span> visited<span class="op">(</span>adj<span class="op">.</span>size<span class="op">(),</span> <span class="kw">false</span><span class="op">);</span></span>
+<span id="cb1-9"><a href="#cb1-9"></a>    <span class="bu">std::</span>queue<span class="op">&lt;</span><span class="dt">int</span><span class="op">&gt;</span> q<span class="op">;</span></span>
+<span id="cb1-10"><a href="#cb1-10"></a>    <span class="bu">std::</span>cout<span class="op"> &lt;&lt;</span> <span class="st">"BFS Traversal starting from vertex "</span> <span class="op">&lt;&lt;</span> start <span class="op">&lt;&lt;</span> <span class="st">":</span><span class="sc">\n</span><span class="st">"</span><span class="op">;</span></span>
+<span id="cb1-11"><a href="#cb1-11"></a>    q<span class="op">.</span>push<span class="op">(</span>start<span class="op">);</span></span>
+<span id="cb1-12"><a href="#cb1-12"></a>    visited<span class="op">[</span>start<span class="op">]</span> <span class="op">=</span> <span class="kw">true</span><span class="op">;</span></span>
+<span id="cb1-13"><a href="#cb1-13"></a></span>
+<span id="cb1-14"><a href="#cb1-14"></a>    <span class="cf">while</span> <span class="op">(!</span>q<span class="op">.</span>empty<span class="op">())</span></span>
+<span id="cb1-15"><a href="#cb1-15"></a>    <span class="op">{</span></span>
+<span id="cb1-16"><a href="#cb1-16"></a>        <span class="dt">int</span> curr <span class="op">=</span> q<span class="op">.</span>front<span class="op">();</span></span>
+<span id="cb1-17"><a href="#cb1-17"></a>        q<span class="op">.</span>pop<span class="op">();</span></span>
+<span id="cb1-18"><a href="#cb1-18"></a>        <span class="bu">std::</span>cout<span class="op"> &lt;&lt;</span> <span class="st">"Processing vertex "</span> <span class="op">&lt;&lt;</span> curr <span class="op">&lt;&lt;</span> <span class="st">":</span><span class="sc">\n</span><span class="st">"</span><span class="op">;</span></span>
+<span id="cb1-19"><a href="#cb1-19"></a></span>
+<span id="cb1-20"><a href="#cb1-20"></a>        <span class="cf">for</span> <span class="op">(</span><span class="dt">int</span> i <span class="op">=</span> <span class="dv">0</span><span class="op">;</span> i <span class="op">&lt;</span> adj<span class="op">[</span>curr<span class="op">].</span>size<span class="op">();</span> i<span class="op">++)</span></span>
+<span id="cb1-21"><a href="#cb1-21"></a>        <span class="op">{</span></span>
+<span id="cb1-22"><a href="#cb1-22"></a>            <span class="cf">if</span> <span class="op">(</span>adj<span class="op">[</span>curr<span class="op">][</span>i<span class="op">]</span> <span class="op">==</span> <span class="dv">1</span> <span class="op">&amp;&amp;</span> visited<span class="op">[</span>i<span class="op">]</span> <span class="op">==</span> <span class="dv">0</span><span class="op">)</span></span>
+<span id="cb1-23"><a href="#cb1-23"></a>            <span class="op">{</span></span>
+<span id="cb1-24"><a href="#cb1-24"></a>                visited<span class="op">[</span>i<span class="op">]</span> <span class="op">=</span> <span class="kw">true</span><span class="op">;</span></span>
+<span id="cb1-25"><a href="#cb1-25"></a>                q<span class="op">.</span>push<span class="op">(</span>i<span class="op">);</span></span>
+<span id="cb1-26"><a href="#cb1-26"></a>                <span class="bu">std::</span>cout<span class="op"> &lt;&lt;</span> <span class="st">"  -&gt; Visiting vertex "</span> <span class="op">&lt;&lt;</span> i <span class="op">&lt;&lt;</span> <span class="st">"</span><span class="sc">\n</span><span class="st">"</span><span class="op">;</span></span>
+<span id="cb1-27"><a href="#cb1-27"></a>            <span class="op">}</span></span>
+<span id="cb1-28"><a href="#cb1-28"></a>        <span class="op">}</span></span>
+<span id="cb1-29"><a href="#cb1-29"></a>    <span class="op">}</span></span>
+<span id="cb1-30"><a href="#cb1-30"></a>    <span class="bu">std::</span>cout<span class="op"> &lt;&lt;</span> <span class="st">"BFS Traversal Complete.</span><span class="sc">\n</span><span class="st">"</span><span class="op">;</span></span>
+<span id="cb1-31"><a href="#cb1-31"></a></span>
+<span id="cb1-32"><a href="#cb1-32"></a><span class="op">}</span></span>
+<span id="cb1-33"><a href="#cb1-33"></a></span>
+<span id="cb1-34"><a href="#cb1-34"></a></span>
+<span id="cb1-35"><a href="#cb1-35"></a><span class="dt">int</span> main<span class="op">()</span></span>
+<span id="cb1-36"><a href="#cb1-36"></a><span class="op">{</span></span>
+<span id="cb1-37"><a href="#cb1-37"></a>    <span class="bu">std::</span>vector<span class="op">&lt;</span><span class="bu">std::</span>vector<span class="op">&lt;</span><span class="dt">int</span><span class="op">&gt;&gt;</span> adj <span class="op">=</span></span>
+<span id="cb1-38"><a href="#cb1-38"></a>    <span class="op">{</span></span>
+<span id="cb1-39"><a href="#cb1-39"></a>        <span class="op">{</span><span class="dv">0</span><span class="op">,</span> <span class="dv">1</span><span class="op">,</span> <span class="dv">1</span><span class="op">,</span> <span class="dv">0</span><span class="op">,</span> <span class="dv">0</span><span class="op">,</span> <span class="dv">0</span><span class="op">},</span></span>
+<span id="cb1-40"><a href="#cb1-40"></a>        <span class="op">{</span><span class="dv">1</span><span class="op">,</span> <span class="dv">0</span><span class="op">,</span> <span class="dv">0</span><span class="op">,</span> <span class="dv">1</span><span class="op">,</span> <span class="dv">0</span><span class="op">,</span> <span class="dv">0</span><span class="op">},</span></span>
+<span id="cb1-41"><a href="#cb1-41"></a>        <span class="op">{</span><span class="dv">1</span><span class="op">,</span> <span class="dv">0</span><span class="op">,</span> <span class="dv">0</span><span class="op">,</span> <span class="dv">1</span><span class="op">,</span> <span class="dv">0</span><span class="op">,</span> <span class="dv">0</span><span class="op">},</span></span>
+<span id="cb1-42"><a href="#cb1-42"></a>        <span class="op">{</span><span class="dv">0</span><span class="op">,</span> <span class="dv">1</span><span class="op">,</span> <span class="dv">1</span><span class="op">,</span> <span class="dv">0</span><span class="op">,</span> <span class="dv">1</span><span class="op">,</span> <span class="dv">1</span><span class="op">},</span></span>
+<span id="cb1-43"><a href="#cb1-43"></a>        <span class="op">{</span><span class="dv">0</span><span class="op">,</span> <span class="dv">0</span><span class="op">,</span> <span class="dv">0</span><span class="op">,</span> <span class="dv">1</span><span class="op">,</span> <span class="dv">0</span><span class="op">,</span> <span class="dv">0</span><span class="op">},</span></span>
+<span id="cb1-44"><a href="#cb1-44"></a>        <span class="op">{</span><span class="dv">0</span><span class="op">,</span> <span class="dv">0</span><span class="op">,</span> <span class="dv">0</span><span class="op">,</span> <span class="dv">1</span><span class="op">,</span> <span class="dv">0</span><span class="op">,</span> <span class="dv">0</span><span class="op">}};</span></span>
+<span id="cb1-45"><a href="#cb1-45"></a>    bfs<span class="op">(</span>adj<span class="op">,</span> <span class="dv">2</span><span class="op">);</span> <span class="co">//2 is the starting vertices</span></span>
+<span id="cb1-46"><a href="#cb1-46"></a>    <span class="cf">return</span> <span class="dv">0</span><span class="op">;</span></span>
+<span id="cb1-47"><a href="#cb1-47"></a></span>
+<span id="cb1-48"><a href="#cb1-48"></a><span class="op">}</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb2"><pre class="sourceCode numberSource bash number-lines code-with-copy"><code class="sourceCode bash"><span id="cb2-1"><a href="#cb2-1"></a><span class="ex">Output</span> :</span>
+<span id="cb2-2"><a href="#cb2-2"></a><span class="ex">BFS</span> Traversal starting from vertex 2:</span>
+<span id="cb2-3"><a href="#cb2-3"></a><span class="ex">Processing</span> vertex 2:</span>
+<span id="cb2-4"><a href="#cb2-4"></a>  <span class="ex">-</span><span class="op">&gt;</span> Visiting vertex 0</span>
+<span id="cb2-5"><a href="#cb2-5"></a>  <span class="ex">-</span><span class="op">&gt;</span> Visiting vertex 3</span>
+<span id="cb2-6"><a href="#cb2-6"></a><span class="ex">Processing</span> vertex 0:</span>
+<span id="cb2-7"><a href="#cb2-7"></a>  <span class="ex">-</span><span class="op">&gt;</span> Visiting vertex 1</span>
+<span id="cb2-8"><a href="#cb2-8"></a><span class="ex">Processing</span> vertex 3:</span>
+<span id="cb2-9"><a href="#cb2-9"></a>  <span class="ex">-</span><span class="op">&gt;</span> Visiting vertex 4</span>
+<span id="cb2-10"><a href="#cb2-10"></a>  <span class="ex">-</span><span class="op">&gt;</span> Visiting vertex 5</span>
+<span id="cb2-11"><a href="#cb2-11"></a><span class="ex">Processing</span> vertex 1:</span>
+<span id="cb2-12"><a href="#cb2-12"></a><span class="ex">Processing</span> vertex 4:</span>
+<span id="cb2-13"><a href="#cb2-13"></a><span class="ex">Processing</span> vertex 5:</span>
+<span id="cb2-14"><a href="#cb2-14"></a><span class="ex">BFS</span> Traversal Complete.</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</section>
+<section id="find-shortest-path-in-a-grid" class="level2" data-number="2">
+<h2 data-number="2" class="anchored" data-anchor-id="find-shortest-path-in-a-grid"><span class="header-section-number">2</span> Find shortest path in a grid</h2>
+<div class="sourceCode" id="cb3"><pre class="sourceCode numberSource cpp number-lines code-with-copy"><code class="sourceCode cpp"><span id="cb3-1"><a href="#cb3-1"></a><span class="pp">#include</span><span class="im">&lt;iostream&gt;</span></span>
+<span id="cb3-2"><a href="#cb3-2"></a><span class="pp">#include</span><span class="im">&lt;vector&gt;</span></span>
+<span id="cb3-3"><a href="#cb3-3"></a><span class="pp">#include</span><span class="im">&lt;queue&gt;</span></span>
+<span id="cb3-4"><a href="#cb3-4"></a><span class="co">/*</span></span>
+<span id="cb3-5"><a href="#cb3-5"></a><span class="co">*In a 2D grid (or matrix), each cell can be represented as (row, column):</span></span>
+<span id="cb3-6"><a href="#cb3-6"></a><span class="co">    The row index corresponds to the vertical position.</span></span>
+<span id="cb3-7"><a href="#cb3-7"></a><span class="co">    The column index corresponds to the horizontal position.</span></span>
+<span id="cb3-8"><a href="#cb3-8"></a></span>
+<span id="cb3-9"><a href="#cb3-9"></a><span class="co">*2D grid</span></span>
+<span id="cb3-10"><a href="#cb3-10"></a><span class="co">    (0,0) (0,1) (0,2)</span></span>
+<span id="cb3-11"><a href="#cb3-11"></a><span class="co">    (1,0) (1,1) (1,2)</span></span>
+<span id="cb3-12"><a href="#cb3-12"></a><span class="co">    (2,0) (2,1) (2,2)</span></span>
+<span id="cb3-13"><a href="#cb3-13"></a></span>
+<span id="cb3-14"><a href="#cb3-14"></a><span class="co">* If you are at (1,1) (the center), neighboring cells are </span></span>
+<span id="cb3-15"><a href="#cb3-15"></a><span class="co">determined by how the indices change for rows and columns.</span></span>
+<span id="cb3-16"><a href="#cb3-16"></a><span class="co">*</span></span>
+<span id="cb3-17"><a href="#cb3-17"></a><span class="co">* Cardinal Directions:</span></span>
+<span id="cb3-18"><a href="#cb3-18"></a><span class="co">    To move up, down, left, or right, </span></span>
+<span id="cb3-19"><a href="#cb3-19"></a><span class="co">    you only change one coordinate at a time:</span></span>
+<span id="cb3-20"><a href="#cb3-20"></a><span class="co">        Up: Move to the row above → Decrease the row index → (-1, 0)</span></span>
+<span id="cb3-21"><a href="#cb3-21"></a><span class="co">        Down: Move to the row below → Increase the row index → (1, 0)</span></span>
+<span id="cb3-22"><a href="#cb3-22"></a><span class="co">        Left: Move to the column left → Decrease the column index → (0, -1)</span></span>
+<span id="cb3-23"><a href="#cb3-23"></a><span class="co">        Right: Move to the column right → Increase the column index → (0, 1)</span></span>
+<span id="cb3-24"><a href="#cb3-24"></a></span>
+<span id="cb3-25"><a href="#cb3-25"></a><span class="co">* Diagonal Directions:</span></span>
+<span id="cb3-26"><a href="#cb3-26"></a><span class="co">To move diagonally, both the row and column indices change:</span></span>
+<span id="cb3-27"><a href="#cb3-27"></a><span class="co">    Top-Left: Move up and left → (-1, -1)</span></span>
+<span id="cb3-28"><a href="#cb3-28"></a><span class="co">    Top-Right: Move up and right → (-1, 1)</span></span>
+<span id="cb3-29"><a href="#cb3-29"></a><span class="co">    Bottom-Left: Move down and left → (1, -1)</span></span>
+<span id="cb3-30"><a href="#cb3-30"></a><span class="co">    Bottom-Right: Move down and right → (1, 1)</span></span>
+<span id="cb3-31"><a href="#cb3-31"></a><span class="co"> */</span></span>
+<span id="cb3-32"><a href="#cb3-32"></a><span class="dt">int</span> bfsShortestPath<span class="op">(</span><span class="bu">std::</span>vector<span class="op">&lt;</span><span class="bu">std::</span>vector<span class="op">&lt;</span><span class="dt">int</span><span class="op">&gt;&gt;</span> <span class="op">&amp;</span>grid<span class="op">)</span></span>
+<span id="cb3-33"><a href="#cb3-33"></a><span class="op">{</span></span>
+<span id="cb3-34"><a href="#cb3-34"></a>    <span class="bu">std::</span>queue<span class="op">&lt;</span><span class="bu">std::</span>pair<span class="op">&lt;</span><span class="dt">int</span><span class="op">,</span> <span class="dt">int</span><span class="op">&gt;&gt;</span> q<span class="op">;</span></span>
+<span id="cb3-35"><a href="#cb3-35"></a>    <span class="dt">int</span> n <span class="op">=</span> grid<span class="op">.</span>size<span class="op">();</span></span>
+<span id="cb3-36"><a href="#cb3-36"></a>    <span class="bu">std::</span>vector<span class="op">&lt;</span><span class="bu">std::</span>pair<span class="op">&lt;</span><span class="dt">int</span><span class="op">,</span> <span class="dt">int</span><span class="op">&gt;&gt;</span> directions<span class="op">{{-</span><span class="dv">1</span><span class="op">,</span> <span class="op">-</span><span class="dv">1</span><span class="op">},</span> <span class="op">{</span><span class="dv">1</span><span class="op">,</span> <span class="dv">1</span><span class="op">},</span> <span class="op">{</span><span class="dv">1</span><span class="op">,</span> <span class="op">-</span><span class="dv">1</span><span class="op">},</span> </span>
+<span id="cb3-37"><a href="#cb3-37"></a>    <span class="op">{-</span><span class="dv">1</span><span class="op">,</span> <span class="dv">1</span><span class="op">},{-</span><span class="dv">1</span><span class="op">,</span> <span class="dv">0</span><span class="op">},</span> <span class="op">{</span><span class="dv">1</span><span class="op">,</span> <span class="dv">0</span><span class="op">},</span> <span class="op">{</span><span class="dv">0</span><span class="op">,</span> <span class="dv">1</span><span class="op">},</span> <span class="op">{</span><span class="dv">0</span><span class="op">,</span> <span class="op">-</span><span class="dv">1</span><span class="op">}};</span></span>
+<span id="cb3-38"><a href="#cb3-38"></a></span>
+<span id="cb3-39"><a href="#cb3-39"></a>    <span class="cf">if</span> <span class="op">(</span>grid<span class="op">[</span><span class="dv">0</span><span class="op">][</span><span class="dv">0</span><span class="op">]</span> <span class="op">==</span> <span class="dv">1</span> <span class="op">||</span> grid<span class="op">[</span>n <span class="op">-</span> <span class="dv">1</span><span class="op">][</span>n <span class="op">-</span> <span class="dv">1</span><span class="op">]</span> <span class="op">==</span> <span class="dv">1</span><span class="op">)</span></span>
+<span id="cb3-40"><a href="#cb3-40"></a>        <span class="cf">return</span> <span class="op">-</span><span class="dv">1</span><span class="op">;</span></span>
+<span id="cb3-41"><a href="#cb3-41"></a>    q<span class="op">.</span>push<span class="op">({</span><span class="dv">0</span><span class="op">,</span> <span class="dv">0</span><span class="op">});</span></span>
+<span id="cb3-42"><a href="#cb3-42"></a>    grid<span class="op">[</span><span class="dv">0</span><span class="op">][</span><span class="dv">0</span><span class="op">]</span> <span class="op">=</span> <span class="dv">1</span><span class="op">;</span></span>
+<span id="cb3-43"><a href="#cb3-43"></a>    <span class="cf">while</span> <span class="op">(!</span>q<span class="op">.</span>empty<span class="op">())</span></span>
+<span id="cb3-44"><a href="#cb3-44"></a>    <span class="op">{</span></span>
+<span id="cb3-45"><a href="#cb3-45"></a>        <span class="kw">auto</span> <span class="op">[</span>x<span class="op">,</span>y<span class="op">]</span> <span class="op">=</span> q<span class="op">.</span>front<span class="op">();</span></span>
+<span id="cb3-46"><a href="#cb3-46"></a>        <span class="dt">int</span> dist <span class="op">=</span> grid<span class="op">[</span>x<span class="op">][</span>y<span class="op">];</span></span>
+<span id="cb3-47"><a href="#cb3-47"></a>        q<span class="op">.</span>pop<span class="op">();</span></span>
+<span id="cb3-48"><a href="#cb3-48"></a>        <span class="cf">if</span> <span class="op">(</span>x <span class="op">==</span> n <span class="op">-</span> <span class="dv">1</span> <span class="op">&amp;&amp;</span> y <span class="op">==</span> n <span class="op">-</span> <span class="dv">1</span><span class="op">)</span></span>
+<span id="cb3-49"><a href="#cb3-49"></a>        <span class="op">{</span></span>
+<span id="cb3-50"><a href="#cb3-50"></a>            <span class="bu">std::</span>cout<span class="op"> &lt;&lt;</span> <span class="st">"BFS Traversal complete.</span><span class="sc">\n</span><span class="st">"</span><span class="op">;</span></span>
+<span id="cb3-51"><a href="#cb3-51"></a>            <span class="cf">return</span> dist<span class="op">;</span></span>
+<span id="cb3-52"><a href="#cb3-52"></a>        <span class="op">}</span></span>
+<span id="cb3-53"><a href="#cb3-53"></a></span>
+<span id="cb3-54"><a href="#cb3-54"></a>        <span class="cf">for</span> <span class="op">(</span><span class="kw">auto</span> <span class="op">[</span>dx<span class="op">,</span>dy<span class="op">]</span> <span class="op">:</span> directions<span class="op">)</span></span>
+<span id="cb3-55"><a href="#cb3-55"></a>        <span class="op">{</span></span>
+<span id="cb3-56"><a href="#cb3-56"></a>            <span class="dt">int</span> nx <span class="op">=</span> dx <span class="op">+</span> x<span class="op">;</span></span>
+<span id="cb3-57"><a href="#cb3-57"></a>            <span class="dt">int</span> ny <span class="op">=</span> dy <span class="op">+</span> y<span class="op">;</span></span>
+<span id="cb3-58"><a href="#cb3-58"></a>            <span class="cf">if</span> <span class="op">(</span>nx <span class="op">&gt;=</span> <span class="dv">0</span> <span class="op">&amp;&amp;</span> ny <span class="op">&gt;=</span> <span class="dv">0</span> <span class="op">&amp;&amp;</span> nx <span class="op">&lt;</span> n <span class="op">&amp;&amp;</span> ny <span class="op">&lt;</span> n <span class="op">&amp;&amp;</span> grid<span class="op">[</span>nx<span class="op">][</span>ny<span class="op">]</span> <span class="op">==</span> <span class="dv">0</span><span class="op">)</span></span>
+<span id="cb3-59"><a href="#cb3-59"></a>            <span class="op">{</span></span>
+<span id="cb3-60"><a href="#cb3-60"></a>                grid<span class="op">[</span>nx<span class="op">][</span>ny<span class="op">]</span> <span class="op">=</span> dist <span class="op">+</span> <span class="dv">1</span><span class="op">;</span></span>
+<span id="cb3-61"><a href="#cb3-61"></a>                q<span class="op">.</span>push<span class="op">({</span>nx<span class="op">,</span> ny<span class="op">});</span></span>
+<span id="cb3-62"><a href="#cb3-62"></a>            <span class="op">}</span></span>
+<span id="cb3-63"><a href="#cb3-63"></a></span>
+<span id="cb3-64"><a href="#cb3-64"></a>        <span class="op">}</span></span>
+<span id="cb3-65"><a href="#cb3-65"></a>    <span class="op">}</span></span>
+<span id="cb3-66"><a href="#cb3-66"></a></span>
+<span id="cb3-67"><a href="#cb3-67"></a>    <span class="bu">std::</span>cout<span class="op"> &lt;&lt;</span> <span class="st">"BFS Traversal ended- No valid path.</span><span class="sc">\n</span><span class="st">"</span><span class="op">;</span></span>
+<span id="cb3-68"><a href="#cb3-68"></a>    <span class="cf">return</span> <span class="op">-</span><span class="dv">1</span><span class="op">;</span></span>
+<span id="cb3-69"><a href="#cb3-69"></a><span class="op">}</span></span>
+<span id="cb3-70"><a href="#cb3-70"></a></span>
+<span id="cb3-71"><a href="#cb3-71"></a></span>
+<span id="cb3-72"><a href="#cb3-72"></a><span class="dt">int</span> main<span class="op">()</span></span>
+<span id="cb3-73"><a href="#cb3-73"></a><span class="op">{</span></span>
+<span id="cb3-74"><a href="#cb3-74"></a>    <span class="bu">std::</span>vector<span class="op">&lt;</span><span class="bu">std::</span>vector<span class="op">&lt;</span><span class="dt">int</span><span class="op">&gt;&gt;</span> grid <span class="op">=</span></span>
+<span id="cb3-75"><a href="#cb3-75"></a>    <span class="op">{</span></span>
+<span id="cb3-76"><a href="#cb3-76"></a>        <span class="op">{</span><span class="dv">0</span><span class="op">,</span> <span class="dv">1</span><span class="op">,</span> <span class="dv">1</span><span class="op">},</span></span>
+<span id="cb3-77"><a href="#cb3-77"></a>        <span class="op">{</span><span class="dv">1</span><span class="op">,</span> <span class="dv">0</span><span class="op">,</span> <span class="dv">1</span><span class="op">},</span></span>
+<span id="cb3-78"><a href="#cb3-78"></a>        <span class="op">{</span><span class="dv">1</span><span class="op">,</span> <span class="dv">1</span><span class="op">,</span> <span class="dv">0</span><span class="op">}</span></span>
+<span id="cb3-79"><a href="#cb3-79"></a>    <span class="op">};</span></span>
+<span id="cb3-80"><a href="#cb3-80"></a></span>
+<span id="cb3-81"><a href="#cb3-81"></a>    <span class="dt">int</span> dist <span class="op">=</span> bfsShortestPath<span class="op">(</span>grid<span class="op">);</span></span>
+<span id="cb3-82"><a href="#cb3-82"></a>    <span class="bu">std::</span>cout<span class="op"> &lt;&lt;</span> <span class="st">"Shortest Path "</span> <span class="op">&lt;&lt;</span> dist<span class="op">;</span></span>
+<span id="cb3-83"><a href="#cb3-83"></a>    <span class="cf">return</span> <span class="dv">0</span><span class="op">;</span></span>
+<span id="cb3-84"><a href="#cb3-84"></a></span>
+<span id="cb3-85"><a href="#cb3-85"></a><span class="op">}</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb4"><pre class="sourceCode numberSource bash number-lines code-with-copy"><code class="sourceCode bash"><span id="cb4-1"><a href="#cb4-1"></a><span class="ex">Output</span></span>
+<span id="cb4-2"><a href="#cb4-2"></a></span>
+<span id="cb4-3"><a href="#cb4-3"></a><span class="ex">BFS</span> Traversal complete.</span>
+<span id="cb4-4"><a href="#cb4-4"></a><span class="ex">Shortest</span> Path 3</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</section>
+<section id="bfs-adjucency" class="level2" data-number="3">
+<h2 data-number="3" class="anchored" data-anchor-id="bfs-adjucency"><span class="header-section-number">3</span> BFS adjucency</h2>
+<div class="sourceCode" id="cb5"><pre class="sourceCode numberSource cpp number-lines code-with-copy"><code class="sourceCode cpp"><span id="cb5-1"><a href="#cb5-1"></a><span class="pp">#include</span><span class="im">&lt;iostream&gt;</span></span>
+<span id="cb5-2"><a href="#cb5-2"></a><span class="pp">#include</span><span class="im">&lt;queue&gt;</span></span>
+<span id="cb5-3"><a href="#cb5-3"></a></span>
+<span id="cb5-4"><a href="#cb5-4"></a><span class="co">// BFS function for adjacency list representation, printing actual vertex labels</span></span>
+<span id="cb5-5"><a href="#cb5-5"></a><span class="dt">void</span> BFS_adjacencyList<span class="op">(</span><span class="at">const</span> <span class="bu">std::</span>vector<span class="op">&lt;</span><span class="bu">std::</span>vector<span class="op">&lt;</span><span class="dt">int</span><span class="op">&gt;&gt;&amp;</span> adjList<span class="op">,</span> <span class="dt">int</span> v<span class="op">,</span> <span class="at">const</span> <span class="bu">std::</span>unordered_map<span class="op">&lt;</span><span class="dt">int</span><span class="op">,</span> <span class="bu">std::</span>string<span class="op">&gt;&amp;</span> vertexLabels<span class="op">)</span> <span class="op">{</span></span>
+<span id="cb5-6"><a href="#cb5-6"></a>    <span class="bu">std::</span>queue<span class="op">&lt;</span><span class="dt">int</span><span class="op">&gt;</span> q<span class="op">;</span></span>
+<span id="cb5-7"><a href="#cb5-7"></a>    <span class="dt">int</span> u<span class="op">;</span></span>
+<span id="cb5-8"><a href="#cb5-8"></a>    q<span class="op">.</span>push<span class="op">(</span>v<span class="op">);</span></span>
+<span id="cb5-9"><a href="#cb5-9"></a>    <span class="dt">int</span> size <span class="op">=</span> adjList<span class="op">.</span>size<span class="op">();</span></span>
+<span id="cb5-10"><a href="#cb5-10"></a>    <span class="bu">std::</span>vector<span class="op">&lt;</span><span class="dt">int</span><span class="op">&gt;</span> visited<span class="op">(</span>size<span class="op">,</span> <span class="dv">0</span><span class="op">);</span></span>
+<span id="cb5-11"><a href="#cb5-11"></a>    visited<span class="op">[</span>v<span class="op">]</span> <span class="op">=</span> <span class="dv">1</span><span class="op">;</span></span>
+<span id="cb5-12"><a href="#cb5-12"></a></span>
+<span id="cb5-13"><a href="#cb5-13"></a>    <span class="cf">while</span> <span class="op">(!</span>q<span class="op">.</span>empty<span class="op">())</span> <span class="op">{</span></span>
+<span id="cb5-14"><a href="#cb5-14"></a>        u <span class="op">=</span> q<span class="op">.</span>front<span class="op">();</span></span>
+<span id="cb5-15"><a href="#cb5-15"></a>        q<span class="op">.</span>pop<span class="op">();</span></span>
+<span id="cb5-16"><a href="#cb5-16"></a></span>
+<span id="cb5-17"><a href="#cb5-17"></a>        <span class="co">// Print the label associated with the vertex instead of the index</span></span>
+<span id="cb5-18"><a href="#cb5-18"></a>        <span class="bu">std::</span>cout<span class="op"> &lt;&lt;</span> <span class="st">"Visited Vertex: "</span> <span class="op">&lt;&lt;</span> vertexLabels<span class="op">.</span>at<span class="op">(</span>u<span class="op">)</span> <span class="op">&lt;&lt;</span> <span class="bu">std::</span>endl<span class="op">;</span></span>
+<span id="cb5-19"><a href="#cb5-19"></a></span>
+<span id="cb5-20"><a href="#cb5-20"></a>        <span class="co">// Explore the neighbors of vertex 'u'</span></span>
+<span id="cb5-21"><a href="#cb5-21"></a>        <span class="cf">for</span> <span class="op">(</span><span class="dt">int</span> neighbor <span class="op">:</span> adjList<span class="op">[</span>u<span class="op">])</span> <span class="op">{</span></span>
+<span id="cb5-22"><a href="#cb5-22"></a>            <span class="cf">if</span> <span class="op">(</span>visited<span class="op">[</span>neighbor<span class="op">]</span> <span class="op">==</span> <span class="dv">0</span><span class="op">)</span> <span class="op">{</span></span>
+<span id="cb5-23"><a href="#cb5-23"></a>                q<span class="op">.</span>push<span class="op">(</span>neighbor<span class="op">);</span></span>
+<span id="cb5-24"><a href="#cb5-24"></a>                visited<span class="op">[</span>neighbor<span class="op">]</span> <span class="op">=</span> <span class="dv">1</span><span class="op">;</span></span>
+<span id="cb5-25"><a href="#cb5-25"></a>            <span class="op">}</span></span>
+<span id="cb5-26"><a href="#cb5-26"></a>        <span class="op">}</span></span>
+<span id="cb5-27"><a href="#cb5-27"></a>    <span class="op">}</span></span>
+<span id="cb5-28"><a href="#cb5-28"></a><span class="op">}</span></span>
+<span id="cb5-29"><a href="#cb5-29"></a></span>
+<span id="cb5-30"><a href="#cb5-30"></a><span class="dt">int</span> main<span class="op">()</span></span>
+<span id="cb5-31"><a href="#cb5-31"></a><span class="op">{</span></span>
+<span id="cb5-32"><a href="#cb5-32"></a>    <span class="bu">std::</span>unordered_map<span class="op">&lt;</span><span class="dt">int</span><span class="op">,</span> <span class="bu">std::</span>string<span class="op">&gt;</span> vertexLabels <span class="op">=</span> <span class="op">{</span></span>
+<span id="cb5-33"><a href="#cb5-33"></a>        <span class="op">{</span><span class="dv">0</span><span class="op">,</span> <span class="st">"A"</span><span class="op">},</span></span>
+<span id="cb5-34"><a href="#cb5-34"></a>        <span class="op">{</span><span class="dv">1</span><span class="op">,</span> <span class="st">"B"</span><span class="op">},</span></span>
+<span id="cb5-35"><a href="#cb5-35"></a>        <span class="op">{</span><span class="dv">2</span><span class="op">,</span> <span class="st">"C"</span><span class="op">},</span></span>
+<span id="cb5-36"><a href="#cb5-36"></a>        <span class="op">{</span><span class="dv">3</span><span class="op">,</span> <span class="st">"D"</span><span class="op">},</span></span>
+<span id="cb5-37"><a href="#cb5-37"></a>        <span class="op">{</span><span class="dv">4</span><span class="op">,</span> <span class="st">"E"</span><span class="op">},</span></span>
+<span id="cb5-38"><a href="#cb5-38"></a>        <span class="op">{</span><span class="dv">5</span><span class="op">,</span> <span class="st">"F"</span><span class="op">},</span></span>
+<span id="cb5-39"><a href="#cb5-39"></a>        <span class="op">{</span><span class="dv">6</span><span class="op">,</span> <span class="st">"G"</span><span class="op">},</span></span>
+<span id="cb5-40"><a href="#cb5-40"></a>         <span class="op">{</span><span class="dv">7</span><span class="op">,</span><span class="st">"I"</span><span class="op">}</span></span>
+<span id="cb5-41"><a href="#cb5-41"></a>    <span class="op">};</span></span>
+<span id="cb5-42"><a href="#cb5-42"></a></span>
+<span id="cb5-43"><a href="#cb5-43"></a>    <span class="co">// Graph represented using an adjacency list</span></span>
+<span id="cb5-44"><a href="#cb5-44"></a>    <span class="bu">std::</span>vector<span class="op">&lt;</span><span class="bu">std::</span>vector<span class="op">&lt;</span><span class="dt">int</span><span class="op">&gt;&gt;</span> adjList <span class="op">=</span> <span class="op">{</span></span>
+<span id="cb5-45"><a href="#cb5-45"></a>        <span class="op">{},</span>         <span class="co">// Vertex 0 (no edges)</span></span>
+<span id="cb5-46"><a href="#cb5-46"></a>        <span class="op">{</span><span class="dv">2</span><span class="op">,</span> <span class="dv">3</span><span class="op">},</span>     <span class="co">// Vertex 1 is connected to vertices 2 and 3</span></span>
+<span id="cb5-47"><a href="#cb5-47"></a>        <span class="op">{</span><span class="dv">1</span><span class="op">,</span> <span class="dv">4</span><span class="op">},</span>     <span class="co">// Vertex 2 is connected to vertices 1 and 4</span></span>
+<span id="cb5-48"><a href="#cb5-48"></a>        <span class="op">{</span><span class="dv">1</span><span class="op">,</span> <span class="dv">4</span><span class="op">},</span>     <span class="co">// Vertex 3 is connected to vertices 1 and 4</span></span>
+<span id="cb5-49"><a href="#cb5-49"></a>        <span class="op">{</span><span class="dv">2</span><span class="op">,</span> <span class="dv">3</span><span class="op">,</span> <span class="dv">5</span><span class="op">,</span> <span class="dv">6</span><span class="op">},</span> <span class="co">// Vertex 4 is connected to vertices 2, 3, 5, 6</span></span>
+<span id="cb5-50"><a href="#cb5-50"></a>        <span class="op">{</span><span class="dv">4</span><span class="op">},</span>        <span class="co">// Vertex 5 is connected to vertex 4</span></span>
+<span id="cb5-51"><a href="#cb5-51"></a>        <span class="op">{</span><span class="dv">4</span><span class="op">}</span>         <span class="co">// Vertex 6 is connected to vertex 4</span></span>
+<span id="cb5-52"><a href="#cb5-52"></a>    <span class="op">};</span></span>
+<span id="cb5-53"><a href="#cb5-53"></a></span>
+<span id="cb5-54"><a href="#cb5-54"></a>    <span class="bu">std::</span>cout<span class="op">&lt;&lt;</span><span class="st">"adjacencylist values"</span><span class="op">&lt;&lt;</span><span class="bu">std::</span>endl<span class="op">;</span></span>
+<span id="cb5-55"><a href="#cb5-55"></a>    BFS_adjacencyList<span class="op">(</span>adjList<span class="op">,</span><span class="dv">2</span><span class="op">,</span>vertexLabels<span class="op">);</span> <span class="co">//2 is the starting vertices</span></span>
+<span id="cb5-56"><a href="#cb5-56"></a>    <span class="op">}</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb6"><pre class="sourceCode numberSource bash number-lines code-with-copy"><code class="sourceCode bash"><span id="cb6-1"><a href="#cb6-1"></a><span class="ex">Output:</span></span>
+<span id="cb6-2"><a href="#cb6-2"></a><span class="ex">adjacencylist</span> values</span>
+<span id="cb6-3"><a href="#cb6-3"></a><span class="ex">Visited</span> Vertex: C</span>
+<span id="cb6-4"><a href="#cb6-4"></a><span class="ex">Visited</span> Vertex: B</span>
+<span id="cb6-5"><a href="#cb6-5"></a><span class="ex">Visited</span> Vertex: E</span>
+<span id="cb6-6"><a href="#cb6-6"></a><span class="ex">Visited</span> Vertex: D</span>
+<span id="cb6-7"><a href="#cb6-7"></a><span class="ex">Visited</span> Vertex: F</span>
+<span id="cb6-8"><a href="#cb6-8"></a><span class="ex">Visited</span> Vertex: G</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</section>
+<section id="find-number-of-islands" class="level2" data-number="4">
+<h2 data-number="4" class="anchored" data-anchor-id="find-number-of-islands"><span class="header-section-number">4</span> Find number of Islands</h2>
+<div class="sourceCode" id="cb7"><pre class="sourceCode numberSource cpp number-lines code-with-copy"><code class="sourceCode cpp"><span id="cb7-1"><a href="#cb7-1"></a><span class="pp">#include</span><span class="im">&lt;iostream&gt;</span></span>
+<span id="cb7-2"><a href="#cb7-2"></a><span class="pp">#include</span><span class="im">&lt;vector&gt;</span></span>
+<span id="cb7-3"><a href="#cb7-3"></a><span class="pp">#include</span><span class="im">&lt;queue&gt;</span></span>
+<span id="cb7-4"><a href="#cb7-4"></a><span class="co">/*</span></span>
+<span id="cb7-5"><a href="#cb7-5"></a><span class="co">*Given an m x n 2D binary grid grid which represents a map of '1's (land)</span></span>
+<span id="cb7-6"><a href="#cb7-6"></a><span class="co">* and '0's (water), return the number of islands.</span></span>
+<span id="cb7-7"><a href="#cb7-7"></a><span class="co">An island is surrounded by water and is formed by connecting adjacent</span></span>
+<span id="cb7-8"><a href="#cb7-8"></a><span class="co">*  lands horizontally or vertically. You may assume all four edges</span></span>
+<span id="cb7-9"><a href="#cb7-9"></a><span class="co">* of the grid are all surrounded by water.</span></span>
+<span id="cb7-10"><a href="#cb7-10"></a><span class="co">*</span></span>
+<span id="cb7-11"><a href="#cb7-11"></a><span class="co">* grid =</span></span>
+<span id="cb7-12"><a href="#cb7-12"></a><span class="co">* [</span></span>
+<span id="cb7-13"><a href="#cb7-13"></a><span class="co">* [1, 1, 0, 0, 0],</span></span>
+<span id="cb7-14"><a href="#cb7-14"></a><span class="co">  [1, 1, 0, 0, 0],</span></span>
+<span id="cb7-15"><a href="#cb7-15"></a><span class="co">  [0, 0, 1, 0, 0],</span></span>
+<span id="cb7-16"><a href="#cb7-16"></a><span class="co">  [0, 0, 0, 1, 1]</span></span>
+<span id="cb7-17"><a href="#cb7-17"></a><span class="co">]</span></span>
+<span id="cb7-18"><a href="#cb7-18"></a><span class="co"> */</span></span>
+<span id="cb7-19"><a href="#cb7-19"></a><span class="dt">void</span> bfsFindNoOfIsland<span class="op">(</span><span class="bu">std::</span>vector<span class="op">&lt;</span><span class="bu">std::</span>vector<span class="op">&lt;</span><span class="dt">int</span><span class="op">&gt;&gt;</span> <span class="op">&amp;</span>grid<span class="op">,</span> <span class="dt">int</span> x<span class="op">,</span> <span class="dt">int</span> y<span class="op">)</span></span>
+<span id="cb7-20"><a href="#cb7-20"></a><span class="op">{</span></span>
+<span id="cb7-21"><a href="#cb7-21"></a>    <span class="bu">std::</span>queue<span class="op">&lt;</span><span class="bu">std::</span>pair<span class="op">&lt;</span><span class="dt">int</span><span class="op">,</span> <span class="dt">int</span><span class="op">&gt;&gt;</span> q<span class="op">;</span></span>
+<span id="cb7-22"><a href="#cb7-22"></a>    <span class="bu">std::</span>vector<span class="op">&lt;</span><span class="bu">std::</span>pair<span class="op">&lt;</span><span class="dt">int</span><span class="op">,</span> <span class="dt">int</span><span class="op">&gt;&gt;</span> directions <span class="op">=</span> <span class="op">{{</span><span class="dv">0</span><span class="op">,</span> <span class="op">-</span><span class="dv">1</span><span class="op">},</span> <span class="op">{</span><span class="dv">0</span><span class="op">,</span> <span class="dv">1</span><span class="op">},</span> <span class="op">{-</span><span class="dv">1</span><span class="op">,</span> <span class="dv">0</span><span class="op">},</span> <span class="op">{</span><span class="dv">1</span><span class="op">,</span> <span class="dv">0</span><span class="op">}};</span></span>
+<span id="cb7-23"><a href="#cb7-23"></a>    q<span class="op">.</span>push<span class="op">({</span>x<span class="op">,</span> y<span class="op">});</span></span>
+<span id="cb7-24"><a href="#cb7-24"></a>    grid<span class="op">[</span>x<span class="op">][</span>y<span class="op">]</span> <span class="op">=</span> <span class="dv">0</span><span class="op">;</span></span>
+<span id="cb7-25"><a href="#cb7-25"></a>    <span class="cf">while</span> <span class="op">(!</span>q<span class="op">.</span>empty<span class="op">())</span></span>
+<span id="cb7-26"><a href="#cb7-26"></a>    <span class="op">{</span></span>
+<span id="cb7-27"><a href="#cb7-27"></a>        <span class="kw">auto</span> <span class="op">[</span>cx<span class="op">,</span>cy<span class="op">]</span> <span class="op">=</span> q<span class="op">.</span>front<span class="op">();</span></span>
+<span id="cb7-28"><a href="#cb7-28"></a>        q<span class="op">.</span>pop<span class="op">();</span></span>
+<span id="cb7-29"><a href="#cb7-29"></a></span>
+<span id="cb7-30"><a href="#cb7-30"></a>        <span class="cf">for</span> <span class="op">(</span><span class="kw">auto</span> <span class="op">[</span>dx<span class="op">,</span>dy<span class="op">]</span> <span class="op">:</span> directions<span class="op">)</span></span>
+<span id="cb7-31"><a href="#cb7-31"></a>        <span class="op">{</span></span>
+<span id="cb7-32"><a href="#cb7-32"></a>            <span class="dt">int</span> nx <span class="op">=</span> dx <span class="op">+</span> cx<span class="op">;</span></span>
+<span id="cb7-33"><a href="#cb7-33"></a>            <span class="dt">int</span> ny <span class="op">=</span> dy <span class="op">+</span> cy<span class="op">;</span></span>
+<span id="cb7-34"><a href="#cb7-34"></a>            <span class="co">// Check if the next cell is within bounds and is land (1)</span></span>
+<span id="cb7-35"><a href="#cb7-35"></a>            <span class="cf">if</span> <span class="op">(</span>nx <span class="op">&gt;=</span> <span class="dv">0</span> <span class="op">&amp;&amp;</span> ny <span class="op">&gt;=</span> <span class="dv">0</span> <span class="op">&amp;&amp;</span> nx <span class="op">&lt;</span> grid<span class="op">.</span>size<span class="op">()</span> <span class="op">&amp;&amp;</span> ny <span class="op">&lt;</span> grid<span class="op">[</span><span class="dv">0</span><span class="op">].</span>size<span class="op">()</span> <span class="op">&amp;&amp;</span> grid<span class="op">[</span>nx<span class="op">][</span>ny<span class="op">]</span> <span class="op">==</span> <span class="dv">1</span><span class="op">)</span></span>
+<span id="cb7-36"><a href="#cb7-36"></a>            <span class="op">{</span></span>
+<span id="cb7-37"><a href="#cb7-37"></a>                <span class="co">// Mark the cell as visited</span></span>
+<span id="cb7-38"><a href="#cb7-38"></a>                grid<span class="op">[</span>nx<span class="op">][</span>ny<span class="op">]</span> <span class="op">=</span> <span class="dv">0</span><span class="op">;</span></span>
+<span id="cb7-39"><a href="#cb7-39"></a>                q<span class="op">.</span>push<span class="op">({</span>nx<span class="op">,</span> ny<span class="op">});</span></span>
+<span id="cb7-40"><a href="#cb7-40"></a>            <span class="op">}</span></span>
+<span id="cb7-41"><a href="#cb7-41"></a>        <span class="op">}</span></span>
+<span id="cb7-42"><a href="#cb7-42"></a>    <span class="op">}</span></span>
+<span id="cb7-43"><a href="#cb7-43"></a><span class="op">}</span></span>
+<span id="cb7-44"><a href="#cb7-44"></a></span>
+<span id="cb7-45"><a href="#cb7-45"></a><span class="co">// Function to count the number of islands</span></span>
+<span id="cb7-46"><a href="#cb7-46"></a><span class="dt">int</span> numIslands<span class="op">(</span><span class="bu">std::</span>vector<span class="op">&lt;</span><span class="bu">std::</span>vector<span class="op">&lt;</span><span class="dt">int</span><span class="op">&gt;&gt;</span> <span class="op">&amp;</span>grid<span class="op">)</span></span>
+<span id="cb7-47"><a href="#cb7-47"></a><span class="op">{</span></span>
+<span id="cb7-48"><a href="#cb7-48"></a>    <span class="dt">int</span> islands <span class="op">=</span> <span class="dv">0</span><span class="op">;</span></span>
+<span id="cb7-49"><a href="#cb7-49"></a></span>
+<span id="cb7-50"><a href="#cb7-50"></a>    <span class="co">// Traverse the grid</span></span>
+<span id="cb7-51"><a href="#cb7-51"></a>    <span class="cf">for</span> <span class="op">(</span><span class="dt">int</span> i <span class="op">=</span> <span class="dv">0</span><span class="op">;</span> i <span class="op">&lt;</span> grid<span class="op">.</span>size<span class="op">();</span> i<span class="op">++)</span></span>
+<span id="cb7-52"><a href="#cb7-52"></a>    <span class="op">{</span></span>
+<span id="cb7-53"><a href="#cb7-53"></a>        <span class="cf">for</span> <span class="op">(</span><span class="dt">int</span> j <span class="op">=</span> <span class="dv">0</span><span class="op">;</span> j <span class="op">&lt;</span> grid<span class="op">[</span>i<span class="op">].</span>size<span class="op">();</span> j<span class="op">++)</span></span>
+<span id="cb7-54"><a href="#cb7-54"></a>        <span class="op">{</span></span>
+<span id="cb7-55"><a href="#cb7-55"></a>            <span class="co">// If we find land (1), perform BFS and increment the island count</span></span>
+<span id="cb7-56"><a href="#cb7-56"></a>            <span class="cf">if</span> <span class="op">(</span>grid<span class="op">[</span>i<span class="op">][</span>j<span class="op">]</span> <span class="op">==</span> <span class="dv">1</span><span class="op">)</span></span>
+<span id="cb7-57"><a href="#cb7-57"></a>            <span class="op">{</span></span>
+<span id="cb7-58"><a href="#cb7-58"></a>                bfsFindNoOfIsland<span class="op">(</span>grid<span class="op">,</span> i<span class="op">,</span> j<span class="op">);</span></span>
+<span id="cb7-59"><a href="#cb7-59"></a>                islands<span class="op">++;</span></span>
+<span id="cb7-60"><a href="#cb7-60"></a>            <span class="op">}</span></span>
+<span id="cb7-61"><a href="#cb7-61"></a>        <span class="op">}</span></span>
+<span id="cb7-62"><a href="#cb7-62"></a>    <span class="op">}</span></span>
+<span id="cb7-63"><a href="#cb7-63"></a>    <span class="cf">return</span> islands<span class="op">;</span></span>
+<span id="cb7-64"><a href="#cb7-64"></a><span class="op">}</span></span>
+<span id="cb7-65"><a href="#cb7-65"></a></span>
+<span id="cb7-66"><a href="#cb7-66"></a><span class="dt">int</span> main<span class="op">()</span></span>
+<span id="cb7-67"><a href="#cb7-67"></a><span class="op">{</span></span>
+<span id="cb7-68"><a href="#cb7-68"></a>    <span class="bu">std::</span>vector<span class="op">&lt;</span><span class="bu">std::</span>vector<span class="op">&lt;</span><span class="dt">int</span><span class="op">&gt;&gt;</span> grid <span class="op">=</span></span>
+<span id="cb7-69"><a href="#cb7-69"></a>    <span class="op">{</span></span>
+<span id="cb7-70"><a href="#cb7-70"></a>        <span class="op">{</span><span class="dv">1</span><span class="op">,</span> <span class="dv">1</span><span class="op">,</span> <span class="dv">0</span><span class="op">,</span> <span class="dv">0</span><span class="op">,</span> <span class="dv">0</span><span class="op">},</span></span>
+<span id="cb7-71"><a href="#cb7-71"></a>        <span class="op">{</span><span class="dv">1</span><span class="op">,</span> <span class="dv">1</span><span class="op">,</span> <span class="dv">0</span><span class="op">,</span> <span class="dv">0</span><span class="op">,</span> <span class="dv">0</span><span class="op">},</span></span>
+<span id="cb7-72"><a href="#cb7-72"></a>        <span class="op">{</span><span class="dv">0</span><span class="op">,</span> <span class="dv">0</span><span class="op">,</span> <span class="dv">1</span><span class="op">,</span> <span class="dv">0</span><span class="op">,</span> <span class="dv">0</span><span class="op">},</span></span>
+<span id="cb7-73"><a href="#cb7-73"></a>        <span class="op">{</span><span class="dv">0</span><span class="op">,</span> <span class="dv">0</span><span class="op">,</span> <span class="dv">0</span><span class="op">,</span> <span class="dv">1</span><span class="op">,</span> <span class="dv">1</span><span class="op">},</span></span>
+<span id="cb7-74"><a href="#cb7-74"></a>    <span class="op">};</span></span>
+<span id="cb7-75"><a href="#cb7-75"></a></span>
+<span id="cb7-76"><a href="#cb7-76"></a>    <span class="kw">auto</span> islands <span class="op">=</span> numIslands<span class="op">(</span>grid<span class="op">);</span></span>
+<span id="cb7-77"><a href="#cb7-77"></a>    <span class="bu">std::</span>cout<span class="op"> &lt;&lt;</span> <span class="st">"No of islands "</span> <span class="op">&lt;&lt;</span> islands<span class="op">;</span></span>
+<span id="cb7-78"><a href="#cb7-78"></a>    <span class="cf">return</span> <span class="dv">0</span><span class="op">;</span></span>
+<span id="cb7-79"><a href="#cb7-79"></a></span>
+<span id="cb7-80"><a href="#cb7-80"></a><span class="op">}</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb8"><pre class="sourceCode numberSource bash number-lines code-with-copy"><code class="sourceCode bash"><span id="cb8-1"><a href="#cb8-1"></a><span class="ex">Output:</span></span>
+<span id="cb8-2"><a href="#cb8-2"></a><span class="ex">No</span> of islands 3</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</section>
+<section id="shortest-path-words" class="level2" data-number="5">
+<h2 data-number="5" class="anchored" data-anchor-id="shortest-path-words"><span class="header-section-number">5</span> Shortest path words</h2>
+<div class="sourceCode" id="cb9"><pre class="sourceCode numberSource cpp number-lines code-with-copy"><code class="sourceCode cpp"><span id="cb9-1"><a href="#cb9-1"></a></span>
+<span id="cb9-2"><a href="#cb9-2"></a><span class="co">/*Problem: Word Ladder</span></span>
+<span id="cb9-3"><a href="#cb9-3"></a><span class="co">Description: Given two words, beginWord and endWord, and a dictionary of words,</span></span>
+<span id="cb9-4"><a href="#cb9-4"></a><span class="co">find the length of the shortest transformation sequence from beginWord to endWord.</span></span>
+<span id="cb9-5"><a href="#cb9-5"></a><span class="co">Each transformed word must be in the word list, and only one letter can be changed at a time.*/</span></span>
+<span id="cb9-6"><a href="#cb9-6"></a><span class="pp">#include </span><span class="im">&lt;iostream&gt;</span></span>
+<span id="cb9-7"><a href="#cb9-7"></a><span class="pp">#include</span><span class="im">&lt;string&gt;</span></span>
+<span id="cb9-8"><a href="#cb9-8"></a><span class="pp">#include</span><span class="im">&lt;vector&gt;</span></span>
+<span id="cb9-9"><a href="#cb9-9"></a><span class="pp">#include</span><span class="im">&lt;unordered_set&gt;</span></span>
+<span id="cb9-10"><a href="#cb9-10"></a><span class="pp">#include</span><span class="im">&lt;queue&gt;</span></span>
+<span id="cb9-11"><a href="#cb9-11"></a></span>
+<span id="cb9-12"><a href="#cb9-12"></a><span class="dt">int</span> shortestTransformation<span class="op">(</span><span class="bu">std::</span>string<span class="op"> </span>beginWord<span class="op">,</span> <span class="bu">std::</span>string<span class="op"> </span>endWord<span class="op">,</span> <span class="bu">std::</span>vector<span class="op">&lt;</span><span class="bu">std::</span>string<span class="op">&gt;</span> <span class="op">&amp;</span>wordList<span class="op">)</span></span>
+<span id="cb9-13"><a href="#cb9-13"></a><span class="op">{</span></span>
+<span id="cb9-14"><a href="#cb9-14"></a>    <span class="bu">std::</span>unordered_set<span class="op">&lt;</span><span class="bu">std::</span>string<span class="op">&gt;</span> wordSet<span class="op">(</span>wordList<span class="op">.</span>begin<span class="op">(),</span> wordList<span class="op">.</span>end<span class="op">());</span></span>
+<span id="cb9-15"><a href="#cb9-15"></a>    <span class="cf">if</span> <span class="op">(!</span>wordSet<span class="op">.</span>count<span class="op">(</span>endWord<span class="op">))</span></span>
+<span id="cb9-16"><a href="#cb9-16"></a>    <span class="op">{</span></span>
+<span id="cb9-17"><a href="#cb9-17"></a>        <span class="cf">return</span> <span class="dv">0</span><span class="op">;</span></span>
+<span id="cb9-18"><a href="#cb9-18"></a>    <span class="op">}</span></span>
+<span id="cb9-19"><a href="#cb9-19"></a>    <span class="bu">std::</span>queue<span class="op">&lt;</span><span class="bu">std::</span>pair<span class="op">&lt;</span><span class="bu">std::</span>string<span class="op">,</span> <span class="dt">int</span><span class="op">&gt;&gt;</span> q<span class="op">;</span></span>
+<span id="cb9-20"><a href="#cb9-20"></a>    q<span class="op">.</span>push<span class="op">({</span>beginWord<span class="op">,</span> <span class="dv">1</span><span class="op">});</span></span>
+<span id="cb9-21"><a href="#cb9-21"></a></span>
+<span id="cb9-22"><a href="#cb9-22"></a>    <span class="cf">while</span> <span class="op">(!</span>q<span class="op">.</span>empty<span class="op">())</span></span>
+<span id="cb9-23"><a href="#cb9-23"></a>    <span class="op">{</span></span>
+<span id="cb9-24"><a href="#cb9-24"></a>        <span class="kw">auto</span> <span class="op">[</span>word<span class="op">,</span>length<span class="op">]</span> <span class="op">=</span> q<span class="op">.</span>front<span class="op">();</span></span>
+<span id="cb9-25"><a href="#cb9-25"></a>        q<span class="op">.</span>pop<span class="op">();</span></span>
+<span id="cb9-26"><a href="#cb9-26"></a></span>
+<span id="cb9-27"><a href="#cb9-27"></a>        <span class="cf">if</span> <span class="op">(</span>word <span class="op">==</span> endWord<span class="op">)</span></span>
+<span id="cb9-28"><a href="#cb9-28"></a>        <span class="op">{</span></span>
+<span id="cb9-29"><a href="#cb9-29"></a>            <span class="cf">return</span> length<span class="op">;</span></span>
+<span id="cb9-30"><a href="#cb9-30"></a>        <span class="op">}</span></span>
+<span id="cb9-31"><a href="#cb9-31"></a></span>
+<span id="cb9-32"><a href="#cb9-32"></a>        <span class="cf">for</span> <span class="op">(</span><span class="dt">int</span> i <span class="op">=</span> <span class="dv">0</span><span class="op">;</span> i <span class="op">&lt;</span> word<span class="op">.</span>length<span class="op">();</span> i<span class="op">++)</span></span>
+<span id="cb9-33"><a href="#cb9-33"></a>        <span class="op">{</span></span>
+<span id="cb9-34"><a href="#cb9-34"></a>            <span class="bu">std::</span>string<span class="op"> </span>temp <span class="op">=</span> word<span class="op">;</span></span>
+<span id="cb9-35"><a href="#cb9-35"></a>            <span class="cf">for</span> <span class="op">(</span><span class="dt">char</span> c <span class="op">=</span> <span class="ch">'a'</span><span class="op">;</span> c <span class="op">&lt;=</span> <span class="ch">'z'</span><span class="op">;</span> c<span class="op">++)</span></span>
+<span id="cb9-36"><a href="#cb9-36"></a>            <span class="op">{</span></span>
+<span id="cb9-37"><a href="#cb9-37"></a>                temp<span class="op">[</span>i<span class="op">]</span> <span class="op">=</span> c<span class="op">;</span></span>
+<span id="cb9-38"><a href="#cb9-38"></a></span>
+<span id="cb9-39"><a href="#cb9-39"></a>                <span class="cf">if</span> <span class="op">(</span>wordSet<span class="op">.</span>count<span class="op">(</span>temp<span class="op">))</span></span>
+<span id="cb9-40"><a href="#cb9-40"></a>                <span class="op">{</span></span>
+<span id="cb9-41"><a href="#cb9-41"></a>                    q<span class="op">.</span>push<span class="op">({</span>temp<span class="op">,</span> length <span class="op">+</span> <span class="dv">1</span><span class="op">});</span></span>
+<span id="cb9-42"><a href="#cb9-42"></a>                    wordSet<span class="op">.</span>erase<span class="op">(</span>temp<span class="op">);</span></span>
+<span id="cb9-43"><a href="#cb9-43"></a>                <span class="op">}</span></span>
+<span id="cb9-44"><a href="#cb9-44"></a>            <span class="op">}</span></span>
+<span id="cb9-45"><a href="#cb9-45"></a>        <span class="op">}</span></span>
+<span id="cb9-46"><a href="#cb9-46"></a>    <span class="op">}</span></span>
+<span id="cb9-47"><a href="#cb9-47"></a>    <span class="cf">return</span> <span class="dv">0</span><span class="op">;</span></span>
+<span id="cb9-48"><a href="#cb9-48"></a><span class="op">}</span></span>
+<span id="cb9-49"><a href="#cb9-49"></a></span>
+<span id="cb9-50"><a href="#cb9-50"></a><span class="dt">int</span> main<span class="op">()</span></span>
+<span id="cb9-51"><a href="#cb9-51"></a><span class="op">{</span></span>
+<span id="cb9-52"><a href="#cb9-52"></a>    <span class="bu">std::</span>vector<span class="op">&lt;</span><span class="bu">std::</span>string<span class="op">&gt;</span> wordList<span class="op">{</span><span class="st">"hot"</span><span class="op">,</span> <span class="st">"dot"</span><span class="op">,</span> <span class="st">"dog"</span><span class="op">,</span> <span class="st">"log"</span><span class="op">,</span> <span class="st">"pog"</span><span class="op">};</span></span>
+<span id="cb9-53"><a href="#cb9-53"></a>    <span class="kw">auto</span> shortLength <span class="op">=</span> shortestTransformation<span class="op">(</span><span class="st">"hit"</span><span class="op">,</span> <span class="st">"pog"</span><span class="op">,</span> wordList<span class="op">);</span></span>
+<span id="cb9-54"><a href="#cb9-54"></a>    <span class="bu">std::</span>cout<span class="op"> &lt;&lt;</span> <span class="st">"Shortest Length : "</span> <span class="op">&lt;&lt;</span> shortLength <span class="op">&lt;&lt;</span> <span class="bu">std::</span>endl<span class="op">;</span></span>
+<span id="cb9-55"><a href="#cb9-55"></a></span>
+<span id="cb9-56"><a href="#cb9-56"></a><span class="op">}</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb10"><pre class="sourceCode numberSource bash number-lines code-with-copy"><code class="sourceCode bash"><span id="cb10-1"><a href="#cb10-1"></a><span class="ex">Output:</span></span>
+<span id="cb10-2"><a href="#cb10-2"></a><span class="ex">Shortest</span> Length : 5</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+
+
+</section>
+
+</main> <!-- /main -->
+<script id="quarto-html-after-body" type="application/javascript">
+window.document.addEventListener("DOMContentLoaded", function (event) {
+  const toggleBodyColorMode = (bsSheetEl) => {
+    const mode = bsSheetEl.getAttribute("data-mode");
+    const bodyEl = window.document.querySelector("body");
+    if (mode === "dark") {
+      bodyEl.classList.add("quarto-dark");
+      bodyEl.classList.remove("quarto-light");
+    } else {
+      bodyEl.classList.add("quarto-light");
+      bodyEl.classList.remove("quarto-dark");
+    }
+  }
+  const toggleBodyColorPrimary = () => {
+    const bsSheetEl = window.document.querySelector("link#quarto-bootstrap");
+    if (bsSheetEl) {
+      toggleBodyColorMode(bsSheetEl);
+    }
+  }
+  toggleBodyColorPrimary();  
+  const icon = "";
+  const anchorJS = new window.AnchorJS();
+  anchorJS.options = {
+    placement: 'right',
+    icon: icon
+  };
+  anchorJS.add('.anchored');
+  const isCodeAnnotation = (el) => {
+    for (const clz of el.classList) {
+      if (clz.startsWith('code-annotation-')) {                     
+        return true;
+      }
+    }
+    return false;
+  }
+  const clipboard = new window.ClipboardJS('.code-copy-button', {
+    text: function(trigger) {
+      const codeEl = trigger.previousElementSibling.cloneNode(true);
+      for (const childEl of codeEl.children) {
+        if (isCodeAnnotation(childEl)) {
+          childEl.remove();
+        }
+      }
+      return codeEl.innerText;
+    }
+  });
+  clipboard.on('success', function(e) {
+    // button target
+    const button = e.trigger;
+    // don't keep focus
+    button.blur();
+    // flash "checked"
+    button.classList.add('code-copy-button-checked');
+    var currentTitle = button.getAttribute("title");
+    button.setAttribute("title", "Copied!");
+    let tooltip;
+    if (window.bootstrap) {
+      button.setAttribute("data-bs-toggle", "tooltip");
+      button.setAttribute("data-bs-placement", "left");
+      button.setAttribute("data-bs-title", "Copied!");
+      tooltip = new bootstrap.Tooltip(button, 
+        { trigger: "manual", 
+          customClass: "code-copy-button-tooltip",
+          offset: [0, -8]});
+      tooltip.show();    
+    }
+    setTimeout(function() {
+      if (tooltip) {
+        tooltip.hide();
+        button.removeAttribute("data-bs-title");
+        button.removeAttribute("data-bs-toggle");
+        button.removeAttribute("data-bs-placement");
+      }
+      button.setAttribute("title", currentTitle);
+      button.classList.remove('code-copy-button-checked');
+    }, 1000);
+    // clear code selection
+    e.clearSelection();
+  });
+  function tippyHover(el, contentFn) {
+    const config = {
+      allowHTML: true,
+      content: contentFn,
+      maxWidth: 500,
+      delay: 100,
+      arrow: false,
+      appendTo: function(el) {
+          return el.parentElement;
+      },
+      interactive: true,
+      interactiveBorder: 10,
+      theme: 'quarto',
+      placement: 'bottom-start'
+    };
+    window.tippy(el, config); 
+  }
+  const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
+  for (var i=0; i<noterefs.length; i++) {
+    const ref = noterefs[i];
+    tippyHover(ref, function() {
+      // use id or data attribute instead here
+      let href = ref.getAttribute('data-footnote-href') || ref.getAttribute('href');
+      try { href = new URL(href).hash; } catch {}
+      const id = href.replace(/^#\/?/, "");
+      const note = window.document.getElementById(id);
+      return note.innerHTML;
+    });
+  }
+      let selectedAnnoteEl;
+      const selectorForAnnotation = ( cell, annotation) => {
+        let cellAttr = 'data-code-cell="' + cell + '"';
+        let lineAttr = 'data-code-annotation="' +  annotation + '"';
+        const selector = 'span[' + cellAttr + '][' + lineAttr + ']';
+        return selector;
+      }
+      const selectCodeLines = (annoteEl) => {
+        const doc = window.document;
+        const targetCell = annoteEl.getAttribute("data-target-cell");
+        const targetAnnotation = annoteEl.getAttribute("data-target-annotation");
+        const annoteSpan = window.document.querySelector(selectorForAnnotation(targetCell, targetAnnotation));
+        const lines = annoteSpan.getAttribute("data-code-lines").split(",");
+        const lineIds = lines.map((line) => {
+          return targetCell + "-" + line;
+        })
+        let top = null;
+        let height = null;
+        let parent = null;
+        if (lineIds.length > 0) {
+            //compute the position of the single el (top and bottom and make a div)
+            const el = window.document.getElementById(lineIds[0]);
+            top = el.offsetTop;
+            height = el.offsetHeight;
+            parent = el.parentElement.parentElement;
+          if (lineIds.length > 1) {
+            const lastEl = window.document.getElementById(lineIds[lineIds.length - 1]);
+            const bottom = lastEl.offsetTop + lastEl.offsetHeight;
+            height = bottom - top;
+          }
+          if (top !== null && height !== null && parent !== null) {
+            // cook up a div (if necessary) and position it 
+            let div = window.document.getElementById("code-annotation-line-highlight");
+            if (div === null) {
+              div = window.document.createElement("div");
+              div.setAttribute("id", "code-annotation-line-highlight");
+              div.style.position = 'absolute';
+              parent.appendChild(div);
+            }
+            div.style.top = top - 2 + "px";
+            div.style.height = height + 4 + "px";
+            let gutterDiv = window.document.getElementById("code-annotation-line-highlight-gutter");
+            if (gutterDiv === null) {
+              gutterDiv = window.document.createElement("div");
+              gutterDiv.setAttribute("id", "code-annotation-line-highlight-gutter");
+              gutterDiv.style.position = 'absolute';
+              const codeCell = window.document.getElementById(targetCell);
+              const gutter = codeCell.querySelector('.code-annotation-gutter');
+              gutter.appendChild(gutterDiv);
+            }
+            gutterDiv.style.top = top - 2 + "px";
+            gutterDiv.style.height = height + 4 + "px";
+          }
+          selectedAnnoteEl = annoteEl;
+        }
+      };
+      const unselectCodeLines = () => {
+        const elementsIds = ["code-annotation-line-highlight", "code-annotation-line-highlight-gutter"];
+        elementsIds.forEach((elId) => {
+          const div = window.document.getElementById(elId);
+          if (div) {
+            div.remove();
+          }
+        });
+        selectedAnnoteEl = undefined;
+      };
+      // Attach click handler to the DT
+      const annoteDls = window.document.querySelectorAll('dt[data-target-cell]');
+      for (const annoteDlNode of annoteDls) {
+        annoteDlNode.addEventListener('click', (event) => {
+          const clickedEl = event.target;
+          if (clickedEl !== selectedAnnoteEl) {
+            unselectCodeLines();
+            const activeEl = window.document.querySelector('dt[data-target-cell].code-annotation-active');
+            if (activeEl) {
+              activeEl.classList.remove('code-annotation-active');
+            }
+            selectCodeLines(clickedEl);
+            clickedEl.classList.add('code-annotation-active');
+          } else {
+            // Unselect the line
+            unselectCodeLines();
+            clickedEl.classList.remove('code-annotation-active');
+          }
+        });
+      }
+  const findCites = (el) => {
+    const parentEl = el.parentElement;
+    if (parentEl) {
+      const cites = parentEl.dataset.cites;
+      if (cites) {
+        return {
+          el,
+          cites: cites.split(' ')
+        };
+      } else {
+        return findCites(el.parentElement)
+      }
+    } else {
+      return undefined;
+    }
+  };
+  var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
+  for (var i=0; i<bibliorefs.length; i++) {
+    const ref = bibliorefs[i];
+    const citeInfo = findCites(ref);
+    if (citeInfo) {
+      tippyHover(citeInfo.el, function() {
+        var popup = window.document.createElement('div');
+        citeInfo.cites.forEach(function(cite) {
+          var citeDiv = window.document.createElement('div');
+          citeDiv.classList.add('hanging-indent');
+          citeDiv.classList.add('csl-entry');
+          var biblioDiv = window.document.getElementById('ref-' + cite);
+          if (biblioDiv) {
+            citeDiv.innerHTML = biblioDiv.innerHTML;
+          }
+          popup.appendChild(citeDiv);
+        });
+        return popup.innerHTML;
+      });
+    }
+  }
+});
+</script>
+<script src="https://giscus.app/client.js" data-repo="Yasmic/AutoGlimpses" data-repo-id="R_kgDOJ8MoGA" data-category="Announcements" data-category-id="" data-mapping="title" data-reactions-enabled="1" data-emit-metadata="0" data-input-position="top" data-theme="light" data-lang="en" crossorigin="anonymous" async="">
+</script>
+<nav class="page-navigation">
+  <div class="nav-page nav-page-previous">
+      <a href="../../C_Plus_Plus/Basics/basics_cpp.html" class="pagination-link">
+        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text">Glimpse of C++</span>
+      </a>          
+  </div>
+  <div class="nav-page nav-page-next">
+      <a href="../../C_Plus_Plus/Linked-list/circular_linkedlist.html" class="pagination-link">
+        <span class="nav-page-text">circularLinkedList</span> <i class="bi bi-arrow-right-short"></i>
+      </a>
+  </div>
+</nav>
+</div> <!-- /content -->
+<footer class="footer">
+  <div class="nav-footer">
+    <div class="nav-footer-left">Copyright 2022, Yasmi</div>   
+    <div class="nav-footer-center">
+      &nbsp;
+    </div>
+    <div class="nav-footer-right">
+      <ul class="footer-items list-unstyled">
+    <li class="nav-item compact">
+    <a class="nav-link" href="https://github.com/Yasmic/AutoGlimpses">
+      <i class="bi bi-github" role="img">
+</i> 
+    </a>
+  </li>  
+    <li class="nav-item compact">
+    <a class="nav-link" href="https://www.linkedin.com/">
+      <i class="bi bi-linkedin" role="img">
+</i> 
+    </a>
+  </li>  
+</ul>
+    </div>
+  </div>
+</footer>
+
+
+
+</body></html>
