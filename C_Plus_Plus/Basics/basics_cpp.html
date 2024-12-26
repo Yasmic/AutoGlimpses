@@ -2,7 +2,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
 
 <meta charset="utf-8">
-<meta name="generator" content="quarto-1.5.57">
+<meta name="generator" content="quarto-1.6.39">
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
@@ -74,10 +74,10 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <script src="../../site_libs/quarto-html/tippy.umd.min.js"></script>
 <script src="../../site_libs/quarto-html/anchor.min.js"></script>
 <link href="../../site_libs/quarto-html/tippy.css" rel="stylesheet">
-<link href="../../site_libs/quarto-html/quarto-syntax-highlighting.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<link href="../../site_libs/quarto-html/quarto-syntax-highlighting-dab109951af4044d4f5cecaee3bfc100.css" rel="stylesheet" id="quarto-text-highlighting-styles">
 <script src="../../site_libs/bootstrap/bootstrap.min.js"></script>
 <link href="../../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
-<link href="../../site_libs/bootstrap/bootstrap.min.css" rel="stylesheet" id="quarto-bootstrap" data-mode="light">
+<link href="../../site_libs/bootstrap/bootstrap-ff716a4499a4c9de6f0692f49376f3c6.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
 <link href="../../site_libs/quarto-contrib/fontawesome6-0.1.0/all.css" rel="stylesheet">
 <link href="../../site_libs/quarto-contrib/fontawesome6-0.1.0/latex-fontsize.css" rel="stylesheet">
 <script id="quarto-search-options" type="application/json">{
@@ -404,6 +404,7 @@ gtag('config', 'G-5ZQX02R26E', { 'anonymize_ip': true});
   <li><a href="#reinterpret_casttypevariable" id="toc-reinterpret_casttypevariable" class="nav-link" data-scroll-target="#reinterpret_casttypevariable"><span class="header-section-number">2.3</span> <code>reinterpret_cast&lt;Type&gt;(variable)</code></a></li>
   <li><a href="#dynamic_casttypevariable" id="toc-dynamic_casttypevariable" class="nav-link" data-scroll-target="#dynamic_casttypevariable"><span class="header-section-number">2.4</span> <code>dynamic_cast&lt;Type&gt;(variable)</code></a></li>
   </ul></li>
+  <li><a href="#random-notes" id="toc-random-notes" class="nav-link" data-scroll-target="#random-notes"><span class="header-section-number">3</span> Random notes</a></li>
   </ul>
 </nav>
     </div>
@@ -546,9 +547,45 @@ gtag('config', 'G-5ZQX02R26E', { 'anonymize_ip': true});
 <ul>
 <li>Result=<code>hey derived</code></li>
 </ul>
-
-
 </section>
+</section>
+<section id="random-notes" class="level2" data-number="3">
+<h2 data-number="3" class="anchored" data-anchor-id="random-notes"><span class="header-section-number">3</span> Random notes</h2>
+<p>Initialiser with curly braces int x{7}; This doesnt allow narrow conversation int x=7.7; legal authough compiler warn int x{7.7}; illegal it can be used with compound types std::vector<int>vec{1,2,3,4,5};</int></p>
+<p>NULL value is 0 in c++</p>
+<p>auto type specifier auto x=6 ; deduces to int auto x{6} same as int x its very useful with complicated types it ignores const, references if we need const or reference we should add it</p>
+<p>we can use auto in the loop as well</p>
+<p>Lambda expression inline function anonymous ideal for short simpler <a href="int arg"></a>{return 2<em>arg;} [] : put instead of funciton name To invoke it, put() after the body with any arguments //invoke lambda with argument 3 <a href="int arg"></a>{return 2</em>arg;}(3);</p>
+<p>it can also be stored in a variable of type auto</p>
+<p>auto lam=<a href="int arg"></a>{return 2*arg;} lam(3);</p>
+<p>Lambda expression as predicate :</p>
+<div class="sourceCode" id="cb6"><pre class="sourceCode numberSource cpp number-lines code-with-copy"><code class="sourceCode cpp"><span id="cb6-1"><a href="#cb6-1"></a><span class="kw">auto</span> n_even <span class="op">=</span> <span class="bu">std::</span>count_if<span class="op">(</span>vector<span class="op">.</span>begin<span class="op">(),</span> vector<span class="op">.</span>end<span class="op">(),</span> <span class="op">[](</span><span class="dt">int</span> n<span class="op">)</span> <span class="op">{</span> <span class="cf">return</span> <span class="op">(</span>n <span class="op">%</span> <span class="dv">2</span> <span class="op">==</span> <span class="dv">0</span><span class="op">);</span> <span class="op">});</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>std::count_if: This is an STL algorithm that iterates over a given range [first, last) and counts the elements that satisfy a specific condition (predicate). The third parameter of std::count_if is a callable object, which can be a function pointer, a functor, or a lambda function.</p>
+<div class="sourceCode" id="cb7"><pre class="sourceCode numberSource cpp number-lines code-with-copy"><code class="sourceCode cpp"><span id="cb7-1"><a href="#cb7-1"></a><span class="op">[](</span><span class="dt">int</span> n<span class="op">)</span> <span class="op">{</span> <span class="cf">return</span> <span class="op">(</span>n <span class="op">%</span> <span class="dv">2</span> <span class="op">==</span> <span class="dv">0</span><span class="op">);</span> <span class="op">}</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>This is an inline anonymous function (lambda). It takes one argument (int n), checks whether n is even (n % 2 == 0), and returns true if it is even, otherwise false</p>
+<p>How the Lambda is Called: std::count_if will loop through all elements in the range [vector.begin(), vector.end()). For each element elem in the range, std::count_if will internally call the lambda function: <a href="int n"></a> { return (n % 2 == 0); }</p>
+<p>passing the current element elem as the argument n. The lambda function will execute and return a boolean (true or false), indicating whether the current element satisfies the condition (is even). Result Accumulation: If the lambda function returns true, the internal counter of std::count_if is incremented. If it returns false, the counter is not changed. Once the loop completes, std::count_if returns the total count of elements that satisfied the condition (i.e., the number of even numbers in this case).</p>
+<div class="sourceCode" id="cb8"><pre class="sourceCode numberSource cpp number-lines code-with-copy"><code class="sourceCode cpp"><span id="cb8-1"><a href="#cb8-1"></a><span class="co">//Consider the vector:</span></span>
+<span id="cb8-2"><a href="#cb8-2"></a><span class="bu">std::</span>vector<span class="op">&lt;</span><span class="dt">int</span><span class="op">&gt;</span> vector <span class="op">=</span> <span class="op">{</span><span class="dv">1</span><span class="op">,</span> <span class="dv">2</span><span class="op">,</span> <span class="dv">3</span><span class="op">,</span> <span class="dv">4</span><span class="op">,</span> <span class="dv">5</span><span class="op">};</span></span>
+<span id="cb8-3"><a href="#cb8-3"></a></span>
+<span id="cb8-4"><a href="#cb8-4"></a><span class="co">//The lambda function will be invoked as follows:</span></span>
+<span id="cb8-5"><a href="#cb8-5"></a></span>
+<span id="cb8-6"><a href="#cb8-6"></a>For <span class="dv">1</span><span class="op">:</span> <span class="op">[](</span><span class="dt">int</span> n<span class="op">)</span> <span class="op">{</span> <span class="cf">return</span> <span class="op">(</span>n <span class="op">%</span> <span class="dv">2</span> <span class="op">==</span> <span class="dv">0</span><span class="op">);</span> <span class="op">}</span> → <span class="cf">return</span> <span class="op">(</span><span class="dv">1</span> <span class="op">%</span> <span class="dv">2</span> <span class="op">==</span> <span class="dv">0</span><span class="op">)</span> → <span class="kw">false</span><span class="op">.</span></span>
+<span id="cb8-7"><a href="#cb8-7"></a>For <span class="dv">2</span><span class="op">:</span> <span class="op">[](</span><span class="dt">int</span> n<span class="op">)</span> <span class="op">{</span> <span class="cf">return</span> <span class="op">(</span>n <span class="op">%</span> <span class="dv">2</span> <span class="op">==</span> <span class="dv">0</span><span class="op">);</span> <span class="op">}</span> → <span class="cf">return</span> <span class="op">(</span><span class="dv">2</span> <span class="op">%</span> <span class="dv">2</span> <span class="op">==</span> <span class="dv">0</span><span class="op">)</span> → <span class="kw">true</span><span class="op">.</span></span>
+<span id="cb8-8"><a href="#cb8-8"></a>For <span class="dv">3</span><span class="op">:</span> <span class="op">[](</span><span class="dt">int</span> n<span class="op">)</span> <span class="op">{</span> <span class="cf">return</span> <span class="op">(</span>n <span class="op">%</span> <span class="dv">2</span> <span class="op">==</span> <span class="dv">0</span><span class="op">);</span> <span class="op">}</span> → <span class="cf">return</span> <span class="op">(</span><span class="dv">3</span> <span class="op">%</span> <span class="dv">2</span> <span class="op">==</span> <span class="dv">0</span><span class="op">)</span> → <span class="kw">false</span><span class="op">.</span></span>
+<span id="cb8-9"><a href="#cb8-9"></a>For <span class="dv">4</span><span class="op">:</span> <span class="op">[](</span><span class="dt">int</span> n<span class="op">)</span> <span class="op">{</span> <span class="cf">return</span> <span class="op">(</span>n <span class="op">%</span> <span class="dv">2</span> <span class="op">==</span> <span class="dv">0</span><span class="op">);</span> <span class="op">}</span> → <span class="cf">return</span> <span class="op">(</span><span class="dv">4</span> <span class="op">%</span> <span class="dv">2</span> <span class="op">==</span> <span class="dv">0</span><span class="op">)</span> → <span class="kw">true</span><span class="op">.</span></span>
+<span id="cb8-10"><a href="#cb8-10"></a>For <span class="dv">5</span><span class="op">:</span> <span class="op">[](</span><span class="dt">int</span> n<span class="op">)</span> <span class="op">{</span> <span class="cf">return</span> <span class="op">(</span>n <span class="op">%</span> <span class="dv">2</span> <span class="op">==</span> <span class="dv">0</span><span class="op">);</span> <span class="op">}</span> → <span class="cf">return</span> <span class="op">(</span><span class="dv">5</span> <span class="op">%</span> <span class="dv">2</span> <span class="op">==</span> <span class="dv">0</span><span class="op">)</span> → <span class="kw">false</span><span class="op">.</span></span>
+<span id="cb8-11"><a href="#cb8-11"></a><span class="co">//The total count of true results is 2, so n_even = 2.</span></span>
+<span id="cb8-12"><a href="#cb8-12"></a></span>
+<span id="cb8-13"><a href="#cb8-13"></a><span class="co">//lambda local variablaes</span></span>
+<span id="cb8-14"><a href="#cb8-14"></a><span class="kw">auto</span> add_two<span class="op">=[</span>y<span class="op">=</span><span class="dv">2</span><span class="op">](</span><span class="dt">int</span> x<span class="op">){</span><span class="cf">return</span> x<span class="op">+</span>y<span class="op">}</span></span>
+<span id="cb8-15"><a href="#cb8-15"></a>add_two<span class="op">(</span><span class="dv">2</span><span class="op">);</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>R value reference</p>
+<p>void func(int &amp;&amp; x)</p>
+<p>func(2) //2 is r value int y=2 func(y) error : y is an lvalue you cannot bind an rvalue to l value</p>
+<p>std::move will cast its argument to r vlaue func(std::move(y))</p>
+
+
 </section>
 
 </main> <!-- /main -->
@@ -634,8 +671,6 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
   });
   clipboard.on('success', onCopySuccess);
   if (window.document.getElementById('quarto-embedded-source-code-modal')) {
-    // For code content inside modals, clipBoardJS needs to be initialized with a container option
-    // TODO: Check when it could be a function (https://github.com/zenorocha/clipboard.js/issues/860)
     const clipboardModal = new window.ClipboardJS('.code-copy-button[data-in-quarto-modal]', {
       text: getTextToCopy,
       container: window.document.getElementById('quarto-embedded-source-code-modal')
@@ -746,7 +781,6 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
       if (window.Quarto?.typesetMath) {
         window.Quarto.typesetMath(note);
       }
-      // TODO in 1.5, we should make sure this works without a callout special case
       if (note.classList.contains("callout")) {
         return note.outerHTML;
       } else {
