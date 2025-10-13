@@ -9,6 +9,8 @@
   {
     "listing": "/C_Plus_Plus/index.html",
     "items": [
+      "/C_Plus_Plus/Heap/heap.html",
+      "/C_Plus_Plus/Queue/queue.html",
       "/C_Plus_Plus/Sorting/sorting.html",
       "/C_Plus_Plus/Trees/binaryTree.html",
       "/C_Plus_Plus/Trees/binarySearchTree.html",
